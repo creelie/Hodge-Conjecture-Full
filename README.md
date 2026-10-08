@@ -29,7 +29,8 @@ class, is algebraic. The note and the book prove the following about the set
   homomorphisms, and no tautological cycle of a curve with an automorphism of
   order three, represents the class.
 
-What remains open, and is stated as open in the text:
+What remains open, and is stated as open in the text (see also
+`notes/hodge-residuals.md`):
 
 - the Weil class on general Weil-type abelian varieties of dimension 8 and
   more, and in dimension 6 outside the known families;
@@ -45,6 +46,15 @@ What remains open, and is stated as open in the text:
     book/proposal.md        a draft Springer book proposal
     paper/weil_closure_attempt.tex
                             the research note
+    H8/                     the author's earlier work, version 5.1.0
+                            (doi:10.5281/zenodo.23227940), linked as a git
+                            submodule; it holds the computations
+    notes/hodge-residuals.md
+                            what is still open, and why
+    references.md           the Hodge-related reference library, by
+                            journal or arXiv identifier
+
+Clone with `git clone --recurse-submodules` to get `H8/` as well.
 
 ## Building
 
