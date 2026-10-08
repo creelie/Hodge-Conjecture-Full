@@ -745,6 +745,35 @@ first open case. The most concrete thing this paper adds is that the Weil
 case for $\QQ(\sqrt{-3})$ in every dimension now hangs on a single, explicitly
 described subvariety of a Prym variety and the question whether it deforms.
 
+\subsection*{Machine checks}
+No proof in this paper depends on a computer. The finite parts of the
+arguments have nevertheless been repeated by machine, and the files are in
+the author's repository \cite{BhHC}.
+
+In Lean~4, checked by its kernel with nothing beyond the core library, we
+verified four things. The first is the deductions of
+Propositions~\ref{prop:hardlef}, \ref{prop:descent} and~\ref{prop:middle} and
+of Corollary~\ref{cor:smalldim}, with every geometric input stated as a
+hypothesis, so that the dependence of Proposition~\ref{prop:middle} on the
+Lefschetz standard conjecture is visible in the statement. The second is the
+counts of genera and dimensions in Section~\ref{sec:weil}, for every genus at
+once. The third is the arithmetic of the characters of $\ZZ/3$ in $\ZZ[\zeta]$
+used in Step~3 of Theorem~\ref{thm:schoensub}. The fourth is the weight count
+of Step~5 and the deduction of $c>0$ and $w\ne0$ from it.
+
+In Julia, with a Python version that gives the same output, all in exact
+arithmetic, we computed the following. On a general abelian variety of Weil
+type of dimension $2n\le8$, the Hodge classes span one line in each even
+degree except the middle one, where they span three. For a Weil class $w$
+the products $\eta\cup w$ and $\eta^{n}\cup w$ vanish. The space $U_{\chi}$
+of Step~1 is one-dimensional for $g=3$ and $g=4$; for $g=3$ this was checked
+by summing over the whole group. For $h\le6$ the class $u_{\chi}$ has $h!$
+terms, is symmetric, and pairs nontrivially with $u_{\bar\chi}$.
+
+None of this touches the geometry the paper relies on: the theorems of
+Schoen, Bloch, Looijenga and Andr\'e, and those of \cite{BhH8}. None of it
+bears on Question~\ref{q:schoen}.
+
 \subsection*{A note on preparation}
 Drafts of parts of this paper were prepared with the help of an AI language
 model, used under the author's direction. The author has checked every
@@ -772,6 +801,12 @@ Hautes \'Etudes Sci.\ Publ.\ Math.\ \textbf{83} (1996), 5--49.
 D.~Bhattacharjee, \emph{Algebraic Loci of Weil Classes on Abelian
 Varieties}, preprint, version 5.1.0, Zenodo, 2026,
 doi:10.5281/zenodo.23227940.
+
+\bibitem[BhHC]{BhHC}
+D.~Bhattacharjee, \emph{Hodge-Conjecture-Full}, repository of the Lean and
+Julia checks for this paper, 2026,
+\url{https://github.com/creelie/Hodge-Conjecture-Full}, directory
+\texttt{verification}.
 
 \bibitem[BhW]{BhW}
 D.~Bhattacharjee, \emph{Closing the algebraic locus of Weil classes: an

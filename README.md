@@ -52,6 +52,9 @@ What remains open, and is stated as open in the text (see also
     paper/full_attempt.tex  an attempt at the conjecture in full: every
                             route, pushed as far as it goes, and the first
                             open statement on each
+    verification/           Lean 4 and Julia checks of the finite parts of
+                            paper/full_attempt.tex (with a Python version of
+                            the Julia checks); see verification/README.md
     H8/                     the author's earlier work, version 5.1.0
                             (doi:10.5281/zenodo.23227940), linked as a git
                             submodule; it holds the computations
@@ -68,5 +71,11 @@ Clone with `git clone --recurse-submodules` to get `H8/` as well.
     cd paper && latexmk -pdf weil_closure_attempt.tex
     cd paper && latexmk -pdf full_attempt.tex
 
-All three also compile on Overleaf. For submission to Springer, switch the book
+All three also compile on Overleaf. The machine checks run with
+
+    cd verification/lean && lake build
+    julia verification/julia/checks.jl
+    python3 verification/python/checks.py
+
+No proof in the book or the papers depends on them. For submission to Springer, switch the book
 to the `svmono` class, as the comment at the top of `book/main.tex` explains.

@@ -1,0 +1,66 @@
+(1) dimension counts
+  ok    n =  1: 3n =   3, n^2 =   1, Prym locus proper: False
+  ok    n =  2: 3n =   6, n^2 =   4, Prym locus proper: False
+  ok    n =  3: 3n =   9, n^2 =   9, Prym locus proper: False
+  ok    n =  4: 3n =  12, n^2 =  16, Prym locus proper: True
+  ok    n =  5: 3n =  15, n^2 =  25, Prym locus proper: True
+  ok    n =  6: 3n =  18, n^2 =  36, Prym locus proper: True
+  ok    n =  7: 3n =  21, n^2 =  49, Prym locus proper: True
+  ok    n =  8: 3n =  24, n^2 =  64, Prym locus proper: True
+  ok    n =  9: 3n =  27, n^2 =  81, Prym locus proper: True
+  ok    n = 10: 3n =  30, n^2 = 100, Prym locus proper: True
+  ok    n = 11: 3n =  33, n^2 = 121, Prym locus proper: True
+  ok    n = 12: 3n =  36, n^2 = 144, Prym locus proper: True
+  ok    g =  2: 3g-3 =   3, g(g+1)/2 =   3, Jacobian locus proper: False
+  ok    g =  3: 3g-3 =   6, g(g+1)/2 =   6, Jacobian locus proper: False
+  ok    g =  4: 3g-3 =   9, g(g+1)/2 =  10, Jacobian locus proper: True
+  ok    g =  5: 3g-3 =  12, g(g+1)/2 =  15, Jacobian locus proper: True
+  ok    g =  6: 3g-3 =  15, g(g+1)/2 =  21, Jacobian locus proper: True
+  ok    g =  7: 3g-3 =  18, g(g+1)/2 =  28, Jacobian locus proper: True
+  ok    g =  8: 3g-3 =  21, g(g+1)/2 =  36, Jacobian locus proper: True
+  ok    g =  9: 3g-3 =  24, g(g+1)/2 =  45, Jacobian locus proper: True
+  ok    g = 10: 3g-3 =  27, g(g+1)/2 =  55, Jacobian locus proper: True
+  ok    g = 11: 3g-3 =  30, g(g+1)/2 =  66, Jacobian locus proper: True
+  ok    g = 12: 3g-3 =  33, g(g+1)/2 =  78, Jacobian locus proper: True
+(2) Hodge classes on a general Weil abelian variety of dimension 2n
+  ok    n = 1: dim Hdg^q for q = 0..2: [1, 3, 1]; odd degrees: none
+  ok    n = 1: eta is invariant
+  ok    n = 1: eta^n ^ omega = 0 and eta^n ^ omegabar = 0
+  ok    n = 1: eta ^ omega = 0
+  ok    n = 1: eta^(2n) = -2 x orientation, nonzero
+  ok    n = 1: omega ^ omegabar = 1 x orientation, nonzero
+  ok    n = 2: dim Hdg^q for q = 0..4: [1, 1, 3, 1, 1]; odd degrees: none
+  ok    n = 2: eta is invariant
+  ok    n = 2: eta^n ^ omega = 0 and eta^n ^ omegabar = 0
+  ok    n = 2: eta ^ omega = 0
+  ok    n = 2: eta^(2n) = 24 x orientation, nonzero
+  ok    n = 2: omega ^ omegabar = 1 x orientation, nonzero
+  ok    n = 3: dim Hdg^q for q = 0..6: [1, 1, 1, 3, 1, 1, 1]; odd degrees: none
+  ok    n = 3: eta is invariant
+  ok    n = 3: eta^n ^ omega = 0 and eta^n ^ omegabar = 0
+  ok    n = 3: eta ^ omega = 0
+  ok    n = 3: eta^(2n) = -720 x orientation, nonzero
+  ok    n = 3: omega ^ omegabar = 1 x orientation, nonzero
+  ok    n = 4: dim Hdg^q for q = 0..8: [1, 1, 1, 1, 3, 1, 1, 1, 1]; odd degrees: none
+  ok    n = 4: eta is invariant
+  ok    n = 4: eta^n ^ omega = 0 and eta^n ^ omegabar = 0
+  ok    n = 4: eta ^ omega = 0
+  ok    n = 4: eta^(2n) = 40320 x orientation, nonzero
+  ok    n = 4: omega ^ omegabar = 1 x orientation, nonzero
+(3) Schoen's Lemma 1.2: the chi-part U_chi of H^h(C^h)^{G'}
+  ok    g = 3, h = 4, whole-group sum: dim U_chi = 1
+  ok    g = 3, h = 4, stabilizers: dim U_chi = 1
+  ok    g = 4, h = 6, stabilizers: dim U_chi = 1
+(4) Steps 1 and 2: u_chi and the pairing with u_chibar
+  ok    h = 2: u_chi has 2 terms = 2!, coefficients +-1
+  ok    h = 2: u_chi is fixed by the permutations of the factors
+  ok    h = 2: integral of u_chi u_chibar over C^h = -2, nonzero
+  ok    h = 4: u_chi has 24 terms = 4!, coefficients +-1
+  ok    h = 4: u_chi is fixed by the permutations of the factors
+  ok    h = 4: integral of u_chi u_chibar over C^h = 24, nonzero
+  ok    h = 6: u_chi has 720 terms = 6!, coefficients +-1
+  ok    h = 6: u_chi is fixed by the permutations of the factors
+  ok    h = 6: integral of u_chi u_chibar over C^h = -720, nonzero
+  ok    h = 4: the projection of b0.b1.b2.b3 is (81, 0) x u_chi
+
+all checks passed

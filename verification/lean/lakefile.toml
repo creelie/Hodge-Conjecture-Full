@@ -1,0 +1,6 @@
+name = "fullattempt"
+version = "1.0.0"
+defaultTargets = ["FullAttempt"]
+
+[[lean_lib]]
+name = "FullAttempt"
