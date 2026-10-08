@@ -146,8 +146,9 @@ Both should print `all checks passed`.
 
 - Both Lean files were built with Lean 4.34.0, and every theorem checked.
 - The Python checks were run, and all 102 passed (`expected_output.txt`).
-- The Julia file has not been run yet. The environment where these files
-  were prepared could not download Julia. It parses without syntax errors
-  and mirrors the Python checks one for one. Running it once and comparing
-  with `expected_output.txt` is the remaining step. The only expected
-  difference is `true`/`false` in place of Python's `True`/`False`.
+- The Julia file was run with Julia 1.11.7 on commit b91b573: all 75 checks
+  it then held passed, and its output matched `expected_output.txt` line for
+  line, apart from `true`/`false` in place of Python's `True`/`False`.
+- Part 7 was added after that run. It has been run in Python, and the Julia
+  version parses without syntax errors and mirrors it one for one, but it
+  has not yet been run in Julia.
