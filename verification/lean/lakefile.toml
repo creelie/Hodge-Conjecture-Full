@@ -1,6 +1,9 @@
 name = "fullattempt"
 version = "1.0.0"
-defaultTargets = ["FullAttempt"]
+defaultTargets = ["FullAttempt", "ResearchNote"]
 
 [[lean_lib]]
 name = "FullAttempt"
+
+[[lean_lib]]
+name = "ResearchNote"

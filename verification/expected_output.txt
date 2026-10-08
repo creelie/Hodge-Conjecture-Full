@@ -62,5 +62,22 @@
   ok    h = 6: u_chi is fixed by the permutations of the factors
   ok    h = 6: integral of u_chi u_chibar over C^h = -720, nonzero
   ok    h = 4: the projection of b0.b1.b2.b3 is (81, 0) x u_chi
+(5) Theorem 9 of the note, Step 1: the commutant of SU(V,H) on H^1(A^m)
+  ok    n = 1, m = 1: commuting endomorphisms span 4 dimensions, expected 4 (M_2m)
+  ok    n = 1, m = 2: commuting endomorphisms span 16 dimensions, expected 16 (M_2m)
+  ok    n = 2, m = 1: commuting endomorphisms span 2 dimensions, expected 2 (M_m(K))
+  ok    n = 2, m = 2: commuting endomorphisms span 8 dimensions, expected 8 (M_m(K))
+  ok    n = 3, m = 1: commuting endomorphisms span 2 dimensions, expected 2 (M_m(K))
+  ok    n = 3, m = 2: commuting endomorphisms span 8 dimensions, expected 8 (M_m(K))
+(6) Theorem 9 of the note, Step 3: invariants in degree 2 on A^m
+  ok    n = 1, m = 1: invariants of type (2,0): 1, (0,2): 1, (1,1): 1
+  ok    n = 1, m = 2: invariants of type (2,0): 3, (0,2): 3, (1,1): 4
+  ok    n = 1, m = 3: invariants of type (2,0): 6, (0,2): 6, (1,1): 9
+  ok    n = 2, m = 1: invariants of type (2,0): 0, (0,2): 0, (1,1): 1
+  ok    n = 2, m = 2: invariants of type (2,0): 0, (0,2): 0, (1,1): 4
+  ok    n = 2, m = 3: invariants of type (2,0): 0, (0,2): 0, (1,1): 9
+  ok    n = 3, m = 1: invariants of type (2,0): 0, (0,2): 0, (1,1): 1
+  ok    n = 3, m = 2: invariants of type (2,0): 0, (0,2): 0, (1,1): 4
+  ok    n = 3, m = 3: invariants of type (2,0): 0, (0,2): 0, (1,1): 9
 
 all checks passed

@@ -1,9 +1,10 @@
 """Exact checks of the finite computations behind Section 5 of
-paper/full_attempt.tex. This file mirrors ../julia/checks.jl line for line
-and prints the same results.
+paper/full_attempt.tex, items (1) to (4), and behind Theorem 9 of the
+research note paper/weil_closure_attempt.tex, items (5) and (6). This file
+mirrors ../julia/checks.jl check for check and prints the same results.
 
-No proof in the paper rests on these checks. They repeat, in exact integer
-arithmetic, computations that the paper does by hand.
+No proof in either paper rests on these checks. They repeat, in exact
+integer arithmetic, computations that the papers do by hand.
 
   (1) Dimension counts: 3n against n^2, and 3g - 3 against g(g+1)/2.
   (2) The Hodge classes of a general abelian variety of Weil type of
@@ -19,6 +20,13 @@ arithmetic, computations that the paper does by hand.
       the integral of u_chi u_chibar over C^h is nonzero, for h = 2, 4, 6;
       for h = 4 the projection of b_1 ... b_4 found in (3) is a multiple of
       u_chi.
+  (5) Theorem 9 of the note, Step 1: the endomorphisms of V^m + V*^m that
+      commute with sl(2n) form M_m(K), of dimension 2m^2, once 2n >= 3 (for
+      2n = 2 the standard representation is self-dual and they form M_2m).
+  (6) Theorem 9 of the note, Step 3: the sl(2n)-invariants in degree 2 on
+      A^m all have type (1,1) once 2n >= 3, and there are m^2 of them, the
+      rank of the Neron-Severi group of A^m; for 2n = 2 there are invariants
+      of type (2,0) and (0,2) as well.
 
 Run:  python3 checks.py
 """
@@ -156,7 +164,6 @@ def part2():
         for p in range(0, 2 * m + 1):
             monos = [c for c in combinations(range(N), p)]
             zero = [mo for mo in monos if len(set(weight(mo))) == 1]
-            idx = {mo: k for k, mo in enumerate(zero)}
             # invariants = weight-zero vectors killed by every simple raising operator
             rows = {}
             for k, mo in enumerate(zero):
@@ -404,11 +411,97 @@ def part4(witness):
         ratio = r
     check(f"h = 4: the projection of {'.'.join(x[0] + str(x[1]) for x in tup)} is {ratio} x u_chi", prop)
 
+
+# ----------------------------------------------------------------------------
+# (5) and (6): the research note, Theorem 9 (the barrier)
+# ----------------------------------------------------------------------------
+# sl(2n) acts diagonally on m copies of V + V*. Labels: e_{c,i} = c*2n + i and
+# f_{c,i} = 2nm + c*2n + i, for copies c < m and indices i < 2n.
+
+def generators(n, m):
+    """The Chevalley generators E_{i,i+1} and E_{i+1,i} of sl(2n), acting on labels."""
+    k = 2 * n
+    gens = []
+    for i in range(k - 1):
+        for a, b in ((i, i + 1), (i + 1, i)):
+            E = {}
+            for c in range(m):
+                # E_{ab}: e_b -> e_a, f_a -> -f_b
+                E[c * k + b] = [(1, c * k + a)]
+                E[k * m + c * k + a] = [(-1, k * m + c * k + b)]
+            gens.append(E)
+    return gens
+
+def commutant_dimension(n, m):
+    """dim of the endomorphisms of V^m + V*^m commuting with sl(2n)."""
+    N = 4 * n * m
+    rows = []
+    for E in generators(n, m):
+        M = {}
+        for src, imgs in E.items():
+            for c, tgt in imgs:
+                M[(tgt, src)] = c
+        # (M X - X M)[r][q] = sum_k M[r][k] X[k][q] - X[r][k] M[k][q]
+        eqs = {}
+        for (r, k), c in M.items():
+            for q in range(N):
+                eqs.setdefault((r, q), {})
+                eqs[(r, q)][k * N + q] = eqs[(r, q)].get(k * N + q, 0) + c
+        for (k, q), c in M.items():
+            for r in range(N):
+                eqs.setdefault((r, q), {})
+                eqs[(r, q)][r * N + k] = eqs[(r, q)].get(r * N + k, 0) - c
+        rows.extend(eqs.values())
+    return N * N - rank(rows, N * N)
+
+def invariants_degree2(n, m, kind):
+    """dim of the sl(2n)-invariants in the part of the exterior square of
+    V^m + V*^m spanned by e^e ('VV'), f^f ('WW') or e^f ('VW')."""
+    k = 2 * n
+    V = list(range(k * m))
+    W = list(range(k * m, 2 * k * m))
+    if kind == 'VV':
+        monos = list(combinations(V, 2))
+    elif kind == 'WW':
+        monos = list(combinations(W, 2))
+    else:
+        monos = [(x, y) for x in V for y in W]
+    rows = {}
+    for r, E in enumerate(generators(n, m)):
+        for j, mo in enumerate(monos):
+            for img, c in act(E, mo).items():
+                rows.setdefault((r, img), {})[j] = c
+    return len(monos) - rank(list(rows.values()), len(monos))
+
+def part5():
+    print("(5) Theorem 9 of the note, Step 1: the commutant of SU(V,H) on H^1(A^m)")
+    for n in (1, 2, 3):
+        for m in (1, 2):
+            d = commutant_dimension(n, m)
+            exp = 4 * m * m if n == 1 else 2 * m * m
+            check(f"n = {n}, m = {m}: commuting endomorphisms span {d} dimensions, "
+                  f"expected {exp} ({'M_2m' if n == 1 else 'M_m(K)'})", d == exp)
+
+def part6():
+    print("(6) Theorem 9 of the note, Step 3: invariants in degree 2 on A^m")
+    for n in (1, 2, 3):
+        for m in (1, 2, 3):
+            vv = invariants_degree2(n, m, 'VV')
+            ww = invariants_degree2(n, m, 'WW')
+            vw = invariants_degree2(n, m, 'VW')
+            if n == 1:
+                ok = vv == ww == m * (m + 1) // 2 and vw == m * m
+            else:
+                ok = vv == 0 and ww == 0 and vw == m * m
+            check(f"n = {n}, m = {m}: invariants of type (2,0): {vv}, (0,2): {ww}, (1,1): {vw}", ok)
+
 if __name__ == "__main__":
     part1()
     part2()
     w = part3()
     part4(w)
+    part5()
+    part6()
     print()
     if FAILURES:
         print(f"{len(FAILURES)} check(s) failed")

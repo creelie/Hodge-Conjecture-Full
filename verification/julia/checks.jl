@@ -1,11 +1,12 @@
 # checks.jl
 #
 # Exact checks of the finite computations behind Section 5 of
-# paper/full_attempt.tex. Base Julia only, no packages. This file mirrors
-# ../python/checks.py check for check.
+# paper/full_attempt.tex, items (1) to (4), and behind Theorem 9 of the
+# research note paper/weil_closure_attempt.tex, items (5) and (6). Base Julia
+# only, no packages. This file mirrors ../python/checks.py check for check.
 #
-# No proof in the paper rests on these checks. They repeat, in exact integer
-# and rational arithmetic, computations that the paper does by hand.
+# No proof in either paper rests on these checks. They repeat, in exact
+# integer and rational arithmetic, computations that the papers do by hand.
 #
 #   (1) Dimension counts: 3n against n^2, and 3g - 3 against g(g+1)/2.
 #   (2) The Hodge classes of a general abelian variety of Weil type of
@@ -21,6 +22,14 @@
 #       the factors, and the integral of u_chi u_chibar over C^h is nonzero,
 #       for h = 2, 4, 6; for h = 4 the projection found in (3) is a multiple
 #       of u_chi.
+#   (5) Theorem 9 of the note, Step 1: the endomorphisms of V^m + V*^m that
+#       commute with sl(2n) form M_m(K), of dimension 2m^2, once 2n >= 3
+#       (for 2n = 2 the standard representation is self-dual and they form
+#       M_2m).
+#   (6) Theorem 9 of the note, Step 3: the sl(2n)-invariants in degree 2 on
+#       A^m all have type (1,1) once 2n >= 3, and there are m^2 of them, the
+#       rank of the Neron-Severi group of A^m; for 2n = 2 there are
+#       invariants of type (2,0) and (0,2) as well.
 #
 # Run:  julia checks.jl
 
@@ -500,11 +509,126 @@ function part4(witness)
     check("h = 4: the projection of $name is $ratio x u_chi", prop)
 end
 
+
+# ---------------------------------------------------------------------------
+# (5) and (6): the research note, Theorem 9 (the barrier)
+# ---------------------------------------------------------------------------
+# sl(2n) acts diagonally on m copies of V + V*. Labels: e_{c,i} = c*2n + i and
+# f_{c,i} = 2nm + c*2n + i, for copies c < m and indices i < 2n.
+
+# the Chevalley generators E_{i,i+1} and E_{i+1,i} of sl(2n), acting on labels
+function generators(n::Int, m::Int)
+    k = 2 * n
+    gens = Dict{Int,Vector{Tuple{Int,Int}}}[]
+    for i in 0:(k - 2)
+        for (a, b) in ((i, i + 1), (i + 1, i))
+            E = Dict{Int,Vector{Tuple{Int,Int}}}()
+            for c in 0:(m - 1)
+                # E_{ab}: e_b -> e_a, f_a -> -f_b
+                E[c * k + b] = [(1, c * k + a)]
+                E[k * m + c * k + a] = [(-1, k * m + c * k + b)]
+            end
+            push!(gens, E)
+        end
+    end
+    return gens
+end
+
+# dim of the endomorphisms of V^m + V*^m commuting with sl(2n)
+function commutant_dimension(n::Int, m::Int)
+    N = 4 * n * m
+    rows = Dict{Int,Int}[]
+    for E in generators(n, m)
+        M = Dict{Tuple{Int,Int},Int}()
+        for (src, imgs) in E
+            for (c, tgt) in imgs
+                M[(tgt, src)] = c
+            end
+        end
+        # (M X - X M)[r][q] = sum_k M[r][k] X[k][q] - X[r][k] M[k][q];
+        # the unknown X[k][q] is column k*N + q + 1
+        eqs = Dict{Tuple{Int,Int},Dict{Int,Int}}()
+        for ((r, k), c) in M
+            for q in 0:(N - 1)
+                row = get!(eqs, (r, q), Dict{Int,Int}())
+                row[k * N + q + 1] = get(row, k * N + q + 1, 0) + c
+            end
+        end
+        for ((k, q), c) in M
+            for r in 0:(N - 1)
+                row = get!(eqs, (r, q), Dict{Int,Int}())
+                row[r * N + k + 1] = get(row, r * N + k + 1, 0) - c
+            end
+        end
+        append!(rows, collect(values(eqs)))
+    end
+    return N * N - exact_rank(rows, N * N)
+end
+
+# dim of the sl(2n)-invariants in the part of the exterior square of
+# V^m + V*^m spanned by e^e ("VV"), f^f ("WW") or e^f ("VW")
+function invariants_degree2(n::Int, m::Int, kind::String)
+    k = 2 * n
+    V = collect(0:(k * m - 1))
+    W = collect((k * m):(2 * k * m - 1))
+    monos = Mono[]
+    if kind == "VV"
+        for i in 1:length(V), j in (i + 1):length(V)
+            push!(monos, [V[i], V[j]])
+        end
+    elseif kind == "WW"
+        for i in 1:length(W), j in (i + 1):length(W)
+            push!(monos, [W[i], W[j]])
+        end
+    else
+        for x in V, y in W
+            push!(monos, [x, y])
+        end
+    end
+    rows = Dict{Tuple{Int,Mono},Dict{Int,Int}}()
+    for (r, E) in enumerate(generators(n, m))
+        for (j, mo) in enumerate(monos)
+            for (img, c) in act(E, mo)
+                row = get!(rows, (r, img), Dict{Int,Int}())
+                row[j] = c
+            end
+        end
+    end
+    return length(monos) - exact_rank(collect(values(rows)), length(monos))
+end
+
+function part5()
+    println("(5) Theorem 9 of the note, Step 1: the commutant of SU(V,H) on H^1(A^m)")
+    for n in (1, 2, 3), m in (1, 2)
+        d = commutant_dimension(n, m)
+        ex = n == 1 ? 4 * m * m : 2 * m * m
+        check("n = $n, m = $m: commuting endomorphisms span $d dimensions, " *
+              "expected $ex ($(n == 1 ? "M_2m" : "M_m(K)"))", d == ex)
+    end
+end
+
+function part6()
+    println("(6) Theorem 9 of the note, Step 3: invariants in degree 2 on A^m")
+    for n in (1, 2, 3), m in (1, 2, 3)
+        vv = invariants_degree2(n, m, "VV")
+        ww = invariants_degree2(n, m, "WW")
+        vw = invariants_degree2(n, m, "VW")
+        if n == 1
+            ok = vv == ww == div(m * (m + 1), 2) && vw == m * m
+        else
+            ok = vv == 0 && ww == 0 && vw == m * m
+        end
+        check("n = $n, m = $m: invariants of type (2,0): $vv, (0,2): $ww, (1,1): $vw", ok)
+    end
+end
+
 function main()
     part1()
     part2()
     w = part3()
     part4(w)
+    part5()
+    part6()
     println()
     if !isempty(FAILURES)
         println("$(length(FAILURES)) check(s) failed")

@@ -52,9 +52,9 @@ What remains open, and is stated as open in the text (see also
     paper/full_attempt.tex  an attempt at the conjecture in full: every
                             route, pushed as far as it goes, and the first
                             open statement on each
-    verification/           Lean 4 and Julia checks of the finite parts of
-                            paper/full_attempt.tex (with a Python version of
-                            the Julia checks); see verification/README.md
+    verification/           Lean 4 and Julia checks of every finite step of
+                            both papers (with a Python version of the Julia
+                            checks); see verification/README.md
     H8/                     the author's earlier work, version 5.1.0
                             (doi:10.5281/zenodo.23227940), linked as a git
                             submodule; it holds the computations

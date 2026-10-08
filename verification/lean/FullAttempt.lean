@@ -339,6 +339,14 @@ theorem step3_eigenvalues :
     mul (chi 2 1) (chi 2 1) = pow zeta 1 := by
   decide
 
+/-- After Question 5.4: on the part of `J` where `1 + σ + σ^2 = 0`, the product
+`(2 + σ)(2 + σ^2)` is `3`, so `2 + σ` is an isogeny there and
+`(1 - σ)(J) = (1 - σ)(2 + σ)(J) = B`. In `Z[ζ]` this is the norm
+`(2 + ζ)(2 + ζ^2) = 3`. -/
+theorem two_plus_sigma_isogeny :
+    mul (Zz.add ⟨2, 0⟩ zeta) (Zz.add ⟨2, 0⟩ (pow zeta 2)) = three := by
+  decide
+
 /-! ## Section 4. Step 5 of Theorem 5.2 -/
 
 section Step5
