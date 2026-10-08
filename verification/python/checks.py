@@ -1,5 +1,5 @@
-"""Exact checks of the finite computations behind Section 5 of
-paper/full_attempt.tex, items (1) to (4), and behind Theorem 9 of the
+"""Exact checks of the finite computations behind Sections 5 and 8 of
+paper/full_attempt.tex, items (1) to (4) and (7), and behind Theorem 9 of the
 research note paper/weil_closure_attempt.tex, items (5) and (6). This file
 mirrors ../julia/checks.jl check for check and prints the same results.
 
@@ -27,6 +27,15 @@ integer arithmetic, computations that the papers do by hand.
       A^m all have type (1,1) once 2n >= 3, and there are m^2 of them, the
       rank of the Neron-Severi group of A^m; for 2n = 2 there are invariants
       of type (2,0) and (0,2) as well.
+  (7) Section 8 of the full attempt. Lemma 8.1: omega_2^2 = 0, omega_2 times
+      omegabar_2 is a nonzero multiple p of the top class of A_2, the top
+      power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2, and the
+      push-forward pr_1*(x pr_2^* gamma) is p (s tbar omega_1 + sbar t
+      omegabar_1), for 2m_1, 2m_2 in {2, 4}. Corollary 8.3: on E^k x Ebar^k
+      the class omega_chi is, up to the sign (-1)^(k(k-1)/2), the product of
+      the (1,1)-classes dz_i dzbar_{k+i}, for k <= 4. Remark 8.4: the k <= 12
+      with 3(m+k) + 3k >= (m+k)^2 are k <= 2 for m = 2, k = 0 for m = 3, and
+      none for 4 <= m <= 12.
 
 Run:  python3 checks.py
 """
@@ -495,6 +504,71 @@ def part6():
                 ok = vv == 0 and ww == 0 and vw == m * m
             check(f"n = {n}, m = {m}: invariants of type (2,0): {vv}, (0,2): {ww}, (1,1): {vw}", ok)
 
+# ----------------------------------------------------------------------------
+# (7) Section 8 of the full attempt
+# ----------------------------------------------------------------------------
+# On A_1 x A_2 the labels 0 .. 4m_1 - 1 belong to A_1 (the first 2m_1 span
+# V_chi, the next 2m_1 span V_chibar) and 4m_1 .. 4m_1 + 4m_2 - 1 to A_2, in the
+# same pattern.
+
+def mono_ext(labels):
+    sg, m = sort_sign(list(labels))
+    return {m: sg}
+
+def push_first(x, n1, top2):
+    """pr_1*: keep the monomials containing the top class of A_2 and drop it.
+    Labels of A_1 come first in a sorted monomial, so no sign arises."""
+    out = {}
+    for mono, c in x.items():
+        first = tuple(i for i in mono if i < n1)
+        second = tuple(i for i in mono if i >= n1)
+        if second == top2:
+            out[first] = out.get(first, 0) + c
+    return {m: c for m, c in out.items() if c != 0}
+
+def scale(c, x):
+    return {m: c * v for m, v in x.items() if c * v != 0}
+
+def part7():
+    print("(7) Section 8: Lemma 8.1, Corollary 8.3 and Remark 8.4")
+    for m1, m2 in ((1, 1), (1, 2), (2, 1), (2, 2)):
+        n1 = 4 * m1
+        w1 = mono_ext(range(0, 2 * m1))
+        wb1 = mono_ext(range(2 * m1, 4 * m1))
+        w2 = mono_ext(range(n1, n1 + 2 * m2))
+        wb2 = mono_ext(range(n1 + 2 * m2, n1 + 4 * m2))
+        top2 = tuple(range(n1, n1 + 4 * m2))
+        sq = wedge(w2, w2)
+        mixed = wedge(w2, wb2)
+        p = mixed.get(top2, 0)
+        check(f"m1 = {m1}, m2 = {m2}: omega_2^2 = 0, omega_2 omegabar_2 = {p} [A_2]",
+              sq == {} and set(mixed) == {top2} and p != 0)
+        wB = mono_ext(list(range(0, 2 * m1)) + list(range(n1, n1 + 2 * m2)))
+        check(f"m1 = {m1}, m2 = {m2}: top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2",
+              wB == wedge(w1, w2))
+        x1 = wedge(w1, w2)
+        x2 = wedge(wb1, wb2)
+        c11 = push_first(wedge(x1, w2), n1, top2)
+        c12 = push_first(wedge(x1, wb2), n1, top2)
+        c21 = push_first(wedge(x2, w2), n1, top2)
+        c22 = push_first(wedge(x2, wb2), n1, top2)
+        ok = c11 == {} and c22 == {} and c12 == scale(p, w1) and c21 == scale(p, wb1)
+        check(f"m1 = {m1}, m2 = {m2}: pr_1*(x pr_2^*gamma) = {p} (s tbar omega_1 + sbar t omegabar_1)", ok)
+    for k in range(1, 5):
+        # dz_i has label i (i < 2k), dzbar_i has label 2k + i
+        omega = mono_ext(list(range(0, k)) + list(range(3 * k, 4 * k)))
+        prod = {(): 1}
+        for i in range(k):
+            prod = wedge(prod, mono_ext((i, 3 * k + i)))
+        (mono, sgn), = prod.items()
+        ok = len(prod) == 1 and {mono: 1} == omega and sgn == (-1) ** (k * (k - 1) // 2)
+        check(f"k = {k}: omega_chi = {sgn} * prod_i dz_i dzbar_(k+i) on E^k x Ebar^k", ok)
+    for m in range(2, 13):
+        passing = [k for k in range(0, 13) if 3 * (m + k) + 3 * k >= (m + k) * (m + k)]
+        expected = [0, 1, 2] if m == 2 else ([0] if m == 3 else [])
+        shown = "[" + ", ".join(str(k) for k in passing) + "]"
+        check(f"m = {m:2d}: k <= 12 with 3(m+k) + 3k >= (m+k)^2: {shown}", passing == expected)
+
 if __name__ == "__main__":
     part1()
     part2()
@@ -502,6 +576,7 @@ if __name__ == "__main__":
     part4(w)
     part5()
     part6()
+    part7()
     print()
     if FAILURES:
         print(f"{len(FAILURES)} check(s) failed")

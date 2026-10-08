@@ -1,8 +1,8 @@
 # checks.jl
 #
-# Exact checks of the finite computations behind Section 5 of
-# paper/full_attempt.tex, items (1) to (4), and behind Theorem 9 of the
-# research note paper/weil_closure_attempt.tex, items (5) and (6). Base Julia
+# Exact checks of the finite computations behind Sections 5 and 8 of
+# paper/full_attempt.tex, items (1) to (4) and (7), and behind Theorem 9 of
+# the research note paper/weil_closure_attempt.tex, items (5) and (6). Base Julia
 # only, no packages. This file mirrors ../python/checks.py check for check.
 #
 # No proof in either paper rests on these checks. They repeat, in exact
@@ -30,6 +30,15 @@
 #       A^m all have type (1,1) once 2n >= 3, and there are m^2 of them, the
 #       rank of the Neron-Severi group of A^m; for 2n = 2 there are
 #       invariants of type (2,0) and (0,2) as well.
+#   (7) Section 8 of the full attempt. Lemma 8.1: omega_2^2 = 0, omega_2
+#       times omegabar_2 is a nonzero multiple p of the top class of A_2, the
+#       top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2, and the
+#       push-forward pr_1*(x pr_2^* gamma) is p (s tbar omega_1 + sbar t
+#       omegabar_1), for 2m_1, 2m_2 in {2, 4}. Corollary 8.3: on
+#       E^k x Ebar^k the class omega_chi is, up to the sign
+#       (-1)^(k(k-1)/2), the product of the (1,1)-classes dz_i dzbar_{k+i},
+#       for k <= 4. Remark 8.4: the k <= 12 with 3(m+k) + 3k >= (m+k)^2 are
+#       k <= 2 for m = 2, k = 0 for m = 3, and none for 4 <= m <= 12.
 #
 # Run:  julia checks.jl
 
@@ -622,6 +631,79 @@ function part6()
     end
 end
 
+# ---------------------------------------------------------------------------
+# (7) Section 8 of the full attempt
+# ---------------------------------------------------------------------------
+# On A_1 x A_2 the labels 0 .. 4m_1 - 1 belong to A_1 (the first 2m_1 span
+# V_chi, the next 2m_1 span V_chibar) and 4m_1 .. 4m_1 + 4m_2 - 1 to A_2, in
+# the same pattern.
+
+function mono_ext(labels)
+    sg, m = sort_sign(collect(Int, labels))
+    return Ext(m => sg)
+end
+
+# pr_1*: keep the monomials containing the top class of A_2 and drop it.
+# Labels of A_1 come first in a sorted monomial, so no sign arises.
+function push_first(x::Ext, n1::Int, top2::Mono)
+    out = Ext()
+    for (mono, c) in x
+        on1 = Int[i for i in mono if i < n1]
+        on2 = Int[i for i in mono if i >= n1]
+        if on2 == top2
+            out[on1] = get(out, on1, 0) + c
+        end
+    end
+    return prune(out)
+end
+
+ext_scale(c::Int, x::Ext) = prune(Ext(m => c * v for (m, v) in x))
+
+function part7()
+    println("(7) Section 8: Lemma 8.1, Corollary 8.3 and Remark 8.4")
+    for (m1, m2) in ((1, 1), (1, 2), (2, 1), (2, 2))
+        n1 = 4 * m1
+        w1 = mono_ext(0:(2 * m1 - 1))
+        wb1 = mono_ext((2 * m1):(4 * m1 - 1))
+        w2 = mono_ext(n1:(n1 + 2 * m2 - 1))
+        wb2 = mono_ext((n1 + 2 * m2):(n1 + 4 * m2 - 1))
+        top2 = collect(n1:(n1 + 4 * m2 - 1))
+        sq = wedge(w2, w2)
+        mixed = wedge(w2, wb2)
+        p = get(mixed, top2, 0)
+        check("m1 = $m1, m2 = $m2: omega_2^2 = 0, omega_2 omegabar_2 = $p [A_2]",
+              isempty(sq) && collect(keys(mixed)) == [top2] && p != 0)
+        wB = mono_ext(vcat(collect(0:(2 * m1 - 1)), collect(n1:(n1 + 2 * m2 - 1))))
+        check("m1 = $m1, m2 = $m2: top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2",
+              wB == wedge(w1, w2))
+        x1 = wedge(w1, w2)
+        x2 = wedge(wb1, wb2)
+        c11 = push_first(wedge(x1, w2), n1, top2)
+        c12 = push_first(wedge(x1, wb2), n1, top2)
+        c21 = push_first(wedge(x2, w2), n1, top2)
+        c22 = push_first(wedge(x2, wb2), n1, top2)
+        ok = isempty(c11) && isempty(c22) && c12 == ext_scale(p, w1) && c21 == ext_scale(p, wb1)
+        check("m1 = $m1, m2 = $m2: pr_1*(x pr_2^*gamma) = $p (s tbar omega_1 + sbar t omegabar_1)", ok)
+    end
+    for k in 1:4
+        # dz_i has label i (i < 2k), dzbar_i has label 2k + i
+        omega = mono_ext(vcat(collect(0:(k - 1)), collect((3 * k):(4 * k - 1))))
+        pr = Ext(Int[] => 1)
+        for i in 0:(k - 1)
+            pr = wedge(pr, mono_ext([i, 3 * k + i]))
+        end
+        mono, sgn = first(pr)
+        ok = length(pr) == 1 && Ext(mono => 1) == omega && sgn == (-1)^div(k * (k - 1), 2)
+        check("k = $k: omega_chi = $sgn * prod_i dz_i dzbar_(k+i) on E^k x Ebar^k", ok)
+    end
+    for m in 2:12
+        passing = Int[k for k in 0:12 if 3 * (m + k) + 3 * k >= (m + k) * (m + k)]
+        expected = m == 2 ? [0, 1, 2] : (m == 3 ? [0] : Int[])
+        shown = "[" * join(string.(passing), ", ") * "]"
+        check("m = $(lpad(m, 2)): k <= 12 with 3(m+k) + 3k >= (m+k)^2: $shown", passing == expected)
+    end
+end
+
 function main()
     part1()
     part2()
@@ -629,6 +711,7 @@ function main()
     part4(w)
     part5()
     part6()
+    part7()
     println()
     if !isempty(FAILURES)
         println("$(length(FAILURES)) check(s) failed")

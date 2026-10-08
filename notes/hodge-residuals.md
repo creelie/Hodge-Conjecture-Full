@@ -27,6 +27,17 @@ Abel–Jacobi curve in a Jacobian, built from the same map, is not
 semiregular once g ≥ 4 (Matsusaka–Ran and Bloch), which points against it.
 This is undecided.
 
+Section 8 of the same paper spreads the cycles another way. Every abelian
+variety A of Weil type for Q(√−3) contains a curve, stable under the cube
+root of unity, whose quotient is an étale triple cover, and the Prym variety
+of that cover is isogenous to A × A′ with A′ again of Weil type. So the Weil
+class of A is algebraic exactly when that of A′ is (Theorem 8.2). This only
+helps when A′ is a variety on which the class is already known, and a count
+of dimensions (Remark 8.4, a heuristic) says that for a general A of
+dimension 8 or more no such A′ should exist. Carried to other varieties, the
+construction leads back to (F2) and (F3′): the correspondences it would need
+are themselves Hodge classes of the kind those statements are about.
+
 ## The other two statements of H8's route
 
 H8 lists three inputs still missing from its route to the full conjecture:

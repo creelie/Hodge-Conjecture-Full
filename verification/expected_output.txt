@@ -79,5 +79,33 @@
   ok    n = 3, m = 1: invariants of type (2,0): 0, (0,2): 0, (1,1): 1
   ok    n = 3, m = 2: invariants of type (2,0): 0, (0,2): 0, (1,1): 4
   ok    n = 3, m = 3: invariants of type (2,0): 0, (0,2): 0, (1,1): 9
+(7) Section 8: Lemma 8.1, Corollary 8.3 and Remark 8.4
+  ok    m1 = 1, m2 = 1: omega_2^2 = 0, omega_2 omegabar_2 = 1 [A_2]
+  ok    m1 = 1, m2 = 1: top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2
+  ok    m1 = 1, m2 = 1: pr_1*(x pr_2^*gamma) = 1 (s tbar omega_1 + sbar t omegabar_1)
+  ok    m1 = 1, m2 = 2: omega_2^2 = 0, omega_2 omegabar_2 = 1 [A_2]
+  ok    m1 = 1, m2 = 2: top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2
+  ok    m1 = 1, m2 = 2: pr_1*(x pr_2^*gamma) = 1 (s tbar omega_1 + sbar t omegabar_1)
+  ok    m1 = 2, m2 = 1: omega_2^2 = 0, omega_2 omegabar_2 = 1 [A_2]
+  ok    m1 = 2, m2 = 1: top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2
+  ok    m1 = 2, m2 = 1: pr_1*(x pr_2^*gamma) = 1 (s tbar omega_1 + sbar t omegabar_1)
+  ok    m1 = 2, m2 = 2: omega_2^2 = 0, omega_2 omegabar_2 = 1 [A_2]
+  ok    m1 = 2, m2 = 2: top power of V_chi(A_1) + V_chi(A_2) is omega_1 omega_2
+  ok    m1 = 2, m2 = 2: pr_1*(x pr_2^*gamma) = 1 (s tbar omega_1 + sbar t omegabar_1)
+  ok    k = 1: omega_chi = 1 * prod_i dz_i dzbar_(k+i) on E^k x Ebar^k
+  ok    k = 2: omega_chi = -1 * prod_i dz_i dzbar_(k+i) on E^k x Ebar^k
+  ok    k = 3: omega_chi = -1 * prod_i dz_i dzbar_(k+i) on E^k x Ebar^k
+  ok    k = 4: omega_chi = 1 * prod_i dz_i dzbar_(k+i) on E^k x Ebar^k
+  ok    m =  2: k <= 12 with 3(m+k) + 3k >= (m+k)^2: [0, 1, 2]
+  ok    m =  3: k <= 12 with 3(m+k) + 3k >= (m+k)^2: [0]
+  ok    m =  4: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m =  5: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m =  6: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m =  7: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m =  8: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m =  9: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m = 10: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m = 11: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
+  ok    m = 12: k <= 12 with 3(m+k) + 3k >= (m+k)^2: []
 
 all checks passed

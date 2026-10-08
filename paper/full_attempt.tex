@@ -3,6 +3,7 @@
 \usepackage[margin=1.1in]{geometry}
 \usepackage{enumitem}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage[hidelinks]{hyperref}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -17,6 +18,7 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\PP}{\mathbb{P}}
@@ -55,7 +57,12 @@ variety, an explicit subvariety of half dimension whose class is a positive
 multiple of the polarization power plus a nonzero Weil class. If that
 subvariety were semiregular, the Weil classes would be algebraic on every
 member of the split Weil families of $\QQ(\sqrt{-3})$ in every dimension. We
-cannot decide whether it is. For the remaining classes on abelian varieties,
+cannot decide whether it is. We also show that every abelian variety of Weil
+type for $\QQ(\sqrt{-3})$ is, up to isogeny, a factor of such a Prym
+variety, so that its Weil classes are algebraic exactly when those of the
+complementary factor are; a count of dimensions indicates that this cannot
+reach the general member in dimension eight or more. For the remaining
+classes on abelian varieties,
 and for varieties that are not of abelian type, we record what is proved and
 locate the first open case of each: the exceptional classes on the square of
 a Mumford fourfold, and the square of a K3 surface with real
@@ -93,21 +100,29 @@ from \cite{BhH8} that, beyond these, the conjecture is equivalent to two
 statements, the conjecture for abelian varieties and the conjecture modulo
 abelian varieties, and lists the other minimal sets of hypotheses from which
 it follows. Sections~\ref{sec:abelian} and~\ref{sec:weil} attack abelian
-varieties. Section~\ref{sec:weil} contains the one new theorem of the
+varieties. Section~\ref{sec:weil} contains the main new theorem of the
 paper, Theorem~\ref{thm:schoensub}, which turns Schoen's cycles into a
 single explicit subvariety of the right shape for a deformation argument,
 and isolates the question on which the argument turns.
 Section~\ref{sec:beyondweil} treats the classes on abelian varieties that
 divisors and Weil classes do not generate, and Section~\ref{sec:nonabelian}
-the varieties that are not of abelian type. Section~\ref{sec:end} collects
-what is proved and what is not.
+the varieties that are not of abelian type. Section~\ref{sec:spread} tries
+to spread Schoen's construction beyond the Prym varieties. It proves that
+every abelian variety of Weil type for $\QQ(\sqrt{-3})$ is, up to isogeny, a
+factor of the Prym variety of an \'etale triple cover, so that its Weil
+classes are algebraic exactly when those of the complementary factor are
+(Theorem~\ref{thm:transfer}); it shows by a count why this cannot by itself
+reach the general member once the dimension is at least eight; and it
+explains why the construction, carried to other varieties, leads back to
+(F2) and (F3$'$). Section~\ref{sec:end} collects what is proved and what is
+not.
 
 Table~\ref{tab:routes} summarises where each route stops.
 
 \begin{table}[ht]
 \centering
 \small
-\begin{tabular}{@{}p{4.4cm}p{4.6cm}p{4.6cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{4.6cm}@{}}
 \toprule
 Route & What is proved & Where it stops\\
 \midrule
@@ -115,6 +130,7 @@ Divisors and hard Lefschetz & degrees $2$ and $2n-2$; $\dim X\le3$ & degree $2p$
 Hyperplane sections & reduction to middle degree, given the Lefschetz standard conjecture & the Lefschetz standard conjecture\\
 Weil classes, deformation & the algebraic locus is dense and all or meagre; one semiregular cycle closes it & no semiregular cycle is known; Schoen's subvariety is undecided\\
 Weil classes, degree bounds & equivalent to a uniform degree bound on a dense set & no such bound is known\\
+Weil classes, Prym factors & for $\QQ(\sqrt{-3})$, algebraic on $A$ if and only if on a complement $A'$ & no general complement is known; a count says none exists for $\dim A\ge8$\\
 Classes beyond Weil & algebraic at CM points of Mumford families & one Kuga--Satake class\\
 Not of abelian type & every variety reached from abelian varieties; many hyper-K\"ahler varieties & the square of a K3 surface with real multiplication\\
 \bottomrule
@@ -279,7 +295,7 @@ correspondences.
 \item \textup{(F2)} is equivalent to the Hodge conjecture for abelian
 varieties.
 \item Over the implications proved in \cite{BhH8} and in the literature,
-the minimal sets of statements from which the conjecture follows are
+the minimal sets of statements that imply the conjecture are
 $\{\mathrm{F3}\}$, $\{L,M\}$, $\{L,\mathrm{F3}'\}$, $\{V,\mathrm{F3}'\}$ and
 $\{\mathrm{F2},\mathrm{F3}'\}$, where \textup{(F3)} is the conjecture for
 varieties that are not abelian, $L$ is the Lefschetz standard conjecture for
@@ -719,6 +735,227 @@ the results just listed. We do not see how to apply any of them to a
 variety with none of this structure, and that is where the attempt at (F3$'$)
 stops.
 
+\section{Spreading Schoen's construction}\label{sec:spread}
+
+Schoen's cycles reach a family of dimension $3n$ inside one of dimension
+$n^{2}$, and Question~\ref{q:schoen} asks whether they can be deformed out of
+it. This section tries the two other ways of spreading them: carrying them to
+other abelian varieties by correspondences, and running the construction on
+other varieties. The first gives a theorem. It makes the Weil class of any
+abelian variety of Weil type for $\QQ(\sqrt{-3})$ algebraic exactly when the
+Weil class of a second, complementary variety is, but a count of dimensions
+shows that it cannot by itself reach the general member. The second reaches
+neither (F2) nor (F3$'$), for reasons we make precise.
+
+Throughout the section $K=\QQ(\sqrt{-3})$ and $\zeta$ is a primitive cube
+root of unity. Varieties of Weil type are for $K$, with any discriminant,
+and we assume that $\cO_{K}$ acts, which can always be arranged by passing
+to a $K$-isogenous variety. For such a variety $A$ of dimension $2m$ write
+$W(A)\subseteq H^{2m}(A,\QQ)$ for its Weil plane. Over $\CC$ the space
+$H^{1}(A,\CC)$ is the sum of the eigenspaces $V_{\chi}(A)$ and
+$V_{\bar\chi}(A)$ of $\zeta^{*}$, each of dimension $2m$, and
+$W(A)\otimes\CC=\bigwedge^{2m}V_{\chi}(A)\oplus\bigwedge^{2m}V_{\bar\chi}(A)$.
+We call $A$ \emph{Weil-algebraic} if every class in $W(A)$ is algebraic. One
+nonzero algebraic class in $W(A)$ is enough, because a suitable element of
+$\cO_{K}$ acting as an endomorphism moves it to a second class that spans
+$W(A)$ with it \cite[proof of Theorem~6]{BhW}.
+
+\subsection{Products and complements}
+
+\begin{lemma}\label{lem:twothree}
+Let $B$, $A_{1}$ and $A_{2}$ be of Weil type, of dimensions
+$2(m_{1}+m_{2})$, $2m_{1}$ and $2m_{2}$, and let $f\colon B\to A_{1}\times
+A_{2}$ be an isogeny that commutes with $\cO_{K}$.
+\begin{enumerate}[label=(\alph*)]
+\item The isomorphism $f^{*}$ carries a plane in
+$W(A_{1})\otimes W(A_{2})\subseteq H^{2m_{1}}(A_{1})\otimes H^{2m_{2}}(A_{2})$
+onto $W(B)$. Over $\CC$ this plane is spanned by $\omega_{1}\otimes\omega_{2}$
+and $\bar\omega_{1}\otimes\bar\omega_{2}$, where $\omega_{i}$ spans
+$\bigwedge^{2m_{i}}V_{\chi}(A_{i})$ and $\bar\omega_{i}$ is its complex
+conjugate.
+\item If two of $B$, $A_{1}$ and $A_{2}$ are Weil-algebraic, so is the third.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The map $f^{*}$ is an isomorphism on rational cohomology that commutes with
+$\cO_{K}$ and carries algebraic classes to algebraic classes, and so does its
+inverse $(\deg f)^{-1}f_{*}$. So we may take $B=A_{1}\times A_{2}$ with the
+diagonal action. Then $V_{\chi}(B)=V_{\chi}(A_{1})\oplus V_{\chi}(A_{2})$, and
+the top exterior power of a direct sum is the tensor product of the top
+exterior powers. This is~(a).
+
+If $A_{1}$ and $A_{2}$ are Weil-algebraic, every class in
+$W(A_{1})\otimes W(A_{2})$ is a sum of products
+$\mathrm{pr}_{1}^{*}\alpha_{1}\cup\mathrm{pr}_{2}^{*}\alpha_{2}$ of algebraic
+classes, so $B$ is Weil-algebraic by~(a). Suppose now that $B$ and $A_{2}$
+are Weil-algebraic. On $W(A_{2})$ we have $\int\omega_{2}\cup\omega_{2}=0$,
+because $\bigwedge^{4m_{2}}V_{\chi}(A_{2})=0$, while
+$p:=\int\omega_{2}\cup\bar\omega_{2}\ne0$, because
+$\bigwedge^{2m_{2}}V_{\chi}(A_{2})\otimes\bigwedge^{2m_{2}}V_{\bar\chi}(A_{2})$
+is the top exterior power of $H^{1}(A_{2},\CC)$. The number $p$ is real,
+since $\omega_{2}$ and $\bar\omega_{2}$ have even degree and so commute. Take nonzero rational
+classes $x\in W(B)$ and $\gamma\in W(A_{2})$. Being real, they have the form
+$x=s\,\omega_{1}\otimes\omega_{2}+\bar s\,\bar\omega_{1}\otimes\bar\omega_{2}$
+and $\gamma=t\,\omega_{2}+\bar t\,\bar\omega_{2}$ with $s,t\ne0$. The class
+\[
+  \mathrm{pr}_{1*}\bigl(x\cup\mathrm{pr}_{2}^{*}\gamma\bigr)
+  =p\,\bigl(s\bar t\;\omega_{1}+\bar s t\;\bar\omega_{1}\bigr)
+\]
+is rational, algebraic and nonzero, and it lies in $W(A_{1})$. So $A_{1}$ is
+Weil-algebraic.
+\end{proof}
+
+\begin{theorem}\label{thm:transfer}
+Let $A$ be an abelian variety of Weil type for $K$, of dimension $2m\ge2$,
+on which $\cO_{K}$ acts. Then there are a smooth curve $C\subseteq A$ stable
+under $\zeta$, on which $\zeta$ acts freely, so that $\pi\colon C\to X=C/\zeta$
+is an \'etale cyclic triple cover of a curve of some genus $g\ge m+1$; a
+variety $A'$ of Weil type of dimension $2(g-1-m)$; and an isogeny commuting
+with $\cO_{K}$ between the Prym variety $B$ of $\pi$ and $A\times A'$. For
+every such curve, $A$ is Weil-algebraic if and only if $A'$ is.
+\end{theorem}
+
+\begin{proof}
+\emph{The curve.} The automorphism $\zeta$ of $A$ has finitely many fixed
+points, the kernel of the isogeny $1-\zeta$. Let $L$ be ample on $A$. The
+bundle $N=L\otimes\zeta^{*}L\otimes\zeta^{2*}L$ satisfies $\zeta^{*}N\cong N$,
+so, the group being cyclic, it carries a $\zeta$-linearization, and the
+linearized bundle $N^{3}$ descends to an ample line bundle $\bar M$ on the
+normal projective quotient $q\colon A\to A/\zeta$, whose singular points are
+among the images of the fixed points. For $k$ large, $2m-1$ general members of $|\bar M^{k}|$ meet in a
+smooth irreducible curve $X$ that avoids those finitely many points, by
+Bertini's theorem. Then $C=q^{-1}(X)$ is \'etale over $X$, hence smooth, and
+it is the complete intersection of the $2m-1$ ample divisors $q^{*}D_{i}$,
+hence connected. So $\pi\colon C\to X$ is an \'etale cyclic triple cover, and
+$\zeta$ acts on $C$ as its covering automorphism $\sigma$. Schoen observes
+the existence of such curves in \cite[Section~3]{Sch88}.
+
+\emph{The surjection.} By the Lefschetz hyperplane theorem, restriction
+$H^{1}(A,\QQ)\to H^{1}(C,\QQ)$ is injective. So the homomorphism
+$\alpha\colon J(C)\to A$ that adds up the points of a divisor of degree zero
+is surjective, and it commutes with $\zeta$. In $\cO_{K}$ we have
+$1+\zeta+\zeta^{2}=0$, so $\alpha\circ(1+\sigma+\sigma^{2})=0$ and
+$\alpha\circ P=3\alpha$ for $P=3-(1+\sigma+\sigma^{2})$. Hence $\alpha$ maps
+the Prym variety $B=P(J(C))$ onto $A$, and in particular $g-1\ge m$.
+
+\emph{The complement.} Let $A'$ be the connected component of the kernel of
+$\alpha|_{B}$, and $A''$ its complement in $B$ for the polarization induced
+from $J(C)$. Since $\sigma$ preserves that polarization, both are stable under
+$\sigma$, so $\cO_{K}$ acts on them. The maps $A''\to A$ and
+$A'\times A''\to B$ are isogenies commuting with $\cO_{K}$, and composing one
+with a quasi-inverse of the other relates $B$ and $A\times A'$.
+
+\emph{Weil type.} By \cite[Lemma~1.6a]{Sch88} the two eigenspaces of $\sigma$
+on $H^{1,0}(B)$ both have dimension $g-1$, and on $H^{1,0}(A)$ both have
+dimension $m$. So on $H^{1,0}(A')$ both have dimension $g-1-m$, and $A'$ is
+of Weil type.
+
+\emph{The equivalence.} The cover is \'etale, so Schoen's Theorem~2.0 applies
+to it with $r=0$, and by \cite[Corollary~3.1]{Sch88} the variety $B$ is
+Weil-algebraic. Lemma~\ref{lem:twothree}(b) gives the equivalence.
+\end{proof}
+
+When $g-1=m$ the complement is zero and $A$ is itself $K$-isogenous to a
+Prym variety; that happens on the Prym locus, of dimension $3m$, and nowhere
+else. For larger $g$ the theorem trades the Weil class of $A$ for that of
+$A'$, and since curves of higher degree give complements of any size, one
+can hope to choose the curve so that $A'$ is a variety on which the Weil
+class is already known.
+
+\begin{corollary}\label{cor:transfer}
+$A$ is Weil-algebraic as soon as, for one curve as in
+Theorem~\ref{thm:transfer}, the complement $A'$ is $K$-isogenous to a product
+of Weil-algebraic varieties. Among these are Prym varieties of \'etale cyclic
+triple covers; abelian surfaces of Weil type; Weil fourfolds for $K$
+\cite{Sch88,Sch98}; and the varieties $E^{k}\times\bar E^{k}$, where $E$ is an
+elliptic curve with complex multiplication by $\cO_{K}$ and $\bar E$ is $E$
+with $\cO_{K}$ acting through complex conjugation.
+\end{corollary}
+
+\begin{proof}
+Products of Weil-algebraic varieties are Weil-algebraic by
+Lemma~\ref{lem:twothree}(b), and Theorem~\ref{thm:transfer} finishes the
+argument. On an abelian surface the Weil plane lies in $H^{2}$ and consists of
+Hodge classes, which are algebraic by Theorem~\ref{thm:lef11}. On
+$E^{k}\times\bar E^{k}$, with coordinates $z_{1},\dots,z_{2k}$ on the factors,
+$V_{\chi}$ is spanned by $dz_{1},\dots,dz_{k}$ and
+$d\bar z_{k+1},\dots,d\bar z_{2k}$, so up to sign
+\[
+  \omega_{\chi}=\bigwedge_{i=1}^{k}\bigl(dz_{i}\wedge d\bar z_{k+i}\bigr).
+\]
+Each factor is a class of type $(1,1)$ on $E\times\bar E$, whose N\'eron--Severi
+group has rank $4=h^{1,1}$ because $E$ has complex multiplication, so it is a
+complex combination of divisor classes. Hence $\omega_{\chi}$ and its
+conjugate are polynomials in divisor classes.
+\end{proof}
+
+\begin{remark}\label{rem:count}
+For a general $A$ with $m\ge4$ one cannot expect a complement of these
+kinds. Pryms of \'etale triple covers of curves of genus $m+k+1$ form a
+family of dimension $3(m+k)$ inside the Weil family of dimension $(m+k)^{2}$.
+The varieties $K$-isogenous to $A\times A'$, with $A$ in the family of
+dimension $m^{2}$ and $A'$ in a family of dimension $f$, form a subvariety of
+dimension $m^{2}+f$. For $A$ to be general, the two must meet in dimension at
+least $m^{2}$, which needs
+\[
+  3(m+k)+f\ \ge\ (m+k)^{2}
+\]
+unless they meet in more than the expected dimension. Products of the
+varieties in Corollary~\ref{cor:transfer} of total dimension $2k$ have at most
+$3k$ moduli, and $3m+6k<(m+k)^{2}$ for every $k\ge0$ once $m\ge4$. For
+$m=3$ only $k=0$ passes, which is the Prym locus itself, and for $m=2$ the
+values $k\le2$ pass. So, unless the Prym locus meets these product loci in
+excess dimension, the corollary reaches only a meagre subset of the family
+once $m\ge4$, as Schoen anticipated \cite[Section~3]{Sch88}. Such excess
+intersections are what the Zilber--Pink philosophy says should not happen.
+This is a count and not a proof.
+\end{remark}
+
+\subsection{Other varieties, and \texorpdfstring{(F2) and (F3$'$)}{(F2) and (F3')}}
+
+\emph{(F2).} Schoen's classes are Weil classes. By \cite[Lemma~1.2 and
+Remark~1.4]{Sch88}, for every curve with a cyclic group of automorphisms the
+space of classes his Theorem~2.0 makes algebraic is the pull-back of the Weil
+plane of a generalized Prym variety with cyclotomic multiplication. For
+cyclotomic fields of degree at least four this bears on the third missing
+input of \cite{BhH8}, the propagation for CM fields of higher degree. It
+does not bear on (F2). Schoen's own count in \cite[Section~3]{Sch88} shows
+that these generalized Pryms can fill a whole Weil family in at most four
+small cases. To reach a class of (F2), such as the exceptional classes on $A\times A$
+for a Mumford fourfold $A$, the construction would need an algebraic
+correspondence from a Prym-type variety $B$ to $A\times A$ that carries a Weil
+class of $B$ to the exceptional class. That correspondence is a Hodge class on
+$B\times A\times A$, so asking for it is again an instance of the conjecture
+for abelian varieties. Nor can the construction be run on $A$ itself: a
+Mumford fourfold has $\End(A)=\ZZ$, so it has no automorphism of order
+three.
+
+\emph{(F3$'$).} Schoen defines the same space of classes for any smooth
+projective $C$ of odd dimension $k$ with a cyclic group of automorphisms,
+under a few hypotheses, the main one being that the part $V$ of
+$H^{k}(C,\QQ)$ on which the group acts by primitive characters has only two
+Hodge types. His example is a quintic threefold
+invariant under $\ZZ/5$ and missing the fixed points, where the space lies in
+$H^{120}(C^{40},\QQ)$, has type $(60,60)$, and was not known to be algebraic
+\cite[Section~1]{Sch88}. In that example $H^{3,0}$ is invariant, so $V$ has
+types $(2,1)$ and $(1,2)$. It is then of level one, and so it is a Tate
+twist of $H^{1}$ of an abelian variety $J_{V}$, and the classes are images of
+the Weil plane of $J_{V}$ under a Hodge isomorphism. They would be algebraic
+if $J_{V}$ were Weil-algebraic and the isomorphism were induced by an
+algebraic correspondence. The second requirement is the generalized Hodge
+conjecture for the level-one part of $H^{3}(C)$, an instance of (F3$'$) that
+we do not know to be proved for these quintics. The cycles of \cite[Section~2]{Sch88} come from
+the Abel--Jacobi map of a curve, which supplies that correspondence for free.
+For a variety of higher dimension nothing supplies it, so the construction
+stops at curves. When the two Hodge types are not adjacent, $V$ is not of
+level one, and the construction has no abelian variety to work on.
+
+So spreading Schoen's construction by correspondences reduces the Weil class
+of $A$ to that of a complement without making it easier, and spreading it to
+other varieties leads back to (F2) and (F3$'$) themselves. Neither closes
+anything that Question~\ref{q:schoen} leaves open.
+
 \section{What is proved and what is not}\label{sec:end}
 
 Proved here, with complete proofs or by citation of refereed work:
@@ -735,7 +972,13 @@ plane, and at a very general such $B$ its class is $c\eta^{n}+w$ with $c>0$
 and $w$ a nonzero Weil class (Theorem~\ref{thm:schoensub});
 \item if that subvariety is semiregular for one very general cover of genus
 $n+1$, the Weil classes are algebraic on every member of the split Weil
-family of $\QQ(\sqrt{-3})$ in dimension $2n$ (Corollary~\ref{cor:schoensemireg}).
+family of $\QQ(\sqrt{-3})$ in dimension $2n$ (Corollary~\ref{cor:schoensemireg});
+\item every abelian variety $A$ of Weil type for $\QQ(\sqrt{-3})$ is, up to
+isogeny, a factor $A\times A'$ of the Prym variety of an \'etale cyclic
+triple cover, with $A'$ of Weil type, and $A$ is Weil-algebraic if and only
+if $A'$ is (Theorem~\ref{thm:transfer}); in particular $A$ is Weil-algebraic
+whenever $A'$ is a product of the varieties listed in
+Corollary~\ref{cor:transfer}.
 \end{enumerate}
 
 Recalled from \cite{BhH8} and used as the frame: the conjecture is equivalent
@@ -747,7 +990,10 @@ Not proved here, and open:
 \item the Lefschetz standard conjecture, in general;
 \item the Weil classes on a general abelian variety of Weil type of
 dimension at least eight, and of dimension six outside the known families;
-in particular Question~\ref{q:schoen};
+in particular Question~\ref{q:schoen}, and the existence, for a general $A$
+of dimension at least eight, of a complement as in
+Theorem~\ref{thm:transfer} on which the Weil classes are known, which the
+count of Remark~\ref{rem:count} makes unlikely;
 \item the exceptional classes on the square of a Mumford fourfold, which
 follow from one Kuga--Satake class;
 \item the conjecture for the square of a K3 surface with real
@@ -766,7 +1012,7 @@ arguments have nevertheless been repeated by machine, and the files are in
 the author's repository \cite{BhHC}.
 
 In Lean~4, checked by its kernel with nothing beyond the core library, we
-verified four things. The first is the deductions of
+verified five things. The first is the deductions of
 Propositions~\ref{prop:hardlef}, \ref{prop:descent} and~\ref{prop:middle} and
 of Corollary~\ref{cor:smalldim}, with every geometric input stated as a
 hypothesis, so that the dependence of Proposition~\ref{prop:middle} on the
@@ -776,16 +1022,26 @@ once. The third is the arithmetic of the characters of $\ZZ/3$ in $\ZZ[\zeta]$
 used in Step~3 of Theorem~\ref{thm:schoensub}. The fourth is the weight count
 of Step~5 and the deduction of $c>0$ and $w\ne0$ from it. The identity
 $3-(1+\sigma+\sigma^{2})=(1-\sigma)(2+\sigma)$ used after
-Question~\ref{q:schoen} is checked there too.
+Question~\ref{q:schoen} is checked there too. The fifth, for
+Section~\ref{sec:spread}, is the dimensions in Theorem~\ref{thm:transfer}, including the
+equality of the two eigenspaces on $A'$, the relation $\alpha\circ P=3\alpha$,
+and the arithmetic of Remark~\ref{rem:count} for every $m$ and $k$ at once.
+It checks only that arithmetic; the remark itself remains a count and not a
+proof.
 
-In Julia, with a Python version that gives the same output, all in exact
+In Julia, and in a Python version of the same checks, all in exact
 arithmetic, we computed the following. On a general abelian variety of Weil
 type of dimension $2n\le8$, the Hodge classes span one line in each even
 degree except the middle one, where they span three. For a Weil class $w$
 the products $\eta\cup w$ and $\eta^{n}\cup w$ vanish. The space $U_{\chi}$
 of Step~1 is one-dimensional for $g=3$ and $g=4$; for $g=3$ this was checked
 by summing over the whole group. For $h\le6$ the class $u_{\chi}$ has $h!$
-terms, is symmetric, and pairs nontrivially with $u_{\bar\chi}$.
+terms, is symmetric, and pairs nontrivially with $u_{\bar\chi}$. For
+Lemma~\ref{lem:twothree} with $2m_{1},2m_{2}\in\{2,4\}$ we computed the
+push-forward of $x\cup\mathrm{pr}_{2}^{*}\gamma$ in the exterior algebra and
+found the formula of the proof, and for Corollary~\ref{cor:transfer} with
+$k\le4$ we checked that $\omega_{\chi}$ is, up to sign, the product of the
+classes $dz_{i}\wedge d\bar z_{k+i}$.
 
 None of this touches the geometry the paper relies on: the theorems of
 Schoen, Bloch, Looijenga and Andr\'e, and those of \cite{BhH8}. None of it

@@ -17,7 +17,10 @@ reach three things:
 - the infinite statements of the note: the countability of the locus, its
   density, and the dichotomy;
 - the open questions on which the papers stop, Question 5.4 of the full
-  attempt above all.
+  attempt above all;
+- the dimension count of Remark 8.4 of the full attempt as an argument.
+  Lean checks its arithmetic for every m and k, but the remark rests on an
+  expected-dimension heuristic and is not a proof.
 
 No proof assistant today has the Hodge theory needed to state those
 theorems, let alone check them. The Hodge conjecture is not proved here.
@@ -46,6 +49,10 @@ the standard ones.
 | `z_push_eigen`, `step3_isotypic`, `q0_decomposition`, `step3_eigenvalues`, `eigen_pairing_vanishes` | Theorem 5.2, Step 3 |
 | `two_plus_sigma_isogeny` | the remark after Question 5.4 |
 | `step5_weights`, `eta_kills_weil`, `step5_w_nonzero`, `step5_c_positive` | Theorem 5.2, Step 5 |
+| `transfer_dimensions`, `complement_weil_type` | Theorem 8.2: dim B = 2(g − 1) = dim A + dim A′, and A′ is of Weil type |
+| `alpha_prym` | Theorem 8.2: 1 + ζ + ζ² = 0, so α ∘ P = 3α |
+| `twothree_degrees` | Lemma 8.1: ω₂ ∪ ω₂ = 0, and the push-forward lands in the degree of W(A₁) |
+| `block_moduli`, `square_expand`, `count_fails`, `count_three`, `count_two` | Remark 8.4: no k passes once m ≥ 4, only k = 0 at m = 3, exactly k ≤ 2 at m = 2 |
 
 In Propositions 2.2, 2.4 and 2.5 the geometric facts are hypotheses: hard
 Lefschetz, the projection formula, and the compatibility of push-forward
@@ -77,7 +84,7 @@ Run:
 
 Base Julia, no packages. Everything is exact: integers, `Rational{BigInt}`,
 and pairs of integers for `Z[ζ]`. The Python file performs the same checks
-in the same order, and `expected_output.txt` is its output (75 checks).
+in the same order, and `expected_output.txt` is its output (102 checks).
 
 Full attempt:
 
@@ -117,6 +124,17 @@ Research note, Theorem 9:
    (0,2) as well. Here the invariants are computed as the common kernel of
    all the Chevalley generators, with no weight argument.
 
+Full attempt, Section 8:
+
+7. Lemma 8.1 for 2m₁, 2m₂ ∈ {2, 4}, in the exterior algebra of
+   H¹(A₁ × A₂): ω₂ ∪ ω₂ = 0; ω₂ ∪ ω̄₂ is a nonzero multiple p of the top
+   class of A₂; the top power of V_χ(A₁) ⊕ V_χ(A₂) is ω₁ ∪ ω₂; and
+   pr₁*(x ∪ pr₂*γ) = p(s t̄ ω₁ + s̄ t ω̄₁), computed on the four products of
+   basis classes. Corollary 8.3 for k ≤ 4: on E^k × Ē^k, ω_χ is
+   (−1)^(k(k−1)/2) times the product of the classes dz_i ∧ dz̄_(k+i). Remark
+   8.4 for 2 ≤ m ≤ 12 and k ≤ 12: the k with 3(m + k) + 3k ≥ (m + k)² are
+   0, 1, 2 for m = 2, only 0 for m = 3, and none from m = 4 on.
+
 Run either:
 
     julia verification/julia/checks.jl
@@ -127,7 +145,7 @@ Both should print `all checks passed`.
 ## What was run where
 
 - Both Lean files were built with Lean 4.34.0, and every theorem checked.
-- The Python checks were run, and all 75 passed (`expected_output.txt`).
+- The Python checks were run, and all 102 passed (`expected_output.txt`).
 - The Julia file has not been run yet. The environment where these files
   were prepared could not download Julia. It parses without syntax errors
   and mirrors the Python checks one for one. Running it once and comparing

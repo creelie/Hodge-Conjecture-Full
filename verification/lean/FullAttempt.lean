@@ -35,8 +35,18 @@ and the results of H8) are not formalised. What is checked is this.
   * Section 4. The U(1)-weight count of Step 5 of Theorem 5.2 and the
     deduction of c > 0 and w /= 0 from it.
 
+  * Section 5. Section 8 of the paper: the dimensions in Theorem 8.2 (the
+    Prym variety B of dimension 2(g - 1) splits up to isogeny as A x A' with
+    A' of dimension 2(g - 1 - m), and the eigenspaces of A' have equal
+    dimension g - 1 - m, so A' is of Weil type); the identity
+    alpha o P = 3 alpha in Z[zeta]; the bidegree facts behind Lemma 8.1; and
+    the count of Remark 8.4 for every m and k at once: once m >= 4 no
+    complement with at most 3k moduli passes, at m = 3 only k = 0 does, and
+    at m = 2 exactly k <= 2 do. The count is a heuristic in the paper, and
+    Lean checks only its arithmetic.
+
 Only the core library is used. No proof uses `sorry` or `native_decide`;
-`decide` is evaluated by the kernel. Section 5 prints the axioms of the main
+`decide` is evaluated by the kernel. Section 6 prints the axioms of the main
 theorems.
 -/
 
@@ -167,8 +177,8 @@ theorem prym_locus_proper (n : Nat) : 3 * n < n * n ↔ 4 ≤ n := by
     have := Nat.mul_le_mul_right n hn
     omega
 
-/-- At `n = 3` the two dimensions agree, which is why Schoen's construction
-covers every split Weil sixfold for `Q(√-3)`. -/
+/-- At `n = 3` the two dimensions agree, so the Prym family can fill the split
+sixfold family; the count alone does not show that it does. -/
 theorem prym_locus_sixfold : 3 * 3 = 3 * 3 := rfl
 
 /-- The analogy after Question 5.4: curves of genus `g ≥ 2` have `3g - 3`
@@ -397,9 +407,102 @@ theorem step5_c_positive (c deg vol : Int) (hdeg : 0 < deg) (hvol : 0 < vol)
 
 end Step5
 
+/-! ## Section 5. Section 8: the transfer and the count -/
+
+section Spread
+
+/-- Theorem 8.2, the dimensions. The curve `C` is an etale triple cover of `X`
+of genus `g`, so `g_C = 3g - 2` and the Prym variety `B` has dimension
+`g_C - g = 2(g - 1)`. If `A` has dimension `2m` with `m ≤ g - 1`, the
+complement `A'` has dimension `2(g - 1 - m)`, and `dim A + dim A' = dim B`. -/
+theorem transfer_dimensions (g gC m : Nat) (hg : 2 ≤ g) (hm : m ≤ g - 1)
+    (rh : 2 * gC + 4 = 6 * g) :
+    gC - g = 2 * (g - 1) ∧ 2 * m + 2 * (g - 1 - m) = gC - g := by
+  omega
+
+/-- Theorem 8.2, Weil type. The eigenspaces of `σ` on `H^{1,0}(B)` both have
+dimension `g - 1`, and on `H^{1,0}(A)` both have dimension `m`. Since
+`H^{1,0}(B) = H^{1,0}(A) ⊕ H^{1,0}(A')` compatibly with `σ`, the eigenspaces
+on `H^{1,0}(A')` have dimensions `e₁ = e₂ = g - 1 - m`. -/
+theorem complement_weil_type (g m e₁ e₂ : Nat)
+    (h₁ : g - 1 = m + e₁) (h₂ : g - 1 = m + e₂) :
+    e₁ = g - 1 - m ∧ e₂ = g - 1 - m ∧ e₁ = e₂ := by
+  omega
+
+/-- Theorem 8.2, the surjection. In `O_K` we have `1 + ζ + ζ^2 = 0`, so
+`α ∘ (1 + σ + σ^2) = 0` and `α ∘ P = 3α` for `P = 3 - (1 + σ + σ^2)`. -/
+theorem alpha_prym :
+    Zz.add (Zz.add one zeta) (pow zeta 2) = zero ∧
+    Zz.sub three (Zz.add (Zz.add one zeta) (pow zeta 2)) = three := by
+  decide
+
+/-- Lemma 8.1. On `A₂` of dimension `2m₂`, `V_χ` has dimension `2m₂`, so
+`ω₂ ∪ ω₂`, which would lie in `∧^{4m₂} V_χ`, is zero, while `ω₂ ∪ ω̄₂` lies in
+`∧^{2m₂} V_χ ⊗ ∧^{2m₂} V_χ̄`, the top degree `4m₂` of `A₂`. The class
+`x ∪ pr₂^*γ` has degree `(2m₁ + 2m₂) + 2m₂`, and pushing forward along the
+fibre `A₂`, of real dimension `4m₂`, lowers it to `2m₁`, the degree of the
+Weil plane of `A₁`. -/
+theorem twothree_degrees (m₁ m₂ : Nat) (h : 1 ≤ m₂) :
+    ¬ (4 * m₂ ≤ 2 * m₂) ∧ 2 * m₂ + 2 * m₂ = 4 * m₂ ∧
+    (2 * m₁ + 2 * m₂) + 2 * m₂ - 4 * m₂ = 2 * m₁ := by
+  omega
+
+/-- Remark 8.4. The varieties of Corollary 8.3 have at most `3j` moduli in
+dimension `2j`: Prym varieties of etale triple covers have `3j`, abelian
+surfaces of Weil type `1 ≤ 3`, Weil fourfolds `4 ≤ 6`, and `E^k × Ē^k` none.
+So a product of them of total dimension `2k` has at most `3k`. -/
+theorem block_moduli (j₁ j₂ f₁ f₂ : Nat) (h₁ : f₁ ≤ 3 * j₁) (h₂ : f₂ ≤ 3 * j₂) :
+    1 * 1 ≤ 3 * 1 ∧ 2 * 2 ≤ 3 * 2 ∧ f₁ + f₂ ≤ 3 * (j₁ + j₂) := by
+  omega
+
+/-- `(m + k)^2 = m^2 + 2mk + k^2`. -/
+theorem square_expand (m k : Nat) :
+    (m + k) * (m + k) = m * m + 2 * (m * k) + k * k := by
+  simp only [Nat.add_mul, Nat.mul_add, Nat.mul_comm k m]
+  omega
+
+/-- Remark 8.4. Once `m ≥ 4`, a complement of dimension `2k` with `f ≤ 3k`
+moduli never gives `3(m + k) + f ≥ (m + k)^2`, for any `k`. -/
+theorem count_fails (m k f : Nat) (hm : 4 ≤ m) (hf : f ≤ 3 * k) :
+    3 * (m + k) + f < (m + k) * (m + k) := by
+  have h₁ : 4 * m ≤ m * m := Nat.mul_le_mul_right m hm
+  have h₂ : 4 * k ≤ m * k := Nat.mul_le_mul_right k hm
+  have h₃ := square_expand m k
+  omega
+
+/-- Remark 8.4. At `m = 3` only `k = 0`, the Prym locus itself, passes. -/
+theorem count_three (k f : Nat) (hf : f ≤ 3 * k) :
+    (3 + k) * (3 + k) ≤ 3 * (3 + k) + f ↔ k = 0 := by
+  have h₁ := square_expand 3 k
+  have h₂ := Nat.le_mul_self k
+  constructor
+  · intro h
+    omega
+  · intro h
+    subst h
+    omega
+
+/-- Remark 8.4. At `m = 2`, with the largest number `3k` of moduli, exactly
+`k ≤ 2` pass. -/
+theorem count_two (k : Nat) :
+    (2 + k) * (2 + k) ≤ 3 * (2 + k) + 3 * k ↔ k ≤ 2 := by
+  have h₁ := square_expand 2 k
+  constructor
+  · intro h
+    apply Classical.byContradiction
+    intro hk
+    have h3 : 3 ≤ k := by omega
+    have := Nat.mul_le_mul_right k h3
+    omega
+  · intro h
+    have : k = 0 ∨ k = 1 ∨ k = 2 := by omega
+    rcases this with rfl | rfl | rfl <;> decide
+
+end Spread
+
 end FullAttempt
 
-/-! ## Section 5. Axioms
+/-! ## Section 6. Axioms
 
 Each line below prints the axioms a theorem depends on. None should list
 `sorryAx` or `Lean.ofReduceBool`. -/
@@ -414,3 +517,8 @@ Each line below prints the axioms a theorem depends on. None should list
 #print axioms FullAttempt.step5_weights
 #print axioms FullAttempt.step5_w_nonzero
 #print axioms FullAttempt.step5_c_positive
+#print axioms FullAttempt.transfer_dimensions
+#print axioms FullAttempt.alpha_prym
+#print axioms FullAttempt.count_fails
+#print axioms FullAttempt.count_three
+#print axioms FullAttempt.count_two

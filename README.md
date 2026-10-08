@@ -42,6 +42,14 @@ What remains open, and is stated as open in the text (see also
 - Hodge classes on abelian varieties beyond divisor and Weil classes, and the
   conjecture for varieties that are not of abelian type.
 
+`paper/full_attempt.tex` also proves that every abelian variety of Weil type
+for Q(√−3) is, up to isogeny, a factor A × A′ of the Prym variety of an
+étale triple cover, so that its Weil class is algebraic exactly when that of
+the complement A′ is (its Theorem 8.2). A count of dimensions in the same
+section indicates that this cannot reach the general member in dimension 8
+or more, and the attempts to carry Schoen's construction to (F2) and (F3′)
+lead back to instances of those statements.
+
 ## Layout
 
     book/main.tex           the book, standard book class
@@ -52,6 +60,8 @@ What remains open, and is stated as open in the text (see also
     paper/full_attempt.tex  an attempt at the conjecture in full: every
                             route, pushed as far as it goes, and the first
                             open statement on each
+    paper/*.pdf, book/weil_classes_and_the_hodge_conjecture.pdf
+                            the compiled papers and book
     verification/           Lean 4 and Julia checks of every finite step of
                             both papers (with a Python version of the Julia
                             checks); see verification/README.md
@@ -71,7 +81,9 @@ Clone with `git clone --recurse-submodules` to get `H8/` as well.
     cd paper && latexmk -pdf weil_closure_attempt.tex
     cd paper && latexmk -pdf full_attempt.tex
 
-All three also compile on Overleaf. The machine checks run with
+All three compile with pdflatex (TeX Live 2023) with no errors, undefined
+references or overfull lines, and the compiled PDFs are in the repository.
+The machine checks run with
 
     cd verification/lean && lake build
     julia verification/julia/checks.jl
