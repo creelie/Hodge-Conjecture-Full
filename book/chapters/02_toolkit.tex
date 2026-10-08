@@ -1,0 +1,263 @@
+\chapter{Hodge theory: the tools we use}\label{ch:toolkit}
+
+This chapter collects what the rest of the book needs. Most of it is
+standard and is proved in Voisin's books \cite{Voi02,Voi03} or in Griffiths
+and Harris \cite{GH78}. We give proofs when they are short and when the
+argument itself matters later.
+
+\section{Hodge structures}
+
+\begin{definition}
+A \emph{rational Hodge structure of weight $k$} is a finite-dimensional
+$\QQ$-vector space $V$ together with a decomposition
+\[
+  V_{\CC}=V\otimes_{\QQ}\CC=\bigoplus_{p+q=k}V^{p,q},\qquad
+  \overline{V^{p,q}}=V^{q,p}.
+\]
+A \emph{morphism} of Hodge structures of the same weight is a
+$\QQ$-linear map whose complexification preserves the decomposition.
+\end{definition}
+
+The Hodge filtration $F^{p}V_{\CC}=\bigoplus_{p'\ge p}V^{p',k-p'}$
+determines the decomposition, through $V^{p,q}=F^{p}\cap\overline{F^{q}}$.
+In families it is the filtration, not the decomposition, that varies
+holomorphically.
+
+Direct sums, tensor products, duals and exterior powers of Hodge
+structures are again Hodge structures, with the obvious types; for example
+$(V\otimes W)^{p,q}=\bigoplus V^{a,b}\otimes W^{p-a,q-b}$, and the dual of
+a structure of weight $k$ has weight $-k$, with $(V^{\vee})^{p,q}$ dual to
+$V^{-p,-q}$. The \emph{Tate structure} $\QQ(1)$ is the one-dimensional
+structure of weight $-2$ and type $(-1,-1)$, and $V(m)=V\otimes\QQ(1)^{\otimes m}$
+shifts the weight by $-2m$ without changing anything else.
+
+\begin{definition}
+A \emph{Hodge class} in a Hodge structure $V$ of even weight $2p$ is an
+element of $V\cap V^{p,p}$. Equivalently, it is a morphism of Hodge
+structures $\QQ(-p)\to V$.
+\end{definition}
+
+For a smooth projective $X$, the cohomology $H^{k}(X,\QQ)$ is a Hodge
+structure of weight $k$ by the Hodge decomposition, and $\Hdg^{p}(X)$ is
+the space of Hodge classes in $H^{2p}(X,\QQ)$. The second description is
+the useful one: a Hodge class is the same thing as a morphism of Hodge
+structures, and the Hodge conjecture predicts that such morphisms come
+from geometry.
+
+\section{Polarisations}
+
+Let $V$ be a Hodge structure of weight $k$. The operator $C$ that acts on
+$V^{p,q}$ by $i^{p-q}$ is defined over $\RR$, and it is called the Weil
+operator.
+
+\begin{definition}
+A \emph{polarisation} of $V$ is a bilinear form $Q\colon V\times V\to\QQ$,
+symmetric if $k$ is even and alternating if $k$ is odd, such that the
+complexification satisfies $Q(V^{p,q},V^{p',q'})=0$ unless $p=q'$, and such
+that the hermitian form $Q(Cx,\bar y)$ is positive definite on $V_{\CC}$.
+\end{definition}
+
+\begin{proposition}\label{prop:semisimple}
+Let $V$ be a polarised Hodge structure and $U\subseteq V$ a sub-Hodge
+structure, that is, a subspace with $U_{\CC}=\bigoplus(U_{\CC}\cap V^{p,q})$.
+Then the orthogonal complement $U^{\perp}$ with respect to $Q$ is a sub-Hodge
+structure, and $V=U\oplus U^{\perp}$. In particular, polarisable Hodge
+structures form a semisimple category.
+\end{proposition}
+
+\begin{proof}
+The form $h(x,y)=Q(Cx,\bar y)$ is positive definite, so $U_{\CC}$ and its
+$h$-orthogonal complement span $V_{\CC}$ and meet in zero. Since $C$
+preserves $U_{\CC}$, the $h$-orthogonal complement of $U_{\CC}$ equals the
+$Q$-orthogonal complement of $\overline{U_{\CC}}=U_{\CC}$, which is
+$(U^{\perp})_{\CC}$. So $V=U\oplus U^{\perp}$ over $\QQ$. The $Q$-orthogonal
+of a subspace stable under the decomposition is stable under it, because
+$Q$ pairs $V^{p,q}$ only with $V^{q,p}$.
+\end{proof}
+
+The cohomology of a smooth projective variety is polarisable. This is the
+content of the Hodge--Riemann relations, recalled in
+Section~\ref{sec:kahler}. Semisimplicity is used constantly: it lets us
+split off the part of a cohomology group that we understand and look at
+what is left.
+
+\section{Mumford--Tate and Hodge groups}\label{sec:mt}
+
+A Hodge structure of weight $k$ on $V$ is the same thing as a homomorphism
+of real algebraic groups
+\[
+  h\colon\mathbb S=\operatorname{Res}_{\CC/\RR}\mathbb G_{m}\longrightarrow
+  \GL(V_{\RR}),
+\]
+where $z\in\mathbb S(\RR)=\CC^{\times}$ acts on $V^{p,q}$ by
+$z^{-p}\bar z^{-q}$. The weight is recorded by the restriction of $h$ to
+$\RR^{\times}$, and the Weil operator is $h(i)$.
+
+\begin{definition}
+The \emph{Mumford--Tate group} $\MT(V)$ is the smallest algebraic subgroup
+of $\GL(V)$, defined over $\QQ$, whose real points contain $h(\mathbb
+S(\RR))$. The \emph{Hodge group} $\Hg(V)$ is the smallest one whose real
+points contain $h(U(1))$, where $U(1)\subset\mathbb S(\RR)$ is the unit
+circle.
+\end{definition}
+
+For a structure of weight $k\ne0$ the Mumford--Tate group is the product of
+the Hodge group and the homotheties. The Hodge group is the right object
+for counting Hodge classes.
+
+\begin{theorem}\label{thm:hginvariants}
+Let $V$ be a rational Hodge structure and let $T=V^{\otimes a}\otimes
+(V^{\vee})^{\otimes b}$ be a tensor space, with its Hodge structure of some
+weight $w$. If $w$ is even, then an element of $T$ is a Hodge class if and
+only if it is invariant under $\Hg(V)$. If $V$ is polarisable, $\Hg(V)$ is
+a connected reductive group.
+\end{theorem}
+
+\begin{proof}
+On $T^{p,q}$ the circle acts through $z\mapsto z^{-p}\bar z^{-q}=z^{q-p}$,
+since $\bar z=z^{-1}$ on $U(1)$. So the fixed vectors of $h(U(1))$ in
+$T_{\CC}$ are exactly the elements of $\bigoplus_{p}T^{p,p}$, which is
+$T^{w/2,w/2}$. An element $t\in T$ (rational) is fixed by $h(U(1))$ if and
+only if it is fixed by the smallest $\QQ$-algebraic subgroup containing
+$h(U(1))$, because the stabiliser of $t$ is an algebraic subgroup defined
+over $\QQ$. This is the first claim. The group is connected because $U(1)$
+is. Reductivity uses the polarisation: the form $Q(Cx,\bar y)$ makes the
+real points of a certain inner form of $\Hg(V)$ compact, which forces
+reductivity. We refer to \cite{Del82} for this step.
+\end{proof}
+
+So the Hodge ring of $X$, in so far as it sits inside tensor constructions
+on one Hodge structure, is a ring of invariants. For abelian varieties all
+of the cohomology sits inside the exterior algebra on $H^{1}$, and this
+observation is the starting point of Chapter~\ref{ch:abelian}.
+
+\section{The K\"ahler package}\label{sec:kahler}
+
+Let $X$ be smooth projective of dimension $d$ and let $\eta\in H^{2}(X,\QQ)$
+be the class of an ample divisor. Cup product with $\eta$ is the
+\emph{Lefschetz operator} $L$. It is a morphism of Hodge structures
+$H^{k}(X,\QQ)\to H^{k+2}(X,\QQ)(1)$, because $\eta$ is of type $(1,1)$.
+
+\begin{theorem}[Hard Lefschetz]\label{thm:hardlefschetz}
+For $0\le k\le d$ the map $L^{d-k}\colon H^{k}(X,\QQ)\to H^{2d-k}(X,\QQ)$ is
+an isomorphism.
+\end{theorem}
+
+Define the primitive part $P^{k}=\ker\bigl(L^{d-k+1}\colon H^{k}\to
+H^{2d-k+2}\bigr)$. Hard Lefschetz gives the \emph{Lefschetz decomposition}
+\[
+  H^{k}(X,\QQ)=\bigoplus_{j\ge0}L^{j}P^{k-2j},
+\]
+and every summand is a sub-Hodge structure, up to Tate twist.
+
+\begin{theorem}[Hodge--Riemann bilinear relations]\label{thm:hodgeriemann}
+For $k\le d$ the form
+\[
+  Q(x,y)=(-1)^{k(k-1)/2}\int_{X}\eta^{d-k}\cup x\cup y
+\]
+is a polarisation of the Hodge structure $P^{k}$. Twisting by the
+appropriate signs on the summands of the Lefschetz decomposition gives a
+polarisation of $H^{k}(X,\QQ)$.
+\end{theorem}
+
+Both theorems are proved with harmonic forms; see \cite[Chapter~6]{Voi02}.
+
+\section{Correspondences}
+
+By the K\"unneth formula and Poincar\'e duality,
+\[
+  H^{2d_{X}+2r}(X\times Y,\QQ)\cong\bigoplus_{k}\Hom\bigl(H^{k}(X,\QQ),
+  H^{k+2r}(Y,\QQ)\bigr)
+\]
+for smooth projective $X,Y$ with $\dim X=d_{X}$. A class
+$\Gamma\in H^{*}(X\times Y,\QQ)$ acts as
+$\Gamma_{*}(x)=\mathrm{pr}_{Y*}(\Gamma\cup\mathrm{pr}_{X}^{*}x)$. Under this
+isomorphism the Hodge classes on $X\times Y$ correspond to morphisms of
+Hodge structures, up to Tate twist.
+
+\begin{proposition}\label{prop:corr}
+If $\Gamma$ is the class of an algebraic cycle on $X\times Y$, then
+$\Gamma_{*}$ carries classes of algebraic cycles on $X$ to classes of
+algebraic cycles on $Y$.
+\end{proposition}
+
+\begin{proof}
+Pullback along the projection, intersection with a cycle and proper
+pushforward are all defined on Chow groups, and they are compatible with
+the cycle class map \cite[Chapter~19]{Ful98}.
+\end{proof}
+
+This is the basic mechanism for moving algebraicity around: once a single
+correspondence is known to be algebraic, it transports algebraicity from
+one variety to another. Most known cases of the Hodge conjecture for
+abelian varieties are proved this way, starting from divisors.
+
+\section{Degree $2d-2$}
+
+\begin{corollary}\label{cor:degree2d-2}
+If the Hodge conjecture holds for $X$ in degree $2$, it holds in degree
+$2d-2$. In particular, by the theorem of Lefschetz in
+Chapter~\ref{ch:lefschetz}, it holds in degree $2d-2$ for every smooth
+projective $X$.
+\end{corollary}
+
+\begin{proof}
+The map $L^{d-2}\colon H^{2}(X,\QQ)\to H^{2d-2}(X,\QQ)(d-2)$ is an
+isomorphism of Hodge structures by Theorem~\ref{thm:hardlefschetz}. An
+isomorphism of Hodge structures is a bijection on Hodge classes. So every
+Hodge class of degree $2d-2$ has the form $\eta^{d-2}\cup\alpha$ with
+$\alpha\in\Hdg^{1}(X)$. If $\alpha$ is the class of a divisor $D$, then
+$\eta^{d-2}\cup\alpha$ is the class of the curve $D\cdot H_{1}\cdots
+H_{d-2}$ for general hyperplane sections $H_{j}$ in the class of $\eta$.
+\end{proof}
+
+The argument is worth looking at closely because it shows the general
+pattern. The Lefschetz operator $L$ is algebraic, being intersection with
+a hyperplane. Its inverse on the image is not known to be algebraic. That
+is the Lefschetz standard conjecture, and if it were known, the Hodge
+conjecture in degree $2p$ for $p>d/2$ would follow from degree
+$2d-2p$. The problem is to find inverses, not to find the forward map.
+This pattern will appear again in Chapter~\ref{ch:remaining}.
+
+\section{Families}\label{sec:families}
+
+Let $\pi\colon\mathcal X\to S$ be a smooth projective morphism with connected
+base. The groups $H^{k}(X_{s},\QQ)$ form a local system $R^{k}\pi_{*}\QQ$, and
+the Hodge filtrations vary holomorphically and satisfy Griffiths
+transversality. The result is a variation of Hodge structure. A Hodge class
+at one point need not remain a Hodge class when it is transported to
+nearby points. The set of nearby points where it does is called the
+\emph{Hodge locus} of the class.
+
+\begin{theorem}[Cattani--Deligne--Kaplan \cite{CDK95}]\label{thm:cdk}
+For a variation of Hodge structure coming from a smooth projective family
+over a quasi-projective base, the Hodge locus of every class is a countable
+union of closed algebraic subvarieties of $S$. The locus of classes of
+bounded norm (with respect to the polarisation) is a finite union.
+\end{theorem}
+
+The Hodge conjecture predicts this: if every Hodge class is algebraic, then
+the Hodge locus is the image of a countable union of relative Hilbert
+schemes, which are algebraic. Cattani, Deligne and Kaplan proved it with no
+conjecture at all. Their theorem is one of the best pieces of evidence for
+the Hodge conjecture.
+
+\begin{theorem}[Deligne, global invariant cycles \cite{Del71}]\label{thm:invcycles}
+Let $\bar{\mathcal X}$ be a smooth projective compactification of
+$\mathcal X$. Then the classes in $H^{k}(X_{s},\QQ)$ invariant under the
+monodromy of $\pi$ are exactly the restrictions of classes in
+$H^{k}(\bar{\mathcal X},\QQ)$. Moreover, the invariant classes form a
+sub-Hodge structure.
+\end{theorem}
+
+This theorem gives the standard reduction of the variational question to
+the Hodge conjecture for the total space. Suppose a monodromy-invariant
+class is a Hodge class at one point. By the second part of the theorem it
+is then a Hodge class at every point. By the first part it is the
+restriction of a class on $\bar{\mathcal X}$, and since restriction is a
+surjective morphism of polarisable Hodge structures onto the invariant
+part, Proposition~\ref{prop:semisimple} lets us choose that class to be a
+Hodge class. If the Hodge conjecture
+holds for $\bar{\mathcal X}$, the class is algebraic at every point. The
+difficulty is that $\bar{\mathcal X}$ is a larger variety, about which we
+know less.

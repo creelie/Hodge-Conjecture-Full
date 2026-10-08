@@ -1,0 +1,613 @@
+\chapter{The remaining case}\label{ch:remaining}
+
+This chapter attempts the general case. Fix a Weil family
+$\pi\colon\mathcal A\to\mathrm{Sh}$ of dimension $2n\ge4$, as in
+Chapter~\ref{ch:weil}, and a nonzero Weil class $\omega$, extended to a flat
+global section by Proposition~\ref{prop:flat}. By
+Corollary~\ref{cor:oneclass}, the Hodge conjecture for a member with full
+Hodge group is the algebraicity of $\omega$ there. The attempt follows the
+most direct route: take a member where $\omega$ is algebraic and move the
+cycle to every other member. We prove what that route gives and show
+exactly where it stops. Then we look at the problem as a case of the
+variational Hodge conjecture and prove three results that narrow where a
+proof could come from.
+
+Much of the material in the first sections first appeared in my preprint
+\cite{BhH8}. Everything used is proved here.
+
+\section{The algebraic locus}
+
+\begin{definition}
+The \emph{algebraic locus} is the set $\Sigma\subseteq\mathrm{Sh}$ of points
+$t$ at which $\omega(t)$ is the class of an algebraic cycle with rational
+coefficients on $A_{t}$.
+\end{definition}
+
+The goal is $\Sigma=\mathrm{Sh}$.
+
+\begin{lemma}\label{lem:countablebook}
+$\Sigma$ is a countable union of closed algebraic subsets of $\mathrm{Sh}$.
+\end{lemma}
+
+\begin{proof}
+Fix a relatively ample line bundle on $\mathcal A/\mathrm{Sh}$. For each Hilbert
+polynomial $P$ the relative Hilbert scheme $\Hilb_{P}(\mathcal A/\mathrm{Sh})$ is
+projective over $\mathrm{Sh}$ and has finitely many irreducible components. Take
+finitely many components $H_{1},\dots,H_{r}$, possibly from different
+Hilbert schemes, and rational numbers $q_{1},\dots,q_{r}$. Over the fibre
+product $H=H_{1}\times_{\mathrm{Sh}}\dots\times_{\mathrm{Sh}}H_{r}$ we have the
+class $\sum_{i}q_{i}[Z_{i}]$ in the fibre $H^{2n}(A_{t},\QQ)$. Classes of
+the fibres of a flat family of subschemes are locally constant. So on each
+connected component of $H$ the class $\sum q_{i}[Z_{i}]$ either equals
+$\omega(t)$ everywhere or nowhere. The union of the components where it
+equals $\omega(t)$ maps properly to $\mathrm{Sh}$, so its image is closed and
+algebraic. There are countably many choices of polynomials, components
+and coefficients, and every point of $\Sigma$ lies in one of these images.
+\end{proof}
+
+\begin{lemma}[Dichotomy]\label{lem:dichotomybook}
+Either $\Sigma=\mathrm{Sh}$, or $\Sigma$ is meagre: it lies in a countable
+union of closed subsets with empty interior, and its complement is dense.
+\end{lemma}
+
+\begin{proof}
+$\mathrm{Sh}$ is irreducible. If one of the closed sets of
+Lemma~\ref{lem:countablebook} is all of $\mathrm{Sh}$, then
+$\Sigma=\mathrm{Sh}$. Otherwise each of them is a proper closed algebraic
+subset, which has empty interior, and Baire's theorem on the complex
+manifold $\mathrm{Sh}$ gives the rest.
+\end{proof}
+
+By Section~\ref{sec:cmpoint}, every Weil family has a member $s_{0}$ at
+which $\omega$ is a polynomial in divisor classes, and it can be chosen
+with complex multiplication \cite{BhH8}. By Proposition~\ref{prop:densebook}
+the isogeny orbit of $s_{0}$ lies in $\Sigma$ and is dense. So $\Sigma$ is
+dense, and the problem is entirely about which side of the dichotomy we are
+on. One stratum of Lemma~\ref{lem:countablebook} equal to all of
+$\mathrm{Sh}$ would settle it.
+
+There is a catch, and it is the reason the problem is hard. Recall that
+$\mathrm{Sh}^{\circ}$ is the set of points where the Hodge group is all of
+$\SU(V,H)$. Its complement is meagre (Proposition~\ref{prop:generalsu}).
+Every point isogenous to a CM point is a CM point, with a torus for its
+Hodge group, so the whole orbit of $s_{0}$ lies \emph{outside}
+$\mathrm{Sh}^{\circ}$. To close the locus we need at least one point of
+$\Sigma\cap\mathrm{Sh}^{\circ}$. For $K=\QQ(\sqrt{-3})$ and a split form,
+Schoen's Prym varieties supply such points (Section~\ref{sec:schoen}). For
+other fields and discriminants no such point is known when $n\ge3$.
+
+\section{The first route: strata with big monodromy}
+
+Suppose that we had found one point $t\in\Sigma\cap\mathrm{Sh}^{\circ}$, and let
+$S$ be an irreducible stratum of Lemma~\ref{lem:countablebook} through it. The
+first thing to ask is what $S$ can look like. The following lemma says that
+$S$ cannot be a small, degenerate piece of the family.
+
+\begin{theorem}\label{thm:monodromybook}
+Let $S\subseteq\mathrm{Sh}$ be an irreducible closed subvariety of positive
+dimension that contains a point of $\mathrm{Sh}^{\circ}$. Then the connected
+algebraic monodromy group of the local system $R^{1}\pi_{*}\QQ$ restricted
+to the smooth locus of $S$ is the whole group $\SU(V,H)$.
+\end{theorem}
+
+\begin{proof}
+Let $S^{\mathrm{reg}}$ be the smooth locus of $S$. It is connected, since
+$S$ is irreducible. The Hodge group of a very general point of $S$ contains
+the Hodge group of every point of $S$, so it contains $\SU(V,H)$. On the
+other hand every Hodge group in the family lies in $\SU(V,H)$, by
+\eqref{eq:hginsu}.
+So the generic Hodge group on $S$ is $\SU(V,H)$.
+
+By Andr\'e's theorem \cite{And92}, the connected algebraic monodromy group
+$M$ of a polarisable variation of Hodge structure over a smooth connected
+base is a normal subgroup of the derived group of the generic
+Mumford--Tate group. Here that derived group is $\SU(V,H)$, which is an
+outer form of $\SL_{2n}$ over $\QQ$, and so it is almost simple. Its
+connected normal subgroups are $1$ and itself.
+
+If $M=1$, the monodromy is finite. After a finite \'etale cover of
+$S^{\mathrm{reg}}$ the local system becomes trivial, and the period map
+lifts to a holomorphic map from that cover to $D$. Now $D$ is a bounded
+domain, so the coordinate functions of the lift are bounded holomorphic
+functions. Pass to a resolution and a smooth compactification of the
+cover. By the Riemann extension theorem the bounded functions extend to the
+compactification, which is compact and connected, so they are constant.
+Then the period map is constant on $S^{\mathrm{reg}}$. But the period map of
+the universal family over $\mathrm{Sh}$ is the identity of $\Gamma\backslash D$, so
+$S$ is a point, which contradicts $\dim S>0$. Hence $M=\SU(V,H)$.
+\end{proof}
+
+So a positive-dimensional stratum through a general point carries all the
+monodromy the family has. It is natural to hope that a cycle family with
+this much monodromy can be moved off $S$. That hope is exactly the
+variational Hodge conjecture for this family, and here is why the
+monodromy does not help on its own. The class $\omega$ is invariant under
+all of $\SU(V,H)$, so the monodromy never moves $\omega$, and it gives no
+constraint that would force the stratum to grow. Big monodromy rules out
+degenerate strata. It does not produce new cycles.
+
+\section{The second route: deforming one cycle}
+
+The direct way to move a cycle is deformation theory. Let $Z\subset A_{t}$
+be a local complete intersection of codimension $n$. Bloch \cite{Blo72}
+defined the \emph{semiregularity map}
+\[
+  \sigma_{Z}\colon H^{1}(Z,N_{Z})\longrightarrow H^{n+1}(A_{t},\Omega^{n-1}),
+\]
+and proved the following. If $\sigma_{Z}$ is injective, then $Z$ deforms
+along every deformation of $A_{t}$ along which its class stays of Hodge type.
+Buchweitz and Flenner \cite{BF03} extended the definition and the theorem
+to perfect complexes, and Pridham \cite{Pri24} gave a general proof.
+
+\begin{theorem}\label{thm:semiregbook}
+Suppose that at some point $t\in\mathrm{Sh}$ there is a local complete intersection
+$Z\subset A_{t}$ of codimension $n$ whose class is
+$\cl(Z)=\alpha+c\,\eta^{n}$ with $\alpha$ a nonzero Weil class and
+$c\in\QQ$, and whose semiregularity map is injective. Then $\Sigma=\mathrm{Sh}$.
+\end{theorem}
+
+\begin{proof}
+Along the universal family over a small neighbourhood $U$ of $t$, the flat
+transport of $\cl(Z)$ is $\alpha+c\eta^{n}$, and both terms are Hodge
+classes at every point, because the Weil plane and $\eta$ are. So the class
+of $Z$ stays of Hodge type along every direction of $U$. By Bloch's theorem,
+$Z$ deforms to every order along every curve germ in $U$. Then the image of
+its Hilbert scheme component contains the formal neighbourhood of $t$. Since
+that image is a closed analytic subset of $U$, it contains a neighbourhood
+of $t$. So one stratum of Lemma~\ref{lem:countablebook} has nonempty interior,
+and it is all of $\mathrm{Sh}$ by irreducibility. At every point $s$ we then have an
+algebraic cycle of class $\alpha(s)+c\eta^{n}$, so $\alpha(s)$ is
+algebraic.
+
+It remains to pass from $\alpha$ to $\omega$. The field $K$ acts on the
+Weil plane: an element $\tau\in K^{\times}$ acts on $\bigwedge^{2n}_{K}V$ by
+multiplication by $\tau^{2n}$. A positive integer multiple $m\tau$ is a
+genuine endomorphism of $A_{s}$. Its pullback, divided by $m^{2n}$, is
+$\tau^{*}$ on $H^{2n}$, so $\tau^{*}$ carries algebraic classes to
+algebraic classes. Choose $\tau$ whose argument is not a rational multiple of $\pi$, for
+example $\tau=a+\sqrt{-d}$ with $a$ a positive integer chosen so that
+$\tau/\bar\tau$ is not a root of unity. Then $\tau^{2n}\notin\QQ$, and the classes
+$\alpha$ and $\tau^{*}\alpha$ span the Weil plane over $\QQ$, so $\omega(s)$
+is algebraic.
+\end{proof}
+
+The same holds with $Z$ replaced by a perfect complex $E$ on $A_{t}$, with
+the Chern character in place of the cycle class, by the theorem of
+Buchweitz--Flenner and Pridham. This is the route Markman followed for
+sixfolds of split Weil type, using secant sheaves and an equivariant form
+of semiregularity \cite{Mar25b}.
+
+\section{Where the attempt stops}\label{sec:stopsbook}
+
+Both routes need an input that we do not have.
+
+\subsection*{The first route needs a point of $\Sigma$ with full Hodge group.}
+Outside the families where the conjecture is already known and Schoen's
+Prym locus for $\QQ(\sqrt{-3})$, every point at which $\omega$ is known to
+be algebraic is a CM point or lies on a proper special subvariety. These
+points are excluded from $\mathrm{Sh}^{\circ}$ by definition.
+Theorem~\ref{thm:monodromybook} tells us what a stratum through a point of
+$\mathrm{Sh}^{\circ}$ looks like, but it gives no way to find one. Where one is
+known, Schoen's Prym locus, it has dimension $3n$, while $\mathrm{Sh}$ has
+dimension $n^{2}$. Nothing in the first route makes such a stratum grow.
+
+\subsection*{The second route needs a semiregular object, and the obvious
+ones are not.}
+The first thing to try is an object whose Chern character is exactly a
+Weil class, with no other component. Voisin's tori rule this out.
+
+\begin{theorem}\label{thm:purefalse}
+Let $n\ge2$, let $t\in\mathrm{Sh}$, and let $F$ be a perfect complex on
+$A_{t}$ with $\operatorname{ch}(F)=N\omega(t)$ for some $N\ne0$, possibly
+plus components in degrees $0$ and $4n$. Then the semiregularity map of $F$
+is not injective.
+\end{theorem}
+
+\begin{proof}[Sketch of proof]
+Suppose it is injective. The class $N\omega$ is of Hodge type not only on
+the members of the Weil family but on every Weil torus of
+Section~\ref{sec:voisintori}, which form a connected complex manifold
+$\mathcal S$ of dimension $2n^{2}$ containing $\mathrm{Sh}$ locally. So the
+theorem of Buchweitz--Flenner and Pridham \cite{BF03,Pri24} kills every
+obstruction to deforming $F$ along an Artinian deformation of $A_{t}$
+inside $\mathcal S$. Kuranishi's method then gives an analytic family of
+complexes of vector bundles over a neighbourhood of $t$ in $\mathcal S$,
+deforming $F$. At a very general Weil torus $T$ in that neighbourhood,
+every coherent sheaf has $\operatorname{ch}_{k}=0$ for $0<k<2n$, by the
+argument after Theorem~\ref{thm:voisin}. So $\operatorname{ch}_{n}$ of the
+deformed complex vanishes on $T$, while it is the flat transport of
+$N\omega\ne0$. This is a contradiction. The details are written out in
+\cite{BhH8}.
+\end{proof}
+
+So a semiregular object has to carry a polarisation term, as in
+Theorem~\ref{thm:semiregbook}, and that term must not stay of Hodge type on
+the Weil tori, or the same argument applies. With a polarisation term the
+criterion survives, but it asks for an object with a precise and large
+amount of self-extension. For $n\ge3$ and a general imaginary quadratic
+field no such object is known, and the natural constructions that provably
+fail are listed in \cite{BhH8}.
+
+\subsection*{Neither gap is a technicality.}
+If $\Sigma=\mathrm{Sh}$, then $\Sigma$ meets $\mathrm{Sh}^{\circ}$, so the first gap is
+a consequence of the goal as well as a step towards it. And closing the
+locus is equivalent to one case of the Lefschetz standard conjecture: the
+case of the total space of the family over a projective curve through
+$s_{0}$ and a very general point \cite{BhH8}. These are the variational Hodge
+conjecture and the standard conjectures in disguise. They are not small residuals.
+
+\section{The variational form of the problem}\label{sec:vhcbook}
+
+The question whether $\Sigma=\mathrm{Sh}$ is one instance of the variational Hodge
+conjecture, and it helps to look at it that way. Let $f\colon X\to S$ be a
+smooth projective morphism onto a smooth connected variety, and let
+$\alpha$ be a global section of $R^{2p}f_{*}\QQ$. By Deligne's theorem of the
+fixed part \cite{Del71}, the global sections carry a Hodge structure that
+does not depend on the point, and the inclusion into each fibre is a
+morphism of Hodge structures. So if $\alpha(s)$ is a Hodge class at one
+point, it is a Hodge class at every point. The variational Hodge conjecture
+asks for the corresponding statement about cycles: if $\alpha(s_{0})$ is
+algebraic at one point $s_{0}$, then $\alpha(s)$ is algebraic at every
+point $s$.
+
+In our family, $\omega$ is a global section, it is a Hodge class
+everywhere, and by Proposition~\ref{prop:densebook} it is algebraic at $s_{0}$.
+The variational conjecture for $\pi\colon\mathcal A\to\mathrm{Sh}$ and this one
+class says exactly that $\Sigma=\mathrm{Sh}$. Three things are known about the
+conjecture in general, and none of them settles this case.
+\begin{enumerate}[label=(\alph*)]
+\item It holds when $p=1$, by the theorem of Lefschetz on $(1,1)$ classes.
+Here $p=n\ge2$.
+\item It follows from the Hodge conjecture for a smooth projective
+compactification $\bar X$ of the total space. By the global invariant cycle
+theorem \cite{Del71} there is a class on $\bar X$ restricting to
+$\alpha(s)$, by semisimplicity of polarisable Hodge structures it can be
+chosen to be a Hodge class, and the restriction of a cycle representing it
+represents $\alpha(s)$ at every $s$. For our family $\bar X$ is a variety
+of dimension $2n+n^{2}$, or $2n+1$ after restricting to a curve, and its
+Hodge conjecture is no easier than the one we want.
+\item Andr\'e's deformation principle \cite{And96} says that a flat section
+which is motivated at one point is motivated at every point, and Andr\'e
+also showed that every Hodge class on an abelian variety is motivated. So
+$\omega(t)$ is already known to be motivated for every $t$. A motivated
+class is algebraic as soon as the Lefschetz standard conjecture holds for
+the varieties that enter its construction. This is the same reduction to
+the standard conjectures as in Section~\ref{sec:stopsbook}, reached from the
+other side.
+\end{enumerate}
+
+The rest of this section contains three results. The first changes the
+question into a question about degrees. It is a variant, with Chow
+varieties and arbitrary Zariski-dense sets, of the bounded criterion of
+\cite{BhH8}, which is stated for Hilbert data along isogeny orbits. The
+second shows that nothing built from divisors reaches $\omega$ at a member
+with full Hodge group. Its proof is the argument that \cite{BhH8} gives for
+Mumford's exceptional classes, carried over to the Weil family. The third
+is the analogue for the tautological cycles of curves with an automorphism
+of order three.
+
+\subsection{A criterion in terms of degrees}
+
+Measure the size of a cycle by its degree against the polarisation: for an
+effective cycle $Z$ of dimension $n$ on $A_{t}$, put
+$\deg_{\eta}Z=\int_{A_{t}}\cl(Z)\cup\eta^{n}$. Every cycle with rational
+coefficients can be written as $\frac1m(Z^{+}-Z^{-})$ with $Z^{\pm}$
+effective and $m$ a positive integer. For $N\ge1$ let $\Sigma_{N}$ be the
+set of points $t$ at which
+\[
+  \omega(t)=\tfrac1m\bigl(\cl(Z^{+})-\cl(Z^{-})\bigr)
+\]
+for some effective cycles $Z^{\pm}$ on $A_{t}$ of dimension $n$ with
+$\deg_{\eta}Z^{\pm}\le N$ and some integer $1\le m\le N$.
+
+\begin{proposition}\label{prop:boundedbook}
+Each $\Sigma_{N}$ is a closed algebraic subset of $\mathrm{Sh}$, and
+$\Sigma=\bigcup_{N}\Sigma_{N}$. The following are equivalent.
+\begin{enumerate}[label=(\roman*)]
+\item $\Sigma=\mathrm{Sh}$.
+\item $\Sigma_{N}=\mathrm{Sh}$ for some $N$.
+\item For some $N$, the set $\Sigma_{N}$ contains a Zariski-dense subset
+of $\mathrm{Sh}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Effective cycles of dimension $n$ and bounded degree in the fibres of the
+projective family $\mathcal A\to\mathrm{Sh}$ are parametrised by a relative Chow
+variety which is of finite type and proper over $\mathrm{Sh}$ \cite[Ch.~I]{Kol96}.
+Over a connected component of it, the class of the cycle is a flat section
+of $R^{2n}\pi_{*}\QQ$, so the condition that
+$\frac1m(\cl Z^{+}-\cl Z^{-})=\omega$ holds on whole connected components
+of the fibre product of two such Chow varieties, or nowhere on them. Taking
+the union over $m\le N$ of the components where it holds and projecting to
+$\mathrm{Sh}$ gives $\Sigma_{N}$, which is therefore closed and algebraic. Every
+point of $\Sigma$ lies in some $\Sigma_{N}$.
+
+(i) implies (ii): $\mathrm{Sh}$ is the countable union of the closed sets
+$\Sigma_{N}$, so by Baire's theorem one of them has nonempty interior, and
+since $\mathrm{Sh}$ is irreducible that one is all of $\mathrm{Sh}$. (ii) implies (iii)
+trivially. (iii) implies (i): a Zariski-closed set that contains a
+Zariski-dense set is everything.
+\end{proof}
+
+The proposition is elementary, but it changes the shape of the question,
+as \cite{BhH8} already observed in its own setting.
+Proposition~\ref{prop:densebook} already gives algebraic representatives of
+$\omega$ on a dense set. What is missing is a \emph{uniform bound} on their
+degrees and denominators along some Zariski-dense subset. Transport along
+isogenies does not give one, and it is worth seeing why.
+
+\begin{remark}\label{rem:heckebook}
+Let $\phi\colon A_{t}\to A_{t'}$ be an isogeny of degree $d$ that commutes
+with $K$ and satisfies $\phi^{*}\eta'=e\,\eta$ for an integer $e\ge1$, as
+the Hecke correspondences do. The two polarisations have the same type, so
+comparing Euler characteristics gives
+$e^{2n}\chi(\eta)=\chi(\phi^{*}\eta')=d\,\chi(\eta')=d\,\chi(\eta)$, that is
+$d=e^{2n}$. For an effective cycle $Z$ of dimension $n$ the projection
+formula gives
+\[
+  \deg_{\eta'}\phi_{*}Z=\int_{A_{t}}\cl(Z)\cup\phi^{*}\eta'^{\,n}
+  =e^{n}\deg_{\eta}Z .
+\]
+An abelian variety has only finitely many isogenies of bounded degree, so
+along any infinite subset of the Hecke orbit of $s_{0}$ the multipliers $e$
+are unbounded, and so are the degrees of the transported cycles.
+Proposition~\ref{prop:boundedbook} asks for \emph{other} cycles at those
+points, of bounded degree. The Hecke construction gives no hint where to
+find them.
+\end{remark}
+
+\subsection{A barrier at members with full Hodge group}
+
+Fix $t\in\mathrm{Sh}^{\circ}$, write $A=A_{t}$, and let $U=U(V,H)$ be the unitary
+group of the hermitian form, as an algebraic group over $\QQ$. It acts on
+$V=H^{1}(A,\QQ)$, and so on $H^{*}(A,\QQ)=\bigwedge^{*}V$. Let $\mathcal C$
+be the category of abelian varieties isogenous to a power of $A$, with
+homomorphisms as morphisms. Choosing an isogeny $B\to A^{m}$ lets $U$ act on
+$H^{1}(B,\QQ)\cong V^{m}$ diagonally. Two choices differ by an invertible
+element of $\End^{0}(A^{m})$, and we shall see in a moment that these
+commute with $U$, so the action does not depend on the choice.
+
+\begin{theorem}\label{thm:barrierbook}
+Let $n\ge2$ and $t\in\mathrm{Sh}^{\circ}$. Let $(\mathcal L(B))_{B\in\mathcal C}$ be
+the smallest family of subspaces $\mathcal L(B)\subseteq H^{*}(B,\QQ)$
+such that each $\mathcal L(B)$ is a subalgebra containing the classes of all
+divisors on $B$, and $h^{*}\mathcal L(B')\subseteq\mathcal L(B)$ and
+$h_{*}\mathcal L(B)\subseteq\mathcal L(B')$ for every homomorphism
+$h\colon B\to B'$ in $\mathcal C$. Then every class in every $\mathcal L(B)$
+is invariant under $U$. In particular no class in $\mathcal L(A)$ has the
+form $\alpha+c\,\eta^{n}$ with $\alpha$ a nonzero Weil class.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: the endomorphisms.} Over $\CC$ the space $V$ splits as
+$V_{+}\oplus V_{-}$, the two eigenspaces of $K$, each of
+dimension $2n$. The polarisation form $E$ is invariant under the norm-one
+elements of $K$, which forces $V_{+}$ and $V_{-}$ to be
+isotropic and $E$ to pair them perfectly. So, as representations of
+$\SU(V,H)_{\CC}\cong\SL_{2n}$, they are the standard representation and its
+dual. For $2n\ge3$ these are irreducible and not isomorphic, so the
+commutant of $\SU(V,H)$ in $\End_{\QQ}(V)$ has dimension two. Since the
+Hodge group of $A$ is $\SU(V,H)$, this commutant is $\End^{0}(A)$, and so
+$\End^{0}(A)=K$ and $\End^{0}(A^{m})=M_{m}(K)$. A homomorphism
+$h\colon A^{m}\to A^{k}$ therefore acts on $H^{1}$ by a matrix with entries
+in $K$, and since $U$ acts $K$-linearly on $V$, the map
+$h^{*}\colon V^{k}\to V^{m}$ commutes with the diagonal action of $U$. The
+same holds in $\mathcal C$ after composing with isogenies.
+
+\emph{Step 2: the centre.} The centre of $U$ is the torus $U(1)_{K}$ of
+norm-one elements of $K$, and $U=\SU(V,H)\cdot U(1)_{K}$. An element
+$\lambda$ of the centre acts on $V_{+}$ by $\lambda$, through the fixed embedding of $K$, and on
+$V_{-}$ by $\lambda^{-1}$, so on the summand
+$\bigwedge^{a}V_{+}^{\oplus m}\otimes\bigwedge^{b}V_{-}^{\oplus m}$
+of $H^{a+b}(A^{m},\CC)$ it acts by $\lambda^{a-b}$. Hence a class is
+$U$-invariant exactly when it is $\SU(V,H)$-invariant and lies in the sum of
+the summands with $a=b$.
+
+\emph{Step 3: divisors.} A divisor class on $A^{m}$ is a Hodge class, and
+the Hodge group of $A^{m}$ is $\SU(V,H)$ acting diagonally, so the class is
+$\SU(V,H)$-invariant. Its components with $a\ne b$ lie in
+$\bigwedge^{2}(V_{+}\otimes\CC^{m})$ or its conjugate. As a
+representation of $\SL_{2n}$ this is a sum of copies of
+$\bigwedge^{2}V_{+}$ and $\mathrm{Sym}^{2}V_{+}$, which have no
+invariants when $2n\ge3$. So those components vanish, and by Step~2 the
+class is $U$-invariant.
+
+\emph{Step 4: the operations.} Cup product and $h^{*}$ commute with $U$, by
+Step~1. Every element of $U$ preserves $E$, so it has determinant one on $V$
+and acts trivially on the top cohomology of each $B$. So $U$ preserves the
+Poincar\'e pairing, and $h_{*}$, being the adjoint of $h^{*}$ for that
+pairing, commutes with $U$ as well. It follows that the family of
+$U$-invariant subalgebras $H^{*}(B,\QQ)^{U}$ has all the properties in the
+statement, and by minimality $\mathcal L(B)\subseteq H^{*}(B,\QQ)^{U}$.
+
+\emph{Step 5: Weil classes.} The Weil plane, tensored with $\CC$, is
+$\bigwedge^{2n}V_{+}\oplus\bigwedge^{2n}V_{-}$, the summands
+with $(a,b)=(2n,0)$ and $(0,2n)$. The centre acts on them by
+$\lambda^{\pm2n}$. Taking $\lambda=\tau/\bar\tau$ with $\tau$ as in
+the proof of Theorem~\ref{thm:semiregbook}, this is not $1$, so the Weil plane
+has no nonzero $U$-invariant vector. Since $\eta^{n}$ is $U$-invariant, a
+$U$-invariant class $\alpha+c\eta^{n}$ has $\alpha$ $U$-invariant, hence
+$\alpha=0$.
+\end{proof}
+
+The theorem reaches further than it looks, because Chern characters behave
+well under the same operations.
+
+\begin{corollary}\label{cor:barrierbook}
+Let $t\in\mathrm{Sh}^{\circ}$, and let $F$ be an object of the derived category of
+$A_{t}$ obtained from line bundles on varieties in $\mathcal C$ by finitely
+many shifts, direct sums, cones, derived tensor products, and derived
+pullbacks and pushforwards along homomorphisms. Then $\operatorname{ch}(F)$
+is $U$-invariant, and $F$ cannot satisfy the hypothesis of
+Theorem~\ref{thm:semiregbook}. This applies in particular to Fourier--Mukai
+transforms whose kernel is the Mumford line bundle
+$m^{*}L\otimes\mathrm{pr}_{1}^{*}L^{-1}\otimes\mathrm{pr}_{2}^{*}L^{-1}$ on
+$A_{t}\times A_{t}$, and to pushforwards of line bundles along isogenies,
+which by a theorem of Mukai include all simple semi-homogeneous vector
+bundles \cite{Muk78}.
+\end{corollary}
+
+\begin{proof}
+The Chern character is additive on exact triangles and multiplicative on
+derived tensor products, it commutes with pullback, and
+$\operatorname{ch}(L)=\exp c_{1}(L)$ for a line bundle. For pushforward
+along a homomorphism $h$, the Grothendieck--Riemann--Roch theorem gives
+$\operatorname{ch}(Rh_{*}F)=h_{*}\operatorname{ch}(F)$, because the Todd
+class of an abelian variety is $1$. So $\operatorname{ch}(F)$ lies in
+$\mathcal L(A_{t})$, and Theorem~\ref{thm:barrierbook} applies.
+\end{proof}
+
+So at a member with full Hodge group, nothing built from line bundles and
+homomorphisms has the right Chern character. This explains a feature of
+every successful construction so far. At $s_{0}$ the endomorphism algebra
+is large, the corresponding group is smaller than $U$, and $\omega$ is a
+polynomial in divisor classes. Markman's secant sheaves also start on
+special members, built from an abelian $n$-fold and its dual, and reach the
+general member only by deformation \cite{Mar25a,Mar25b}. The theorem shows
+that this detour is forced: a proof has to start where the endomorphisms
+are large and then deform, or it has to find at a general member a cycle
+that does not come from divisors at all.
+
+\subsection{Curves with an automorphism of order three}
+
+The oldest source of cycles that do not come from divisors is curves. For
+$K=\QQ(\sqrt{-3})$ there are two natural families of curves whose
+Jacobians contain abelian varieties of Weil type, and one might hope that
+cycles built from the curve reach $\omega$. The next proposition shows that
+the obvious cycles do not.
+
+Let $C$ be a smooth projective curve with an automorphism $\rho$ of order
+three, and let $V\subseteq H^{1}(C,\QQ)$ be the kernel of
+$1+\rho^{*}+\rho^{*2}$, the part on which $\rho$ has no fixed vectors. Then
+$K$ acts on $V$ through $\rho$. Let $P\subseteq J(C)$ be the image of
+$1-\rho$, so that $H^{1}(P,\QQ)$ is identified with $V$, and assume that
+$P$, with the polarisation induced from $J(C)$, is of Weil type for $K$.
+Let $U=U(V,H)$ act on $H^{1}(C,\QQ)=V\oplus H^{1}(C,\QQ)^{\rho}$, trivially
+on the second summand, and trivially on $H^{0}$ and $H^{2}$.
+
+\begin{proposition}\label{prop:curvesbook}
+Let $R^{*}(C^{m})\subseteq H^{*}(C^{m},\QQ)$ be the subring generated by
+the classes of the diagonals $\{x_{i}=x_{j}\}$, the graphs
+$\{x_{j}=\rho^{k}(x_{i})\}$ for $k=1,2$, and the pullbacks of the point
+class from each factor. Let $f\colon C^{m}\to P$ be a morphism of the form
+$h\circ(\mathrm{AJ}\times\dots\times\mathrm{AJ})$, where $\mathrm{AJ}$ is an
+Abel--Jacobi map $C\to J(C)$ and
+$h(y_{1},\dots,y_{m})=(1-\rho)\sum_{i}\psi_{i}(y_{i})$ with
+$\psi_{i}\in\ZZ[\rho]$. Then every class in $f_{*}R^{*}(C^{m})$ is
+$U$-invariant, and in particular none has the form $\alpha+c\,\eta^{n}$
+with $\alpha$ a nonzero Weil class.
+\end{proposition}
+
+\begin{proof}
+The summand $V$ is orthogonal to $H^{1}(C,\QQ)^{\rho}$ under cup product,
+because the pairing is $\rho$-invariant and $\rho$ acts on the two summands
+with no common eigenvalue. The group $U$ preserves the pairing on $V$, which
+is the polarisation form of $P$ up to a constant. So the action of $U$ on
+$H^{1}(C,\QQ)$ is symplectic, it extends to an action on $H^{*}(C^{m},\QQ)$
+by algebra automorphisms, and it fixes the top class.
+
+The class of the graph of an endomorphism $T$ of $H^{1}$, in the
+$H^{1}\otimes H^{1}$ part of $H^{2}(C\times C)$, is the tensor
+corresponding to $T$ under Poincar\'e duality. It is invariant under every
+symplectic $g$ that commutes with $T$. The diagonal is the case $T=1$, and
+the graphs of $\rho^{k}$ are the cases $T=\rho^{\pm k}$, which commute with
+$U$ because $U$ is $K$-linear. The other components of these classes, and
+the point classes, lie in $H^{0}\otimes H^{2}$ and $H^{2}\otimes H^{0}$,
+where $U$ acts trivially. So $R^{*}(C^{m})$ is $U$-invariant.
+
+The pullback $f^{*}\colon H^{1}(P)=V\to H^{1}(C)^{\oplus m}$ is given in
+each coordinate by an element of $\ZZ[\rho]$, that is, by multiplication by
+an element of $K$. So it lands in $V^{\oplus m}$ and commutes with $U$,
+which acts $K$-linearly. (This is where the special form of $h$ is used: a
+general $K$-linear map of $V$ does not commute with $U$.) Hence $f^{*}$ commutes
+with $U$ on all of $H^{*}(P)$, and $f_{*}$, its adjoint for the Poincar\'e
+pairings, does too. The last assertion follows as in Step~5 of the proof
+of Theorem~\ref{thm:barrierbook}.
+\end{proof}
+
+Two families fit the hypotheses. In the first, $C$ is the cyclic triple
+cover $y^{3}=\prod_{i=1}^{n+1}(x-a_{i})\prod_{j=1}^{n+1}(x-b_{j})^{2}$ of
+the projective line. By Riemann--Hurwitz it has genus $2n$, and by the
+Chevalley--Weil formula the two nontrivial eigenspaces of $\rho$ on
+holomorphic differentials both have dimension $n$, so $P=J(C)$ is of Weil
+type. These curves depend on $2n-1$ parameters, which is less than $n^{2}$
+for $n\ge2$, so their Jacobians fill only a proper subvariety of $\mathrm{Sh}$. In
+the second, $C\to C'$ is an \'etale cyclic triple cover of a curve of genus
+$n+1$. Then $C$ has genus $3n+1$, the two nontrivial eigenspaces both have
+dimension $n$, and $P$ is the Prym variety, of dimension $2n$. These
+depend on $3n$ parameters, and for $n\le3$ that is at least $n^{2}$. Here
+much more is known than the proposition might suggest. Schoen proved that
+the Weil classes of these Prym varieties are algebraic \cite{Sch88}, so for
+$n\le3$ the Pryms give whole families of Weil type in which the conjecture
+holds, and for $n\ge4$ they give a locus of dimension $3n$ inside $\mathrm{Sh}$ on
+which $\omega$ is algebraic and whose very general point has full Hodge
+group. The proposition says something about how this can happen. Schoen's
+cycles represent a nonzero Weil class, so they cannot be the image of a
+tautological class under a map of the form in the proposition. Whatever
+they are built from, it is a cycle on a power of $C$, or a map, outside the
+tautological world. That is exactly the kind of source that
+Theorem~\ref{thm:barrierbook} says a proof needs, and it is the most concrete
+lead this chapter can offer (see Section~\ref{sec:leftbook}).
+
+\section{What is left}\label{sec:leftbook}
+
+Put together, the three results narrow the search. At a member with full
+Hodge group, $\omega$ cannot be reached by anything built from divisors and
+homomorphisms (Theorem~\ref{thm:barrierbook} and
+Corollary~\ref{cor:barrierbook}), nor by the tautological cycles of a curve
+with an automorphism of order three (Proposition~\ref{prop:curvesbook}). At
+special members it can be reached, and Hecke transport spreads those
+representatives over a dense set, but with degrees that the transport
+itself drives to infinity, and Proposition~\ref{prop:boundedbook} says that
+bounded degree on a Zariski-dense set is exactly what is needed. Any proof
+therefore has to supply one of three things: a uniform bound on degrees
+along a Zariski-dense set of special members; a deformation argument that
+carries a cycle from a special member to the general one, which is the
+semiregularity route of Theorem~\ref{thm:semiregbook}; or a source of cycles at
+a general member that is neither divisorial nor tautological. The third
+exists for $\QQ(\sqrt{-3})$: Schoen's cycles on Prym varieties. Their
+locus has dimension $3n$, so for $n\ge4$ they reach only a thin part of
+$\mathrm{Sh}$. The obvious question is whether one of Schoen's cycles is
+semiregular. The construction makes the question concrete. On the
+symmetric power $C'^{(2n)}$ of the base curve, the canonical system
+$|K_{C'}|\cong\PP^{n}$ is the fibre of the Abel--Jacobi map over the
+canonical class. The triple cover defines an \'etale cover of $C'^{(2n)}$
+of degree three, and over $|K_{C'}|$, which is simply connected, it splits
+into three copies of $\PP^{n}$. The differences of the copies, weighted by
+the characters of order three, are Schoen's cycles
+\cite[Theorem~2.0 with $r=0$]{Sch88}, and Patel and Zhang reach the same
+copies by base change along an isogeny onto the Jacobian
+\cite[Theorem~1.1]{PZ25}. On the Prym the class of one copy is a Weil
+class plus a multiple of $\eta^{n}$. When
+that multiple is nonzero, this is exactly the shape that Theorem~\ref{thm:semiregbook}
+allows and that the obstruction from Weil tori does not exclude. If one of them were
+semiregular, Theorem~\ref{thm:semiregbook} would give $\Sigma=\mathrm{Sh}$ for the
+family of that dimension. The construction also suggests why this may
+fail. The Abel--Jacobi curve $C\subset J(C)$ comes from the same map, and
+its class $\theta^{g-1}/(g-1)!$ is algebraic on every principally polarized
+abelian variety; yet by the criterion of Matsusaka and Ran a curve with this
+class exists only on Jacobians and products of Jacobians
+\cite{Mat59,Ran81}. For $g\ge4$ these fill a proper subvariety of the
+moduli space, so by Bloch's theorem the Abel--Jacobi curve is not
+semiregular. Schoen's cycles are the analogue one step up, and nothing in
+their construction moves them off the Prym locus. This is an analogy, not a
+proof, and I have not been able to decide the question. Outside
+$\QQ(\sqrt{-3})$, none of the three is available for $n\ge3$ in general.
+
+To sum up what this chapter proves. The algebraic locus of the Weil class
+is a countable union of closed algebraic subsets, it is dense, and it is
+either everything or meagre. A positive-dimensional stratum of it through
+a member with full Hodge group has full monodromy. A single semiregular
+cycle or complex, at any member, with class a nonzero Weil class plus a
+multiple of $\eta^{n}$, would close the locus, while an object whose Chern
+character is a pure Weil class is never semiregular. The problem is the
+variational Hodge conjecture for one class. It is equivalent to a bound on
+degrees along a Zariski-dense set, and at a member with full Hodge group it
+cannot be solved with divisors or with the tautological cycles of curves.
+
+What it does not prove is the conclusion. For $n\ge4$, and for $n=3$
+outside the known families, the Hodge conjecture for abelian varieties of
+Weil type remains open. Even a complete solution would leave the other
+exceptional classes on abelian varieties, and the conjecture for varieties
+that are not abelian, which is the conjecture in full.

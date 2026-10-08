@@ -1,0 +1,439 @@
+\chapter{Abelian varieties of Weil type}\label{ch:weil}
+
+In 1977 Weil wrote a short paper with a simple observation \cite{Weil77}.
+Let an imaginary quadratic field act on an abelian variety so that its two
+eigenspaces on the tangent space have the same dimension. Then the
+determinant of the first cohomology over that field gives a plane of
+Hodge classes, and for a general such variety these classes are not
+products of divisor classes. This chapter proves Weil's observation,
+describes the family in which these varieties live, computes the Hodge
+ring of its general member, and shows that the Hodge conjecture for that
+member is the algebraicity of one class. The last section looks at the
+same classes on complex tori that are not algebraic, where Voisin showed
+that they are not algebraic in any sense.
+
+\section{Definition}
+
+Fix an imaginary quadratic field $K=\QQ(\sqrt{-d})$, with $d$ a positive
+squarefree integer, and write $\tau\mapsto\bar\tau$ for its nontrivial
+automorphism. Fix one embedding of $K$ in $\CC$.
+
+\begin{definition}\label{def:weiltype}
+An abelian variety $A$ of dimension $2n$ with a polarisation $E$ is
+\emph{of Weil type} for $K$ if it carries an embedding
+$K\hookrightarrow\End^{0}(A)$ such that
+\begin{enumerate}[label=(\roman*)]
+\item the Rosati involution of $E$ restricts to complex conjugation on
+$K$, and
+\item the element $\sqrt{-d}$ acts on the tangent space at the origin with
+the eigenvalues $\sqrt{-d}$ and $-\sqrt{-d}$ each of multiplicity $n$.
+\end{enumerate}
+\end{definition}
+
+The second condition is the one that matters. Without it the
+construction below still makes sense, but the classes it produces are not
+of Hodge type.
+
+Let $V=H^{1}(A,\QQ)$. Since $K$ is commutative, pullback makes $V$ a
+$K$-vector space, of dimension $2n$ because $\dim_{\QQ}V=4n$. Over $\CC$
+the action of $\sqrt{-d}$ splits $V_{\CC}$ into two eigenspaces
+\[
+  V_{\CC}=V_{+}\oplus V_{-},\qquad \dim V_{\pm}=2n,
+\]
+on which $\sqrt{-d}$ acts by $\pm\sqrt{-d}$. Complex conjugation of
+coefficients exchanges them. Because $K$ acts by endomorphisms, it
+preserves the Hodge decomposition, so each eigenspace splits as
+$V_{\pm}=V_{\pm}^{1,0}\oplus V_{\pm}^{0,1}$. The space $V^{1,0}$ is dual to
+the tangent space, so condition~(ii) says that $V^{1,0}_{+}$ and
+$V^{1,0}_{-}$ both have dimension $n$. Since
+$V^{0,1}_{+}=\overline{V^{1,0}_{-}}$, we get
+\begin{equation}\label{eq:balanced}
+  \dim V_{+}^{1,0}=\dim V_{+}^{0,1}=n,\qquad
+  \dim V_{-}^{1,0}=\dim V_{-}^{0,1}=n .
+\end{equation}
+
+\subsection*{The hermitian form}
+Condition~(i) says that $E(\tau x,y)=E(x,\bar\tau y)$ for $\tau\in K$. Fix
+$\delta\in K$ with $\bar\delta=-\delta$, for instance $\delta=\sqrt{-d}$.
+Then there is a unique $K$-hermitian form $H\colon V\times V\to K$, linear in
+the first variable, with
+\[
+  E(x,y)=\Tr_{K/\QQ}\bigl(\delta\,H(x,y)\bigr).
+\]
+Indeed, for fixed $y$ the map $x\mapsto E(x,y)$ is $\QQ$-linear, and the
+trace form identifies $\QQ$-linear forms on $V$ with $K$-linear forms; the
+compatibility with $K$ makes the resulting form hermitian. Its
+determinant, in a $K$-basis, is well defined in
+$\QQ^{\times}/N_{K/\QQ}(K^{\times})$, and it is called the
+\emph{discriminant}. The unitary group $\U(V,H)$ is the group of
+$K$-linear automorphisms of $V$ that preserve $E$. Its subgroup of elements
+of determinant one over $K$ is the special unitary group $\SU(V,H)$. Both
+are algebraic groups over $\QQ$.
+
+\begin{lemma}\label{lem:isotropic}
+The eigenspaces $V_{+}$ and $V_{-}$ are isotropic for $E$, and $E$ pairs
+them perfectly. So, as representations of $\U(V,H)_{\CC}\cong\GL(V_{+})$,
+the space $V_{-}$ is the dual of $V_{+}$.
+\end{lemma}
+
+\begin{proof}
+For $x,y\in V_{+}$ we have
+$E(\sqrt{-d}x,\sqrt{-d}y)=E(x,\overline{\sqrt{-d}}\sqrt{-d}\,y)=dE(x,y)$, while
+bilinearity gives $E(\sqrt{-d}x,\sqrt{-d}y)=-dE(x,y)$. So $E(x,y)=0$, and
+the same holds on $V_{-}$. Since $E$ is nondegenerate on
+$V_{\CC}=V_{+}\oplus V_{-}$ and vanishes on each summand, it pairs them
+perfectly. An element of $\U(V,H)$ commutes with $K$, so it preserves
+$V_{+}$ and $V_{-}$, and it is determined by its restriction to $V_{+}$; it
+preserves $E$, so its action on $V_{-}$ is the contragredient.
+\end{proof}
+
+The form $h(x,y)=\delta E(x,\bar y)$, for $x,y\in V_{+}$, is hermitian on
+$V_{+}$. It is the complexification of $H$ along the fixed embedding of
+$K$, up to a positive constant. The Hodge--Riemann relations say that
+$h$ is definite of one sign on $V_{+}^{1,0}$ and of the other on
+$V_{+}^{0,1}$, so by \eqref{eq:balanced} it has signature $(n,n)$. This
+is the form in which condition~(ii) is usually stated: the hermitian form
+of an abelian variety of Weil type has signature $(n,n)$.
+
+\section{The Weil classes}
+
+\begin{definition}
+The \emph{Weil plane} of $A$ is
+\[
+  \HW=\HW(A)=\Bigl(\textstyle\bigwedge^{2n}V_{+}\oplus\bigwedge^{2n}V_{-}\Bigr)
+  \cap\textstyle\bigwedge^{2n}_{\QQ}V\ \subseteq\ H^{2n}(A,\QQ).
+\]
+Its elements are the \emph{Weil classes}.
+\end{definition}
+
+The two lines $\bigwedge^{2n}V_{\pm}$ sit inside
+$\bigwedge^{2n}V_{\CC}=\bigoplus_{a+b=2n}\bigwedge^{a}V_{+}\otimes
+\bigwedge^{b}V_{-}$ as the summands with $(a,b)=(2n,0)$ and $(0,2n)$.
+Complex conjugation exchanges them, so their sum is defined over $\QQ$, and
+$\HW$ is a rational plane. The field $K$ acts on $\HW$: an element $\tau$
+acts on $\bigwedge^{2n}V_{+}$ by $\tau^{2n}$ and on $\bigwedge^{2n}V_{-}$ by
+$\bar\tau^{2n}$. So $\HW$ is a one-dimensional $K$-vector space, canonically
+the $K$-determinant $\bigwedge^{2n}_{K}V$.
+
+\begin{theorem}[Weil]\label{thm:weilhodge}
+The Weil classes are Hodge classes.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:balanced},
+\[
+  \textstyle\bigwedge^{2n}V_{+}=\bigwedge^{n}V_{+}^{1,0}\otimes
+  \bigwedge^{n}V_{+}^{0,1},
+\]
+which is of type $(n,n)$. The same holds for $V_{-}$.
+\end{proof}
+
+The proof shows exactly why the balanced signature is needed. If the
+eigenspace $V_{+}$ had $a$ holomorphic and $b$ antiholomorphic dimensions
+with $a\ne b$, its top exterior power would have type $(a,b)$.
+
+There is a second proof, through groups, which explains more. The Hodge
+group of $A$ commutes with $K$ and preserves $E$, so it lies in
+$\U(V,H)$. On $V_{+}$ an element $z$ of the unit circle acts through
+$h(z)$ by $z^{-1}$ on $V_{+}^{1,0}$ and by $z$ on $V_{+}^{0,1}$, so its
+determinant on $V_{+}$ is $z^{-n}z^{n}=1$. Thus $h(U(1))$ lies in the
+special unitary group, and by minimality
+\begin{equation}\label{eq:hginsu}
+  \Hg(A)\subseteq\SU(V,H).
+\end{equation}
+The special unitary group acts trivially on $\bigwedge^{2n}V_{\pm}$,
+since it acts there by the determinant. So the Weil classes are
+invariants of $\Hg(A)$, which is another way of saying they are Hodge
+classes.
+
+The same computation shows why they are \emph{not} Lefschetz classes in
+general. The centre of $\U(V,H)$ is the torus $\U(1)_{K}$ of norm-one
+elements of $K$, and $\lambda\in\U(1)_{K}$ acts on $\bigwedge^{2n}V_{+}$ by
+$\lambda^{2n}$.
+
+\begin{proposition}\label{prop:weilnotlef}
+Suppose $\End^{0}(A)=K$. Then the Lefschetz group of $A$ is $\U(V,H)$,
+and no nonzero Weil class is a Lefschetz class.
+\end{proposition}
+
+\begin{proof}
+The centraliser of $K$ in $\mathrm{Sp}(V,E)$ consists of the $K$-linear maps
+that preserve $E$, which is $\U(V,H)$, a connected group. So
+$L(A)=\U(V,H)$. Choose $\tau\in K^{\times}$ such that
+$\lambda=\tau/\bar\tau$ is not a root of unity. This is possible because
+$K$ contains finitely many roots of unity $\zeta$, and each equation
+$\tau=\zeta\bar\tau$ cuts out a line in the plane $K$. Then $\lambda$ has
+norm one. Then $\lambda^{2n}\ne1$ and $\bar\lambda^{2n}\ne1$,
+so $\lambda$ moves every nonzero vector of $\HW$. By
+Proposition~\ref{prop:lefinv}, Lefschetz classes are invariant under
+$L(A)$, so they meet $\HW$ only in $0$.
+\end{proof}
+
+This is Weil's theorem: on an abelian variety of Weil type whose
+endomorphism algebra is no bigger than $K$, the Weil classes are Hodge
+classes that no polynomial in divisor classes can produce. When $n=1$ the
+hypothesis never holds. The Weil classes then lie in $H^{2}$, so they are
+divisor classes by the theorem of Lefschetz, and the proposition shows that
+the endomorphism algebra of an abelian surface of Weil type is always
+larger than $K$.
+
+\section{The family}
+
+All abelian varieties of Weil type for $K$ with a given hermitian space
+$(V,H)$ fit into one family. We describe its base.
+
+Fix $(V,H)$ of signature $(n,n)$, and let $h$ be the hermitian form on
+$V_{+}$ as above. A polarised Hodge structure of weight one on $V$, of Weil
+type for $K$, is determined by the $n$-dimensional subspace
+$X=V_{+}^{1,0}\subset V_{+}$. Indeed, $V^{1,0}$ is isotropic for $E$ by
+the Hodge--Riemann relations, so $V_{-}^{1,0}$ is the annihilator of $X$ in
+$V_{-}$ under the pairing of Lemma~\ref{lem:isotropic}, and then
+$V^{0,1}$ is the complex conjugate of $V^{1,0}$. The positivity part of
+the Hodge--Riemann relations says that $h$, normalised with the right sign,
+is positive definite on $X$. Conversely, every $n$-dimensional subspace on
+which $h$ is positive definite arises in this way. So the parameter space
+is
+\[
+  D=\{X\subset V_{+}:\dim X=n,\ h|_{X}>0\},
+\]
+an open subset of the Grassmannian of $n$-planes in a space of dimension
+$2n$. It has dimension $n^{2}$, and it is the bounded symmetric domain of
+the real group $\SU(n,n)$.
+
+Let $\Gamma$ be a torsion-free arithmetic subgroup of $\SU(V,H)(\QQ)$
+that preserves a lattice in $V$. The quotient
+\[
+  \mathrm{Sh}=\Gamma\backslash D
+\]
+is a smooth quasi-projective variety by the theorem of Baily and Borel
+\cite{BB66}. Over it there is a polarised abelian scheme
+$\pi\colon\mathcal A\to\mathrm{Sh}$ whose fibre over the class of $X$ is the
+abelian variety with $H^{1}=V$ and $V_{+}^{1,0}=X$. We call it the
+\emph{Weil family}. Its monodromy group on $H^{1}$ is $\Gamma$.
+
+\begin{proposition}\label{prop:flat}
+The Weil plane is a constant local subsystem of $R^{2n}\pi_{*}\QQ$, and
+every Weil class extends to a global flat section that is a Hodge class at
+every point.
+\end{proposition}
+
+\begin{proof}
+The monodromy group $\Gamma$ lies in $\SU(V,H)$, which acts trivially on
+$\HW$. So the monodromy fixes $\HW$ pointwise. By
+Theorem~\ref{thm:weilhodge}, applied at each point, the transported
+classes are Hodge classes everywhere.
+\end{proof}
+
+\begin{proposition}\label{prop:generalsu}
+Let $n\ge2$. A very general member $A$ of the Weil family has
+$\Hg(A)=\SU(V,H)$ and $\End^{0}(A)=K$. The set of members where the Hodge
+group is smaller is a countable union of proper closed algebraic subsets
+of $\mathrm{Sh}$.
+\end{proposition}
+
+\begin{proof}
+The real group $\SU(n,n)$ has no compact factor, and $\SU(V,H)$ is simple
+over $\QQ$, so by the Borel density theorem the arithmetic subgroup $\Gamma$
+is Zariski dense in $\SU(V,H)$. By Andr\'e's theorem \cite{And92}, the
+connected algebraic monodromy group is contained in the Hodge group of a
+very general member. So that Hodge group contains $\SU(V,H)$, and by
+\eqref{eq:hginsu} it equals it. For the endomorphisms, over $\CC$ the
+group $\SU(V,H)$ is $\SL(V_{+})$, acting on $V_{+}$ by the standard
+representation and on $V_{-}$ by its dual
+(Lemma~\ref{lem:isotropic}). For $2n\ge3$ these are irreducible and not
+isomorphic, so the commutant of $\SU(V,H)$ in $\End_{\QQ}(V)$ has
+dimension two, and it contains $K$. By
+Proposition~\ref{prop:hgabelian}(ii) it is $\End^{0}(A)$. For the last
+statement, the members with a smaller Hodge group are those carrying an
+extra Hodge class in some tensor space. Each such class has an algebraic
+Hodge locus by Theorem~\ref{thm:cdk}, there are countably many rational
+classes, and none of these loci is all of $\mathrm{Sh}$.
+\end{proof}
+
+We write $\mathrm{Sh}^{\circ}$ for the set of points where the Hodge group
+is all of $\SU(V,H)$. Its complement is meagre.
+
+\section{The Hodge ring of the general member}\label{sec:hodgering}
+
+We can now compute every Hodge class on a member with full Hodge group.
+The answer is as small as it could be, given Weil's theorem.
+
+\begin{theorem}\label{thm:hodgering}
+Let $n\ge2$ and let $A$ be a member of the Weil family with
+$\Hg(A)=\SU(V,H)$. Then
+\[
+  \Hdg^{p}(A)=\QQ\,\eta^{p}\quad(p\ne n),\qquad
+  \Hdg^{n}(A)=\QQ\,\eta^{n}\oplus\HW,
+\]
+where $\eta$ is the class of the polarisation.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:hgabelian}(iii) we need the invariants of
+$\SU(V,H)$ in $\bigwedge^{*}V$. Over $\CC$,
+\[
+  \textstyle\bigwedge^{k}V_{\CC}=\bigoplus_{a+b=k}\bigwedge^{a}V_{+}\otimes
+  \bigwedge^{b}V_{-},
+\]
+and as a representation of $\SL(V_{+})$ the summand is
+$\bigwedge^{a}S\otimes(\bigwedge^{b}S)^{\vee}$, where $S=V_{+}$ is the
+standard representation. Its invariants are the
+$\SL(V_{+})$-homomorphisms $\bigwedge^{b}S\to\bigwedge^{a}S$. The exterior
+powers $\bigwedge^{a}S$, $0\le a\le2n$, are irreducible, and two of them are
+isomorphic only when $a=b$, or when both are trivial, which happens for
+$a,b\in\{0,2n\}$. So there is a one-dimensional space of invariants in each
+summand with $a=b$, and in the two summands $(a,b)=(2n,0)$ and $(0,2n)$,
+and none elsewhere.
+
+The summands with $(a,b)=(2n,0)$ and $(0,2n)$ make up the Weil plane. In
+the summand with $a=b=p$, the class $\eta^{p}$ is a nonzero invariant for
+$0\le p\le2n$. Indeed $\eta$ is invariant, and $\eta^{p}\ne0$ because
+$\eta^{2n}$ is a positive multiple of the volume class. Its component in
+that summand is nonzero, because the other summands of $\bigwedge^{2p}V$
+contain no invariants except the Weil plane when $p=n$, and $\eta^{n}$ is
+not a Weil class: the centre $\U(1)_{K}$ fixes $\eta^{n}$ and moves every
+nonzero Weil class. So $\eta^{p}$ spans the invariants with $a=b=p$.
+\end{proof}
+
+\begin{corollary}\label{cor:oneclass}
+Let $n\ge2$ and $A\in\mathrm{Sh}^{\circ}$. The following are equivalent.
+\begin{enumerate}[label=(\roman*)]
+\item The Hodge conjecture holds for $A$ in every degree.
+\item Some nonzero Weil class on $A$ is algebraic.
+\item Every Weil class on $A$ is algebraic.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:hodgering}, (i) and (iii) are equivalent, since the
+powers of $\eta$ are algebraic. Suppose a nonzero Weil class $\omega$ is the
+class of a cycle $Z$. Choose $\tau\in K$ with $\tau^{2n}\notin\QQ$, for
+example $\tau=a+\sqrt{-d}$ with $a$ a positive integer chosen so that
+$\tau/\bar\tau$ is not a root of unity. Some positive integer multiple $m\tau$
+is an endomorphism of $A$, and its pullback acts on $\HW$ by
+$(m\tau)^{2n}$. So $(m\tau)^{*}Z$ is a cycle with class $m^{2n}\tau^{2n}\omega$.
+The classes $\omega$ and $\tau^{2n}\omega$ are linearly independent over
+$\QQ$, since $\HW$ is a one-dimensional $K$-space and $\tau^{2n}\notin\QQ$.
+So they span $\HW$, and every Weil class is algebraic.
+\end{proof}
+
+For a very general abelian variety of Weil type, then, the whole Hodge
+conjecture is a statement about one class. That is the sense in which these
+varieties are the first test case. They are also, by
+Proposition~\ref{prop:weilnotlef}, exactly the case that divisors cannot
+reach.
+
+\section{Weil tori}\label{sec:voisintori}
+
+Drop the polarisation, and keep only the action of $K$ with balanced
+signature. Let $V$ be as before. For complementary $n$-dimensional
+subspaces $X,Y\subset V_{+}$, the subspace $X\oplus\overline{Y}$ of
+$V_{\CC}$ is the space of holomorphic one-forms of a complex structure on
+the real torus $V_{\RR}^{\vee}/H_{1}$. Call the resulting complex torus
+$T_{X,Y}$. On it $K$ acts with balanced signature, and every complex
+structure commuting with $K$ with balanced signature arises in this way.
+The pairs $(X,Y)$ form a connected complex manifold $\mathcal S$ of
+dimension $2n^{2}$, and the Weil family is the submanifold of dimension
+$n^{2}$ where $Y$ is the $h$-orthogonal complement of $X$ and $h$ is
+positive on $X$. Since
+$\bigwedge^{2n}V_{+}=\bigwedge^{n}X\otimes\bigwedge^{n}Y$, with $X$
+holomorphic and $Y$ antiholomorphic, the Weil classes are of type $(n,n)$
+on every $T_{X,Y}$. These are the \emph{Weil tori}.
+
+\begin{proposition}\label{prop:weiltorushodge}
+For a very general Weil torus $T$, the Hodge classes are $\HW$ in degree
+$2n$ and zero in every other degree strictly between $0$ and $4n$.
+\end{proposition}
+
+\begin{proof}
+There are countably many rational classes, and the Hodge locus of each is
+an analytic subset of $\mathcal S$. So a class that is a Hodge class at a very
+general point is a Hodge class at every point. Let
+$G=\operatorname{Res}_{K/\QQ}\GL_{K}(V)$ be the group of $K$-linear
+automorphisms of $V$. Its real points, which form the group $\GL(V_{+})$,
+act transitively on pairs of complementary subspaces of $V_{+}$, hence on
+$\mathcal S$. The Mumford--Tate group $M$ of a very general member lies in $G$,
+because $K$ acts by endomorphisms of every member, and it contains the
+Mumford--Tate group of every member. So the real Lie algebra of $M$
+contains the complex structure of every member, and hence the span of the
+orbit of one of them under the adjoint action of $G(\RR)$. That span is an
+ideal of $\mathfrak{gl}(V_{+})$. It contains a non-central element, the
+complex structure, which acts by $i$ on $X$ and by $-i$ on $Y$. So it
+contains $\mathfrak{sl}(V_{+})$, and $M$ contains the derived group of $G$.
+Over $\CC$ that derived group is $\SL(V_{+})\times\SL(V_{-})$, acting
+independently on the two factors of
+$\bigwedge^{*}V_{+}\otimes\bigwedge^{*}V_{-}$. Its invariants are spanned by
+$1$, $\bigwedge^{2n}V_{+}$, $\bigwedge^{2n}V_{-}$ and their product. Hodge
+classes are invariant under $M$, which proves the statement.
+\end{proof}
+
+Notice the difference from the polarised case. There the two factors are
+dual to each other under one group, and the classes $\eta^{p}$ appear. On a
+very general Weil torus there is no polarisation, and nothing but the Weil
+plane survives.
+
+\begin{lemma}\label{lem:weiltorussub}
+A very general Weil torus has no analytic subsets other than finite sets
+and itself.
+\end{lemma}
+
+\begin{proof}
+Let $Z$ be an irreducible analytic subset of codimension $c$ with
+$0<c<2n$. For a K\"ahler class $\kappa$ we have
+$\int_{T}[Z]\cup\kappa^{2n-c}=\int_{Z}\kappa^{2n-c}>0$, so $[Z]$ is a nonzero
+Hodge class of degree $2c$. By Proposition~\ref{prop:weiltorushodge}, $c=n$
+and $[Z]\in\HW$. Take for $\kappa_{0}$ the class of a constant positive
+definite hermitian form that is block diagonal for the splitting
+$H^{1,0}=X\oplus\overline{Y}$. Its two blocks lie in $X\otimes\overline{X}$
+and $\overline{Y}\otimes Y$, both inside $V_{+}\otimes V_{-}$. So every term
+of $\kappa_{0}^{n}$ has $n$ factors from $V_{+}$, and its product with an
+element of $\bigwedge^{2n}V_{+}$ vanishes, since $\bigwedge^{3n}V_{+}=0$. The
+same holds with $V_{-}$. Hence $\int_{T}[Z]\cup\kappa_{0}^{n}=0$, a
+contradiction.
+\end{proof}
+
+Voisin proved much more. Coherent sheaves are the natural generalisation of
+subvarieties on a complex manifold that need not be projective, and one can
+ask whether the Weil classes are at least combinations of Chern classes of
+coherent sheaves. They are not.
+
+\begin{theorem}[Voisin \cite{Voi02b}]\label{thm:voisin}
+Let $n=2$ and let $T$ be a very general Weil torus. Every coherent analytic
+sheaf on $T$ has $c_{2}=0$ in $H^{4}(T,\QQ)$. In particular the Weil classes
+of $T$ are Hodge classes that are not combinations of Chern classes of
+coherent sheaves.
+\end{theorem}
+
+We sketch the proof, because the same argument works for every $n\ge2$ and
+it is used in Chapter~\ref{ch:remaining}. Chern classes of coherent sheaves
+on a compact complex manifold exist in rational Deligne cohomology
+\cite{Gri10}, and they are Hodge classes. By Lemma~\ref{lem:weiltorussub}, the torsion of a
+coherent sheaf and the locus where a torsion-free sheaf fails to be
+reflexive are supported on finite sets, and they contribute only in top
+degree. So it is enough to treat reflexive sheaves. Since there are no
+Hodge classes in degree two, every sheaf has $c_{1}=0$, so every
+torsion-free sheaf has slope zero for every K\"ahler class. Stability then
+does not depend on the K\"ahler class, and a Jordan--H\"older filtration
+reduces the question to stable reflexive sheaves $Q$. For these, the
+Bogomolov inequality, in the form of Bando and Siu for reflexive sheaves
+\cite{BS94}, gives
+\[
+  \int_{T}c_{2}(Q)\cup\kappa^{2n-2}\ge0
+\]
+for every K\"ahler class $\kappa$, with equality only if $Q$ is a flat
+vector bundle. For $n\ge3$ the class $c_{2}(Q)$ is a Hodge class of degree
+four, hence zero. For $n=2$ it lies in $\HW$, and the class $\kappa_{0}$ of
+the proof of Lemma~\ref{lem:weiltorussub} gives equality. Either way $Q$ is
+flat, and its Chern classes vanish. The same argument shows that every
+coherent sheaf on a very general Weil torus of dimension $2n$ has
+$\operatorname{ch}_{k}=0$ for $0<k<2n$.
+
+Voisin's theorem is a counterexample to the Hodge conjecture for compact
+K\"ahler manifolds, as explained in Chapter~\ref{ch:conjecture}. For us it
+plays a different role. It is a warning about deformation arguments. The
+Weil class is of Hodge type on every Weil torus, polarised or not. An
+argument that moves a cycle along every deformation preserving the Hodge
+type of the Weil class would move it onto a Weil torus, where no cycle or
+sheaf represents the class. So any such argument has to use the
+polarisation in an essential way. This is the source of the main obstruction
+in Chapter~\ref{ch:remaining}.

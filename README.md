@@ -1,0 +1,55 @@
+# Weil Classes and the Hodge Conjecture
+
+Deep Bhattacharjee
+
+This repository holds the author's work on the Hodge conjecture for abelian
+varieties of Weil type: a book manuscript prepared for Springer and the
+research note it grew from. Every argument is analytical, and no proof here
+depends on a computer calculation.
+
+## Status
+
+**The Hodge conjecture is not proved here.** On a general abelian variety of
+Weil type the conjecture comes down to whether one explicit class, the Weil
+class, is algebraic. The note and the book prove the following about the set
+Σ of members of a Weil family on which that class is algebraic:
+
+- Σ is a countable union of closed algebraic subsets, it is dense, and it is
+  either the whole family or a meagre set.
+- A positive-dimensional stratum of Σ through a member with full Hodge group
+  has full monodromy.
+- A single semiregular cycle or complex whose class is a nonzero Weil class
+  plus a multiple of the polarization power would give Σ = the whole family,
+  while an object whose Chern character is a pure Weil class is never
+  semiregular.
+- Deciding the question is equivalent to a uniform bound on the degrees of
+  representing cycles along a Zariski-dense set (a variant of results in the
+  author's earlier preprint, credited there).
+- At a member with full Hodge group, no cycle built from divisors and
+  homomorphisms, and no tautological cycle of a curve with an automorphism of
+  order three, represents the class.
+
+What remains open, and is stated as open in the text:
+
+- the Weil class on general Weil-type abelian varieties of dimension 8 and
+  more, and in dimension 6 outside the known families;
+- whether one of Schoen's cycles on Prym varieties is semiregular, which
+  would settle every dimension for Q(√−3) with split form;
+- Hodge classes on abelian varieties beyond divisor and Weil classes, and the
+  conjecture for varieties that are not of abelian type.
+
+## Layout
+
+    book/main.tex           the book, standard book class
+    book/chapters/          preface, seven chapters and the bibliography
+    book/proposal.md        a draft Springer book proposal
+    paper/weil_closure_attempt.tex
+                            the research note
+
+## Building
+
+    cd book && latexmk -pdf main.tex
+    cd paper && latexmk -pdf weil_closure_attempt.tex
+
+Both also compile on Overleaf. For submission to Springer, switch the book
+to the `svmono` class, as the comment at the top of `book/main.tex` explains.

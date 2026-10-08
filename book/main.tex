@@ -1,0 +1,77 @@
+% Weil Classes and the Hodge Conjecture
+% Deep Bhattacharjee
+%
+% Written with the standard book class so that it builds with any TeX Live
+% (latexmk -pdf main.tex). For submission to Springer, replace the
+% \documentclass line by \documentclass[graybox]{svmono} from Springer's
+% LaTeX package for monographs and move the theorem environments to the
+% ones that class provides.
+
+\documentclass[11pt,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Hdg}{\operatorname{Hdg}}
+\newcommand{\CH}{\operatorname{CH}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\NS}{\operatorname{NS}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Hg}{\operatorname{Hg}}
+\newcommand{\MT}{\operatorname{MT}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\U}{\operatorname{U}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\HW}{W}
+\newcommand{\Hilb}{\operatorname{Hilb}}
+
+\title{Weil Classes and the Hodge Conjecture\\[6pt]
+\large Abelian Varieties, Algebraic Cycles and the Variational Problem}
+\author{Deep Bhattacharjee}
+\date{Draft, October 2026}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\input{chapters/00_preface}
+\tableofcontents
+
+\mainmatter
+\input{chapters/01_conjecture}
+\input{chapters/02_toolkit}
+\input{chapters/03_lefschetz11}
+\input{chapters/04_abelian}
+\input{chapters/05_weil}
+\input{chapters/06_known}
+\input{chapters/07_remaining}
+
+\backmatter
+\input{chapters/bibliography}
+
+\end{document}

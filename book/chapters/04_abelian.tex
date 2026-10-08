@@ -1,0 +1,324 @@
+\chapter{Abelian varieties}\label{ch:abelian}
+
+Abelian varieties are the one large class of varieties whose Hodge classes
+can be written down. The reason is that their cohomology is an exterior
+algebra on the first cohomology, so that everything is decided by a single
+Hodge structure of weight one and the group that preserves it. This
+chapter sets up that dictionary. The references for the background are
+Mumford's book \cite{Mum70} and the book of Birkenhake and Lange
+\cite{BL04}. We prove the facts about Hodge classes, since they are the
+point of the chapter.
+
+\section{Complex tori and their cohomology}
+
+Let $\mathfrak{t}$ be a complex vector space of dimension $g$ and let $\Lambda\subset
+\mathfrak{t}$ be a lattice, that is, a discrete subgroup of rank $2g$. The quotient
+$T=\mathfrak{t}/\Lambda$ is a compact complex manifold and a commutative complex Lie
+group, and it is called a \emph{complex torus}. Its fundamental group is
+$\Lambda$, and as a real manifold it is a product of $2g$ circles.
+
+\begin{proposition}\label{prop:torcoh}
+Cup product induces isomorphisms
+\[
+  \textstyle\bigwedge^{k}H^{1}(T,\ZZ)\xrightarrow{\;\sim\;}H^{k}(T,\ZZ),
+  \qquad H^{1}(T,\ZZ)=\Hom(\Lambda,\ZZ).
+\]
+With complex coefficients, $H^{1,0}(T)$ is the space of $\CC$-linear forms
+on $\mathfrak{t}$, $H^{0,1}(T)$ is the space of $\CC$-antilinear forms, and
+\[
+  H^{p,q}(T)=\textstyle\bigwedge^{p}H^{1,0}(T)\otimes\bigwedge^{q}H^{0,1}(T).
+\]
+\end{proposition}
+
+\begin{proof}
+For a product of circles, the K\"unneth formula shows that the integral
+cohomology ring is the exterior algebra on the degree-one classes dual to
+the circles. These classes are a basis of $\Hom(\Lambda,\ZZ)$. For the
+second part, give $T$ the flat metric coming from a hermitian inner
+product on $\mathfrak{t}$. A form with constant coefficients in the linear coordinates
+$z_{1},\dots,z_{g}$ is harmonic, and the constant forms
+$dz_{I}\wedge d\bar z_{J}$ with $|I|=p$ and $|J|=q$ span a space of
+dimension $\binom{g}{p}\binom{g}{q}$. Summing over $p+q=k$ gives
+$\binom{2g}{k}$, which is the $k$-th Betti number, so these forms are all
+the harmonic forms, and their types give the Hodge decomposition. In degree
+one, $dz_{j}$ is a $\CC$-linear form and $d\bar z_{j}$ an antilinear one.
+\end{proof}
+
+So the Hodge structure of $T$ in every degree is determined by the one in
+degree one. Conversely, an integral Hodge structure of weight one, of
+type $\{(1,0),(0,1)\}$, determines a complex torus: one takes the dual of
+$H^{1,0}$ modulo the lattice $H_{1}$. Complex tori and integral Hodge
+structures of this type are the same thing, and homomorphisms of tori are
+the same as morphisms of these Hodge structures.
+
+\section{Line bundles and polarisations}
+
+By Proposition~\ref{prop:torcoh}, $H^{2}(T,\ZZ)=\bigwedge^{2}\Hom(\Lambda,\ZZ)$
+is the group of alternating forms $E\colon\Lambda\times\Lambda\to\ZZ$. Write
+$E_{\RR}$ for the extension of $E$ to $\mathfrak{t}$, viewed as a real vector space,
+and $i$ for the complex structure of $\mathfrak{t}$.
+
+\begin{proposition}\label{prop:ns}
+An alternating form $E$ on $\Lambda$ is of type $(1,1)$, as a class in
+$H^{2}(T,\CC)$, if and only if $E_{\RR}(ix,iy)=E_{\RR}(x,y)$ for all
+$x,y\in \mathfrak{t}$. Every such integral form is the first Chern class of a
+holomorphic line bundle on $T$.
+\end{proposition}
+
+\begin{proof}
+Extend $E$ complex-bilinearly to $\mathfrak{t}\otimes_{\RR}\CC=\mathfrak{t}'\oplus \mathfrak{t}''$, the
+$(+i)$ and $(-i)$ eigenspaces of the complex structure. A class in
+$\bigwedge^{2}$ of the dual has type $(1,1)$ exactly when it vanishes on
+$\mathfrak{t}'\times \mathfrak{t}'$ and on $\mathfrak{t}''\times \mathfrak{t}''$. If $E$ is invariant under $i$, then for
+$x,y\in \mathfrak{t}'$ we get $E(x,y)=E(ix,iy)=i^{2}E(x,y)$, so $E(x,y)=0$, and the
+same on $\mathfrak{t}''$. Conversely, if $E$ vanishes on both, write $x=x'+x''$ and
+$y=y'+y''$. Then
+\[
+  E(ix,iy)=E(ix',-iy'')+E(-ix'',iy')=E(x',y'')+E(x'',y')=E(x,y).
+\]
+The second statement is Steps~1 and~2 of the proof of the Lefschetz
+theorem in Chapter~\ref{ch:lefschetz}, which use only that $T$ is a
+compact K\"ahler manifold.
+\end{proof}
+
+To such a form $E$ attach the function
+\[
+  H(x,y)=E_{\RR}(ix,y)+iE_{\RR}(x,y),\qquad x,y\in \mathfrak{t}.
+\]
+A direct check using the invariance of $E_{\RR}$ under $i$ shows that $H$
+is a hermitian form, $\CC$-linear in the first variable, with imaginary
+part $E$. The N\'eron--Severi group of $T$ is the group of these forms.
+
+\begin{theorem}[Riemann, Lefschetz]\label{thm:riemann}
+The torus $T$ is projective if and only if there is an integral
+alternating form $E$, invariant under $i$, whose hermitian form $H$ is
+positive definite. In that case $E$ is the Chern class of an ample line
+bundle.
+\end{theorem}
+
+One direction is easy. If $T$ embeds in projective space, the restriction
+of the Fubini--Study form is a positive $(1,1)$ form, its average under
+translations has constant coefficients and the same class, and its
+hermitian form is positive definite. The other direction is the theorem
+of Lefschetz that the third power of such a line bundle is very ample. It
+is proved with theta functions \cite{Mum70}.
+
+An \emph{abelian variety} is a projective complex torus. A
+\emph{polarisation} is the class of an ample line bundle, or equivalently
+a form $E$ as in Theorem~\ref{thm:riemann}. The form $E$ is a
+polarisation, in the sense of Chapter~\ref{ch:toolkit}, of the Hodge
+structure $H_{1}(A,\QQ)=\Lambda_{\QQ}$. Since $E$ is nondegenerate it
+identifies $\Lambda_{\QQ}$ with its dual $H^{1}(A,\QQ)$, and we use the
+same letter for the induced form on $H^{1}(A,\QQ)$. From now on we write
+\[
+  V=H^{1}(A,\QQ),
+\]
+so that $H^{k}(A,\QQ)=\bigwedge^{k}V$.
+
+\section{Endomorphisms and the Rosati involution}
+
+A homomorphism of abelian varieties is a holomorphic map that is a group
+homomorphism. It lifts to a $\CC$-linear map of universal covers that
+carries one lattice into the other. Write $\End(A)$ for the ring of
+endomorphisms and $\End^{0}(A)=\End(A)\otimes\QQ$. An element of
+$\End^{0}(A)$ acts on $\Lambda_{\QQ}$, and its real extension commutes with
+$i$. Conversely, a $\QQ$-linear map of $\Lambda_{\QQ}$ whose real extension
+commutes with $i$ has an integer multiple preserving $\Lambda$, so it lies
+in $\End^{0}(A)$. In other words, $\End^{0}(A)$ is the algebra of
+endomorphisms of the Hodge structure $H_{1}(A,\QQ)$.
+
+By Poincar\'e's complete reducibility theorem, every abelian variety is
+isogenous to a product of powers of simple, pairwise non-isogenous abelian
+varieties, and $\End^{0}(A)$ is a semisimple $\QQ$-algebra
+\cite{Mum70}.
+
+Fix a polarisation $E$. For $\varphi\in\End^{0}(A)$, acting on
+$\Lambda_{\QQ}$, let $\varphi'$ be its adjoint with respect to $E$:
+\[
+  E(\varphi x,y)=E(x,\varphi'y).
+\]
+
+\begin{proposition}\label{prop:rosati}
+The adjoint $\varphi'$ lies in $\End^{0}(A)$, and the map
+$\varphi\mapsto\varphi'$ is an involution of $\End^{0}(A)$, called the
+\emph{Rosati involution}. It is positive: $\Tr(\varphi\varphi')>0$ for
+$\varphi\ne0$, the trace being taken on $\Lambda_{\QQ}$.
+\end{proposition}
+
+\begin{proof}
+Invariance of $E$ under $i$ gives $E(iu,v)=-E(u,iv)$ for all $u,v$. Using
+this twice, and that $\varphi$ commutes with $i$,
+\[
+  E(x,\varphi'iy)=E(\varphi x,iy)=-E(i\varphi x,y)=-E(\varphi ix,y)
+  =-E(ix,\varphi'y)=E(x,i\varphi'y),
+\]
+so $\varphi'$ commutes with $i$ and lies in $\End^{0}(A)$. It is clearly an
+involution. For positivity, a similar computation shows
+$H(\varphi x,y)=H(x,\varphi'y)$, so $\varphi'$ is the adjoint of $\varphi$
+for the positive definite hermitian form $H$. The trace of $\varphi\varphi'$
+on the real space $\mathfrak{t}$ is twice the real part of its complex trace, and the
+complex trace of $\varphi\varphi^{*}$ is the sum of the squared lengths of
+the columns of $\varphi$ in an $H$-orthonormal basis, which is positive.
+\end{proof}
+
+\begin{proposition}\label{prop:nssym}
+The map that sends a symmetric element $\varphi=\varphi'$ of $\End^{0}(A)$
+to the form $E_{\varphi}(x,y)=E(\varphi x,y)$ is an isomorphism
+\[
+  \{\varphi\in\End^{0}(A):\varphi'=\varphi\}\xrightarrow{\;\sim\;}
+  \NS(A)\otimes\QQ .
+\]
+\end{proposition}
+
+\begin{proof}
+If $\varphi$ is symmetric, $E_{\varphi}$ is alternating, because
+$E(\varphi y,x)=E(y,\varphi x)=-E(\varphi x,y)$. It is invariant under $i$,
+because $\varphi$ commutes with $i$ and $E$ is invariant. So it lies in
+$\NS(A)_{\QQ}$ by Proposition~\ref{prop:ns}. Conversely, given an
+alternating form $E'$ that is rational and invariant under $i$, the
+nondegeneracy of $E$ gives a unique $\QQ$-linear $\varphi$ with
+$E'(x,y)=E(\varphi x,y)$. The computation in the proof of
+Proposition~\ref{prop:rosati}, applied to $E'$ and $E$, shows that $\varphi$
+commutes with $i$, so it lies in $\End^{0}(A)$, and it is symmetric because
+$E'$ is alternating.
+\end{proof}
+
+So the divisor classes of $A$ are controlled by its endomorphisms. This is
+the first sign of a principle that runs through the book: whatever is
+built from divisors is invisible to anything that commutes with the
+endomorphisms and preserves the polarisation.
+
+The simple case is governed by Albert's classification. If $A$ is simple,
+$\End^{0}(A)$ is a division algebra of finite dimension over $\QQ$ with a
+positive involution, and such algebras are of four types: a totally real
+field; a totally indefinite or a totally definite quaternion algebra over
+a totally real field; or a division algebra over a CM field, with an
+involution that restricts to complex conjugation on the centre
+\cite{Mum70}. Abelian varieties of Weil type, the subject of
+Chapter~\ref{ch:weil}, have an endomorphism algebra of the fourth type in
+its simplest form, an imaginary quadratic field.
+
+\section{The Hodge group of an abelian variety}
+
+Write $\Hg(A)$ for the Hodge group of the Hodge structure $V=H^{1}(A,\QQ)$,
+as defined in Section~\ref{sec:mt}.
+
+\begin{proposition}\label{prop:hgabelian}
+\begin{enumerate}[label=(\roman*)]
+\item $\Hg(A)$ is contained in the symplectic group $\mathrm{Sp}(V,E)$.
+\item The commutant of $\Hg(A)$ in $\End_{\QQ}(V)$ is $\End^{0}(A)$, acting on
+$V$ by pullback.
+\item The Hodge classes on $A$ are the invariants of $\Hg(A)$:
+\[
+  \Hdg^{*}(A)=\Bigl(\textstyle\bigwedge^{*}V\Bigr)^{\Hg(A)}.
+\]
+\item For every $m\ge1$, the Hodge group of $A^{m}$ is $\Hg(A)$ acting
+diagonally on $H^{1}(A^{m},\QQ)=V^{\oplus m}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The polarisation is a morphism of Hodge structures
+$V\otimes V\to\QQ(-1)$. On $\QQ(-1)$, of type $(1,1)$, an element $z$ of
+the unit circle acts by $z\bar z=1$. So $h(z)$ preserves $E$ for $|z|=1$.
+The stabiliser of $E$ is the algebraic group $\mathrm{Sp}(V,E)$, defined over
+$\QQ$, so it contains $\Hg(A)$ by minimality.
+
+(ii) The centraliser of a $\QQ$-linear map $\varphi$ is an algebraic
+subgroup defined over $\QQ$, so $\varphi$ commutes with $\Hg(A)$ if and only
+if it commutes with $h(z)$ for all $|z|=1$. The element $h(z)$ acts on
+$V^{1,0}$ and $V^{0,1}$ by different scalars when $z\ne\pm1$, so
+commuting with all of them means preserving the Hodge decomposition. That
+is, $\varphi$ is an endomorphism of the Hodge structure $V$, which by the
+dictionary of the last section means an element of $\End^{0}(A)$.
+
+(iii) The space $\bigwedge^{k}V$ is the image of the antisymmetrisation
+projector on $V^{\otimes k}$, which is both a morphism of Hodge structures
+and $\GL(V)$-equivariant. So an element of $\bigwedge^{k}V$ is a Hodge class,
+or an invariant, if and only if it is one in $V^{\otimes k}$. Now apply
+Theorem~\ref{thm:hginvariants}.
+
+(iv) The homomorphism defining the Hodge structure of $A^{m}$ is the
+diagonal $h\oplus\dots\oplus h$. The diagonal embedding
+$\GL(V)\to\GL(V^{\oplus m})$ is a closed embedding defined over $\QQ$, so the
+smallest $\QQ$-algebraic subgroup containing the diagonal image of $h(U(1))$
+is the diagonal image of $\Hg(A)$.
+\end{proof}
+
+Part (iv) means that the representation of one reductive group on one
+vector space decides the Hodge classes not only on $A$ but on all its
+powers, and hence on every abelian variety isogenous to a product of
+copies of $A$. Part (iii) turns the computation of Hodge classes into
+invariant theory.
+
+For a very general principally polarised abelian variety the Hodge group
+is the whole symplectic group. One way to see this is through monodromy.
+Over the moduli space with level structure, the monodromy of $H^{1}$ is a
+subgroup of finite index in $\mathrm{Sp}_{2g}(\ZZ)$, which is Zariski dense in
+$\mathrm{Sp}_{2g}$. By Andr\'e's theorem \cite{And92}, the algebraic monodromy
+group is contained in the Hodge group of a very general member. So that
+Hodge group contains $\mathrm{Sp}_{2g}$, and by part~(i) it equals it.
+
+\section{The Lefschetz group and Lefschetz classes}
+
+\begin{definition}
+The \emph{Lefschetz group} $L(A)$ is the connected component of the
+identity of the centraliser of $\End^{0}(A)$ in $\mathrm{Sp}(V,E)$. The
+\emph{Lefschetz classes} of $A$ are the elements of the subalgebra
+$\mathcal D^{*}(A)\subseteq H^{*}(A,\QQ)$ generated by divisor classes.
+\end{definition}
+
+By Proposition~\ref{prop:hgabelian}(i) and (ii), and because $\Hg(A)$ is
+connected,
+\[
+  \Hg(A)\subseteq L(A).
+\]
+The Lefschetz group is easy to compute, since it depends only on the
+endomorphism algebra with its involution. The Hodge group is hard to
+compute, since it depends on the period point.
+
+\begin{proposition}\label{prop:lefinv}
+Every divisor class on $A$ is invariant under $L(A)$. Hence
+\[
+  \mathcal D^{*}(A)\subseteq\Bigl(\textstyle\bigwedge^{*}V\Bigr)^{L(A)}
+  \subseteq\Bigl(\textstyle\bigwedge^{*}V\Bigr)^{\Hg(A)}=\Hdg^{*}(A).
+\]
+\end{proposition}
+
+\begin{proof}
+It is enough to work on $H_{1}$, where $L(A)$ acts through the
+contragredient. By Proposition~\ref{prop:nssym}, a divisor class is a form
+$E(\varphi x,y)$ with $\varphi$ in $\End^{0}(A)$. An element $g$ of $L(A)$
+preserves $E$ and commutes with $\varphi$, so
+$E(\varphi gx,gy)=E(g\varphi x,gy)=E(\varphi x,y)$. The middle inclusion
+holds because $\Hg(A)\subseteq L(A)$, and the last equality is
+Proposition~\ref{prop:hgabelian}(iii).
+\end{proof}
+
+The first inclusion is in fact an equality. This theorem is due to Murty
+and Milne \cite{Mur84,Mil99}: the Lefschetz classes are exactly the
+invariants of the Lefschetz group. We shall use only the inclusion proved
+above, together with the following consequence of the theorem.
+
+\begin{corollary}\label{cor:hgeqlef}
+If $\Hg(A)$ and $L(A)$ have the same invariants in $\bigwedge^{*}V$, and in
+particular if $\Hg(A)=L(A)$, then every Hodge class on $A$ is a polynomial
+in divisor classes, and the Hodge conjecture holds for $A$.
+\end{corollary}
+
+This covers a great deal. For a very general principally polarised
+abelian variety, both groups are the symplectic group, and the Hodge ring
+is generated by the class of the theta divisor. Many classes of abelian
+varieties are known to satisfy the hypothesis of the corollary, among them
+simple abelian varieties of prime dimension and products of elliptic
+curves \cite{Rib83,BL04}. Moonen and Zarhin worked through all abelian
+varieties of dimension at most five, and in that range the Hodge classes
+that are not Lefschetz classes are all accounted for by Weil classes
+\cite{MZ99}.
+
+The first place where the hypothesis fails is the subject of the next
+chapter. There the endomorphism algebra is an imaginary quadratic field
+$K$, the Lefschetz group is a unitary group, and the Hodge group is the
+special unitary group, one dimension smaller. The difference is a single
+character, the determinant, and it is exactly enough to create Hodge
+classes that no divisor can explain.

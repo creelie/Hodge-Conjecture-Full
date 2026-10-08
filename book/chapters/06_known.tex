@@ -1,0 +1,257 @@
+\chapter{Where the Weil class is known to be algebraic}\label{ch:known}
+
+This chapter collects the cases in which the Weil classes are known to be
+algebraic. They fall into three groups. At special members of a Weil family,
+where the endomorphism algebra is larger than $K$, the Weil classes can be
+products of divisor classes, and we prove this in an explicit example. For
+the field $\QQ(\sqrt{-3})$, and for some families for $\QQ(\sqrt{-1})$,
+curves with an automorphism give cycles on Prym varieties, by work of
+Schoen and Koike. And in dimension four, Markman's secant sheaves settle
+every family. The last section reports, separately and conditionally, what
+recent unrefereed preprints announce.
+
+We use the notation of Chapter~\ref{ch:weil}. In particular $\mathrm{Sh}$
+is the base of a Weil family of dimension $2n$, $\Sigma\subseteq\mathrm{Sh}$
+is the set of members on which the Weil classes are algebraic, and by
+Corollary~\ref{cor:oneclass} it does not matter whether we ask for one
+nonzero Weil class or for all of them.
+
+\section{A member where divisors suffice}\label{sec:cmpoint}
+
+Let $E$ be an elliptic curve with complex multiplication by $K$, so that
+$\End^{0}(E)=K$. Let $z$ be a linear coordinate on its universal cover, and
+normalise the action so that $\tau\in K$ acts on the holomorphic form $dz$
+by $\tau$, through the fixed embedding $K\subset\CC$. Then $\tau$ acts on
+$d\bar z$ by $\bar\tau$.
+
+On $A=E^{2n}$ let $\tau\in K$ act by $\tau$ on the first $n$ factors and by
+$\bar\tau$ on the last $n$. Give $A$ the product polarisation. The Rosati
+involution of $E$ is complex conjugation on $K$, so the Rosati involution of
+$A$ restricts to complex conjugation on this copy of $K$.
+
+\begin{proposition}\label{prop:cmexample}
+With this action $A$ is of Weil type for $K$, and its Weil classes are
+polynomials in divisor classes. In particular they are algebraic.
+\end{proposition}
+
+\begin{proof}
+Write $z_{1},\dots,z_{2n}$ for the coordinates on the factors. The element
+$\tau$ acts by $\tau$ on $dz_{i}$ for $i\le n$, and on $d\bar z_{i}$ for
+$i>n$, because on those factors it acts through $\bar\tau$, whose conjugate
+is $\tau$. So
+\[
+  V_{+}=\langle dz_{1},\dots,dz_{n},d\bar z_{n+1},\dots,d\bar z_{2n}\rangle,
+\]
+which has $n$ holomorphic and $n$ antiholomorphic directions, and $A$ is of
+Weil type. Up to sign,
+\[
+  \textstyle\bigwedge^{2n}V_{+}=\prod_{i=1}^{n}\bigl(dz_{i}\wedge d\bar z_{n+i}\bigr).
+\]
+Each factor $dz_{i}\wedge d\bar z_{n+i}$ lies in the $(1,1)$ part of
+$H^{1}(E_{i})\otimes H^{1}(E_{n+i})$, the Künneth component of
+$H^{2}(E\times E)$ that corresponds to $\Hom(E,E)$. That $(1,1)$ part has
+complex dimension two, spanned by $dz_{i}\wedge d\bar z_{n+i}$ and
+$d\bar z_{i}\wedge dz_{n+i}$. On the other hand, the classes of the graphs of
+the endomorphisms $1$ and $\sqrt{-d}$ of $E$, minus their components in
+$H^{0}\otimes H^{2}$ and $H^{2}\otimes H^{0}$, give two linearly independent
+rational classes in that component. So the whole $(1,1)$ part is spanned
+over $\CC$ by divisor classes, and $\bigwedge^{2n}V_{+}$ lies in the
+complex span of products of $n$ divisor classes. The same holds for
+$\bigwedge^{2n}V_{-}$, its complex conjugate. So $\HW\otimes\CC$ lies in
+$\mathcal D^{n}(A)\otimes\CC$. Both $\HW$ and $\mathcal D^{n}(A)$ are
+rational subspaces, so $\HW\subseteq\mathcal D^{n}(A)$.
+\end{proof}
+
+The example has one discriminant, determined by the product form. A
+construction with quaternion algebras gives such a member in every Weil
+family, of every dimension and every discriminant, with the Weil classes
+again polynomials in divisor classes \cite{BhH8}. We record the consequence
+and prove the part we need.
+
+\begin{proposition}\label{prop:densebook}
+Suppose $\Sigma$ contains one point of $\mathrm{Sh}$. Then $\Sigma$ is dense
+in $\mathrm{Sh}$.
+\end{proposition}
+
+\begin{proof}
+Let $s_{0}\in\Sigma$ lift to $\tilde s_{0}\in D$. An element $g$ of
+$\SU(V,H)(\QQ)$ is a $K$-linear automorphism of $V$ preserving $E$. It is an
+isomorphism of rational Hodge structures from the structure at
+$\tilde s_{0}$ to the structure at $g\tilde s_{0}$, so a positive integer
+multiple of it is an isogeny between the corresponding abelian varieties.
+The isogeny commutes with $K$, so it carries Weil classes to Weil classes,
+and it carries cycles to cycles. So the image of $g\tilde s_{0}$ lies in
+$\Sigma$. It remains to see that the orbit $\SU(V,H)(\QQ)\cdot\tilde s_{0}$
+is dense in $D$. The real group $\SU(V,H)(\RR)=\SU(n,n)$ acts transitively
+on $D$, so it suffices that $\SU(V,H)(\QQ)$ is dense in $\SU(V,H)(\RR)$. This
+is real approximation for the connected group $\SU(V,H)$
+\cite[Chapter~7]{PR94}.
+\end{proof}
+
+So the algebraic locus is never small in the topological sense. What is not
+known is whether it has interior. Every point that this proof produces is
+isogenous to $s_{0}$, so it has the same Hodge group as $s_{0}$, and
+in the example above that group is a torus. Chapter~\ref{ch:remaining}
+explains why this is the heart of the problem.
+
+\section{Lowering the dimension}
+
+The next statement, due to Schoen, lets a result in one dimension imply a
+result one step lower.
+
+\begin{proposition}[Schoen \cite{Sch98}]\label{prop:lower}
+Let $A$ be of Weil type for $K$, of dimension $2n$ and discriminant
+$\delta$, and let $B$ be an abelian surface of Weil type for $K$ with the
+same discriminant. Then $A\times B$ is of Weil type for $K$, of dimension
+$2n+2$, and its hermitian form is split, that is, it has a totally
+isotropic $K$-subspace of dimension $n+1$. If the Weil classes of $A\times B$
+are algebraic, so are those of $A$.
+\end{proposition}
+
+The first part is a computation with hermitian forms. The form of
+$A\times B$ is the orthogonal sum of the two forms. With the discriminants
+normalised as in \cite{BhH8}, matching discriminants make the sum have the
+discriminant of a sum of $n+1$ hyperbolic planes. By Landherr's theorem, a
+hermitian form over $K$ is determined by its rank, its discriminant and its
+signature, so the sum is hyperbolic. For the
+second part, the Weil plane of $A\times B$ is the $K$-tensor product of
+the Weil planes of $A$ and $B$. The Weil classes of $B$ lie in $H^{2}$, where
+they are divisor classes, and intersecting with a suitable divisor class
+pulled back from $B$ and pushing forward to $A$ returns a nonzero Weil class
+of $A$. A complete proof in coordinates is in \cite{BhH8}.
+
+The consequence is that the \emph{split} families in dimension $2n+2$
+control all families in dimension $2n$. This is how Markman passes from
+sixfolds to fourfolds.
+
+\section{Curves with an automorphism}\label{sec:schoen}
+
+Schoen found the first cycles representing Weil classes at members with
+full Hodge group. Let $\widetilde C\to C$ be an \'etale cyclic cover of degree
+three of a smooth projective curve of genus $g\ge2$, with covering
+automorphism $\rho$. The Prym variety $P$ is the abelian subvariety of
+$J(\widetilde C)$ on whose first cohomology $\rho$ has no fixed vector.
+Then $K=\QQ(\sqrt{-3})$ acts on $P$ through $\rho$. By the
+Chevalley--Weil formula, the two nontrivial eigenspaces of $\rho$ on
+holomorphic differentials of $\widetilde C$ both have dimension $g-1$, so $P$
+is of Weil type with $n=g-1$. Its hermitian form is split, by a computation
+of Looijenga with the homology of the cover \cite{Loo97}.
+
+\begin{theorem}[Schoen \cite{Sch88}]\label{thm:schoen}
+The Weil classes of these Prym varieties are algebraic.
+\end{theorem}
+
+Schoen's cycles come from the canonical system of the base curve. On the
+symmetric power $C^{(2g-2)}$, the canonical system $|K_{C}|\cong\PP^{g-1}$ is
+the fibre of the Abel--Jacobi map over the canonical class. The cover
+$\widetilde C\to C$ defines an \'etale cover of $C^{(2g-2)}$ of degree three,
+and over $|K_{C}|$, which is simply connected, it splits into three copies of
+$\PP^{g-1}$. The differences of the copies, weighted by the two characters of
+order three, are cycles on a quotient of $\widetilde C^{\,2g-2}$ whose classes
+span the Weil classes there, and a correspondence through $J(\widetilde C)$
+carries them to $P$ \cite[Theorem~2.0 with $r=0$, Corollary~3.1]{Sch88}. Patel and Zhang have recently given a second proof using unramified class
+field theory (preprint) \cite{PZ25}. Looijenga showed that the monodromy of
+the family of these Prym varieties is an arithmetic subgroup of the
+unitary group \cite{Loo97}. By Borel density and Andr\'e's theorem, as in
+Proposition~\ref{prop:generalsu}, a very general Prym of this kind has full
+Hodge group $\SU(V,H)$. So Schoen's cycles live at members with full Hodge
+group. We follow the account in \cite{BhH8}.
+
+The family of Pryms has dimension $3g-3=3n$, the dimension of the moduli of
+curves of genus $g$. The Weil family has dimension $n^{2}$. For $n=2$ Schoen
+showed that the Pryms fill the Weil family of fourfolds of their polarization
+type, and proved the conjecture there \cite[Theorem~3.2]{Sch88}; his addendum
+points out that the theorem should have carried this hypothesis on the
+polarization \cite{Sch98}. For $n=3$ the addendum shows, with a calculation of
+Faber, that the Pryms fill a family of sixfolds, and then descends through
+Proposition~\ref{prop:lower} to every Weil fourfold for $\QQ(\sqrt{-3})$,
+whatever its polarization invariant \cite{Sch98}.
+For $n\ge4$ they fill a locus of dimension $3n<n^{2}$. Koike proved the
+analogous statement for a family of sixfolds for $\QQ(\sqrt{-1})$
+\cite{Koi04}.
+
+In Chapter~\ref{ch:remaining} we prove that cycles built from a curve with
+an automorphism of order three in the obvious ways, through diagonals,
+graphs of the automorphism and the group law, never represent a Weil class
+(Proposition~\ref{prop:curvesbook}). Schoen's cycles therefore use something
+beyond these constructions, and that is why they reach classes that divisors
+cannot.
+
+\section{Secant sheaves}
+
+The most complete results are Markman's. He works with abelian varieties of
+Weil type of the form $B\times\widehat B$, for an abelian variety $B$ of
+dimension $n$ and its dual, with an action of $K$ that does not respect the
+product. These are special members of their Weil families. On them he
+constructs sheaves from the secant varieties of $B$ in a projective
+embedding, the \emph{secant sheaves}, whose Chern characters have a nonzero
+Weil component. He then shows that these sheaves deform along the whole
+family, by an equivariant form of the semiregularity theorem of Bloch,
+Buchweitz--Flenner and Pridham \cite{Blo72,BF03,Pri24}.
+
+\begin{theorem}[Markman \cite{Mar25a,Mar25b}, preprints]\label{thm:markman}
+\begin{enumerate}[label=(\roman*)]
+\item The Weil classes are algebraic on every abelian sixfold of Weil type
+whose hermitian form is split.
+\item The Weil classes are algebraic on every abelian fourfold of Weil
+type, for every imaginary quadratic field and every discriminant.
+\end{enumerate}
+\end{theorem}
+
+Part (ii) follows from part (i) by Proposition~\ref{prop:lower}. Combined with
+the analysis of Moonen and Zarhin \cite{MZ99}, it gives the Hodge
+conjecture for every abelian variety of dimension at most five. At the time
+of writing, Markman's papers are on the arXiv, and we mark the results as
+preprint results accordingly.
+
+It is worth seeing where secant sheaves sit with respect to the barrier of
+Chapter~\ref{ch:remaining}. On $B\times\widehat B$ the endomorphism algebra is
+much larger than $K$, the Lefschetz group is much smaller than $\U(V,H)$, and
+the Weil classes are invariant under it. So nothing prevents a sheaf built
+from line bundles from having a Weil component there. The difficulty is
+moved into the deformation step, which is where all the work lies.
+
+\section{Recent preprints}\label{sec:preprintsbook}
+
+In September and October 2026, OpenAI released a series of preprints
+announcing further cases \cite{OAI26d,OAI26e,OAI26g}. They have not been
+refereed, and this book does not check them. Nothing outside this section
+depends on them. The announced statements include:
+\begin{enumerate}[label=(\alph*)]
+\item the Hodge conjecture for every abelian variety of CM type
+\cite{OAI26e};
+\item the algebraicity of the Weil classes on every abelian eightfold of
+Weil type whose hermitian form is split, for every imaginary quadratic
+field \cite{OAI26d};
+\item the Hodge conjecture for every power of an abelian sixfold of split
+Weil type, and of an abelian variety of dimension at most five with an
+action of an imaginary quadratic field \cite{OAI26g}.
+\end{enumerate}
+If (b) holds, Proposition~\ref{prop:lower} gives the Weil classes on every
+abelian sixfold of Weil type \cite{BhH8}. Even then, the Weil classes in
+dimension eight with non-split form, and in every dimension from ten on,
+would remain open, and so would the classes on abelian varieties that are
+not of Weil type and are not Lefschetz, which \cite{BhH8} lists.
+
+\section{Summary}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Dimension $2n$ & Status of the Weil classes & Source\\
+\midrule
+$4$ & algebraic, all $K$ and discriminants & Markman (preprint); earlier cases Schoen\\
+$6$, split form & algebraic & Markman (preprint)\\
+$6$, $\QQ(\sqrt{-3})$, Prym family & algebraic & Schoen\\
+$6$, one family for $\QQ(\sqrt{-1})$ & algebraic & Koike\\
+$6$, other & open; announced via (b) & preprints\\
+$8$, split form & open; announced & preprint (b)\\
+$2n\ge8$, $\QQ(\sqrt{-3})$ & algebraic on a locus of dimension $3n$ & Schoen\\
+$2n\ge8$, other & open, apart from special members & --\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+In every row marked open, the Weil classes are algebraic on a dense set of
+special members (Proposition~\ref{prop:densebook}), and the question is
+whether that set has interior. That is the subject of the last chapter.

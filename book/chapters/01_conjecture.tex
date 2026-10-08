@@ -1,0 +1,192 @@
+\chapter{The conjecture}\label{ch:conjecture}
+
+\section{Hodge classes}
+
+Let $X$ be a smooth complex projective variety of dimension $d$. Its
+cohomology with rational coefficients carries two structures that have, on
+the face of it, nothing to do with each other. The first is the rational
+structure itself, the lattice $H^{k}(X,\ZZ)$ modulo torsion inside
+$H^{k}(X,\CC)$, which is a topological invariant. The second is the Hodge
+decomposition
+\begin{equation}\label{eq:hodgedec}
+  H^{k}(X,\CC)=\bigoplus_{p+q=k}H^{p,q}(X),\qquad
+  \overline{H^{p,q}(X)}=H^{q,p}(X),
+\end{equation}
+in which $H^{p,q}(X)$ is the space of classes represented by closed forms of
+type $(p,q)$. The decomposition depends on the complex structure and moves
+when the complex structure moves. The rational structure does not.
+
+The Hodge classes are the classes where the two structures meet.
+
+\begin{definition}
+For $0\le p\le d$ the space of \emph{rational Hodge classes of degree $2p$} is
+\[
+  \Hdg^{p}(X)=H^{2p}(X,\QQ)\cap H^{p,p}(X),
+\]
+the intersection being taken inside $H^{2p}(X,\CC)$.
+\end{definition}
+
+Because the decomposition is preserved by cup product, in the sense that
+$H^{p,q}\cup H^{p',q'}\subseteq H^{p+p',q+q'}$, the direct sum
+$\Hdg^{*}(X)=\bigoplus_{p}\Hdg^{p}(X)$ is a graded $\QQ$-subalgebra of
+$H^{\mathrm{even}}(X,\QQ)$. It is called the \emph{Hodge ring} of $X$.
+
+There is no reason, a priori, for $\Hdg^{p}(X)$ to be anything but zero.
+For a very general complex structure on a given manifold the space
+$H^{p,p}$ is in general position with respect to the rational lattice, and
+the intersection is as small as it can be. What forces it to be larger is
+geometry.
+
+\section{Classes of subvarieties}
+
+Let $Z\subseteq X$ be a closed irreducible subvariety of codimension $p$.
+Integration over the smooth part of $Z$ defines a linear form on closed
+$(2d-2p)$-forms,
+\[
+  \alpha\longmapsto\int_{Z_{\mathrm{reg}}}\alpha ,
+\]
+which converges and vanishes on exact forms. This is a theorem of Lelong
+for the convergence and of Stokes, applied on a resolution of $Z$, for the
+vanishing. By Poincar\'e duality the form corresponds to a class
+$[Z]\in H^{2p}(X,\QQ)$. In fact the class lies in the image of
+$H^{2p}(X,\ZZ)$, since it is the Poincar\'e dual of the fundamental class
+of $Z$ in Borel--Moore homology. Extending linearly to cycles, that is, to
+formal combinations $\sum n_{i}Z_{i}$, and passing to rational
+coefficients gives the \emph{cycle class map}
+\[
+  \cl^{p}\colon Z^{p}(X)_{\QQ}\longrightarrow H^{2p}(X,\QQ).
+\]
+It factors through rational equivalence, so it is defined on the Chow
+group $\CH^{p}(X)_{\QQ}$.
+
+\begin{proposition}\label{prop:classispp}
+For every cycle $Z$ of codimension $p$ the class $\cl^{p}(Z)$ lies in
+$\Hdg^{p}(X)$.
+\end{proposition}
+
+\begin{proof}
+The class is rational by construction, so it suffices to show that it has
+type $(p,p)$. Under Poincar\'e duality,
+$H^{2p}(X,\CC)$ is dual to $H^{2d-2p}(X,\CC)$, and the summand
+$H^{p,p}$ is the annihilator of every summand $H^{r,s}$ with $r+s=2d-2p$
+except $H^{d-p,d-p}$. So we must show that $\int_{Z}\alpha=0$ for every
+closed form $\alpha$ of type $(r,s)$ with $r+s=2d-2p$ and $r\ne d-p$. But
+$Z_{\mathrm{reg}}$ is a complex manifold of dimension $d-p$, and the
+restriction of a form of type $(r,s)$ to it is of type $(r,s)$ there. A form
+of type $(r,s)$ on a complex manifold of dimension $d-p$ vanishes as soon
+as $r>d-p$ or $s>d-p$. Since $r+s=2(d-p)$ and $r\ne d-p$, one of the two
+inequalities holds.
+\end{proof}
+
+So subvarieties give Hodge classes. The conjecture says that they give all
+of them.
+
+\begin{conjecture}[Hodge]\label{conj:hodge}
+Let $X$ be a smooth complex projective variety. For every $p$ the cycle
+class map
+\[
+  \cl^{p}\colon\CH^{p}(X)_{\QQ}\longrightarrow\Hdg^{p}(X)
+\]
+is surjective.
+\end{conjecture}
+
+Hodge raised the question in his address to the International Congress of
+1950, in a form with integral coefficients. The formulation above, with
+rational coefficients, is the one that survived. The next
+sections explain why each of its hypotheses is needed.
+
+\section{Why rational coefficients}
+
+One might ask whether every integral class of type $(p,p)$, that is, every
+element of $H^{2p}(X,\ZZ)$ whose image in $H^{2p}(X,\CC)$ lies in
+$H^{p,p}(X)$, is the class of an integral cycle. In degree two the answer is
+yes; this is the content of Chapter~\ref{ch:lefschetz}. In higher degree it
+is no.
+
+Atiyah and Hirzebruch \cite{AH62} found torsion classes that are not
+algebraic. Their argument is topological. The class of an algebraic cycle
+is the pushforward of a fundamental class along a resolution, and such
+classes are annihilated by certain odd-degree Steenrod operations. They
+then exhibited smooth projective varieties with torsion classes, which are
+automatically of type $(p,p)$, on which those operations do not vanish.
+Totaro \cite{Tot97} later explained the obstruction through complex
+cobordism, and found further examples.
+
+Torsion classes are invisible rationally, so one might hope that the
+integral statement holds modulo torsion. It does not. Koll\'ar
+\cite{Kol92} showed that on a very general hypersurface $X\subset\PP^{4}$
+of sufficiently large degree $m$, with $m$ divisible by a high power of a
+prime, every curve has degree divisible by that power. Yet the generator of
+$H^{4}(X,\ZZ)\cong\ZZ$, which is of type $(2,2)$ for dimension reasons, has
+degree $1$. So the generator is not the class of a curve, although $m$
+times it is, namely the class of the intersection of $X$ with a plane. Rationally
+nothing is lost, and integrally the conjecture fails.
+
+\section{Why projective}
+
+The definitions make sense for every compact K\"ahler manifold, and the
+Hodge decomposition holds there. One could ask whether every rational
+$(p,p)$ class on a compact K\"ahler manifold is a combination of classes
+of analytic subvarieties, or more generously of Chern classes of coherent
+sheaves. For degree two, the theorem of Lefschetz holds in the K\"ahler
+setting for classes that are Chern classes of line bundles. But a general
+complex torus has no line bundles beyond the topologically trivial ones,
+and no analytic subvarieties of positive dimension at all, while it may
+still have Hodge classes in higher degree.
+
+So the analytic version of the conjecture fails as soon as such a torus has
+a nonzero Hodge class of degree four, and such tori exist.
+Voisin \cite{Voi02b} went much further. She constructed complex tori, of Weil
+type in the sense of Chapter~\ref{ch:weil}, carrying nonzero Hodge classes
+of degree four, on which every coherent sheaf has vanishing Chern classes
+in that degree. So the K\"ahler analogue fails even with Chern classes of
+sheaves in place of subvarieties, and projectivity is used essentially.
+We return to Voisin's tori in Section~\ref{sec:voisintori}, because they
+are the same Weil classes this book is about, seen from the other side.
+
+\section{What is known in general}
+
+The conjecture is trivial in degrees $0$ and $2d$. In degree two it is the
+theorem of Lefschetz (Chapter~\ref{ch:lefschetz}). The hard Lefschetz
+theorem then gives it in degree $2d-2$ (Corollary~\ref{cor:degree2d-2}).
+In particular it holds for every variety of dimension at most three. For
+fourfolds the first open degree is four, and there it is open in general,
+though known for many classes of fourfolds, among them uniruled ones
+\cite{CM78}. Beyond that there is no general method. The known results are
+proved family by family, and abelian varieties are the family about which
+the most is known.
+
+A useful reformulation is due to Mumford and Deligne. The rational
+cohomology $H^{k}(X,\QQ)$ with its Hodge decomposition is a rational Hodge
+structure of weight $k$, and every Hodge structure has a symmetry group,
+the \emph{Mumford--Tate group}. It is the smallest algebraic subgroup of
+$\GL(H^{k}(X,\QQ))$ defined over $\QQ$ whose real points contain the image
+of the homomorphism that defines the Hodge decomposition
+(Section~\ref{sec:mt}). Its variant the \emph{Hodge group} has the
+property that the Hodge classes in tensor constructions on $H^{k}(X,\QQ)$
+are exactly its invariants. For an abelian variety $A$ the whole
+cohomology is the exterior algebra on $H^{1}(A,\QQ)$, and so the Hodge ring
+of $A$ is the ring of invariants of a single reductive group acting on an
+exterior algebra. That is why abelian varieties are tractable: the Hodge classes can
+be computed. The difficulty, once they are computed, is to find the cycles.
+
+\section{The plan}
+
+The first half of the book makes the last two sentences precise.
+Chapter~\ref{ch:toolkit} recalls the Hodge-theoretic tools,
+Chapter~\ref{ch:lefschetz} proves the theorem in degree two, and
+Chapter~\ref{ch:abelian} computes the cohomology of abelian varieties and
+explains how the Hodge ring is governed by the Hodge group.
+
+Chapter~\ref{ch:weil} introduces Weil's examples. Let $K$ be an imaginary
+quadratic field acting on an abelian variety $A$ of dimension $2n$, in such
+a way that the two eigenspaces of $K$ on the tangent space both have
+dimension $n$. Then $H^{2n}(A,\QQ)$ contains a two-dimensional space of
+Hodge classes, the Weil classes, which for a general such $A$ are not
+products of divisor classes. We prove that for a general member of a family
+of such varieties, the Hodge ring is spanned by powers of the polarisation
+together with this plane. So the Hodge conjecture for the general member
+is the algebraicity of one class.
+
+Chapter~\ref{ch:known} surveys the cases in which this class is known to
+be algebraic, and Chapter~\ref{ch:remaining} attempts the general case.
