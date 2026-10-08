@@ -1,0 +1,1225 @@
+\documentclass[11pt]{amsart}
+\usepackage{amssymb,amsmath,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\Hdg}{\operatorname{Hdg}}
+\newcommand{\Alg}{\operatorname{Alg}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Hg}{\operatorname{Hg}}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\U}{\operatorname{U}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\ch}{\operatorname{ch}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\HC}{\mathrm{HC}}
+
+\title[The Hodge conjecture: an attempt in full]{The Hodge conjecture: an
+attempt in full,\\ and the statements at which it stops}
+\author{Deep Bhattacharjee}
+\date{October 2026}
+
+\begin{document}
+
+\begin{abstract}
+We follow every route to the Hodge conjecture that the present literature
+makes available, prove each reduction that can be proved, and stop at the
+first statement on each route that cannot. The Hodge conjecture is not
+proved here. Every Hodge class of degree two, of codegree two, or on a
+variety of dimension at most three is algebraic, and the conjecture descends
+along surjective morphisms. By the author's earlier work it is equivalent to
+two statements: the conjecture for abelian varieties, and the conjecture
+modulo abelian varieties. For abelian varieties of Weil type the problem comes down to one
+class on a general member of a family, and we show that the cycles Schoen
+constructed on Prym varieties of triple covers give, on each such Prym
+variety, an explicit subvariety of half dimension whose class is a positive
+multiple of the polarization power plus a nonzero Weil class. If that
+subvariety were semiregular, the Weil classes would be algebraic on every
+member of the split Weil families of $\QQ(\sqrt{-3})$ in every dimension. We
+cannot decide whether it is. We also show that every abelian variety of Weil
+type for $\QQ(\sqrt{-3})$ is, up to isogeny, a factor of such a Prym
+variety, so that its Weil classes are algebraic exactly when those of the
+complementary factor are; a count of dimensions indicates that this cannot
+reach the general member in dimension eight or more. For the remaining
+classes on abelian varieties,
+and for varieties that are not of abelian type, we record what is proved and
+locate the first open case of each: the exceptional classes on the square of
+a Mumford fourfold, and the square of a K3 surface with real
+multiplication.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Let $X$ be a smooth complex projective variety of dimension $n$. A class in
+$H^{2p}(X,\QQ)$ is a \emph{Hodge class} if its image in $H^{2p}(X,\CC)$ lies
+in $H^{p,p}(X)$, and it is \emph{algebraic} if it is a rational combination of
+classes of subvarieties of codimension $p$. Algebraic classes are Hodge
+classes. The Hodge conjecture says that the converse holds.
+
+\begin{conjecture}[Hodge]
+Every Hodge class on a smooth complex projective variety is algebraic.
+\end{conjecture}
+
+This paper is an attempt at the conjecture in full. By that we mean
+something specific. We take every route that the literature makes
+available, push it as far as it can be pushed with complete proofs, and
+name the first statement on it that we cannot prove. We do not prove the
+conjecture, and nothing here should be read as a claim that it is close to
+proved. What the attempt produces is a map: a short list of statements, each
+open, each precise, from which the conjecture would follow, together with
+an account of why the obvious ways of proving each of them fail.
+
+Section~\ref{sec:reductions} proves the reductions that hold for every
+variety: degree two, codegree two, dimension at most three, descent along
+surjective morphisms, and the reduction of every degree to the middle one
+under the Lefschetz standard conjecture. Section~\ref{sec:shape} recalls
+from \cite{BhH8} that, beyond these, the conjecture is equivalent to two
+statements, the conjecture for abelian varieties and the conjecture modulo
+abelian varieties, and lists the other minimal sets of hypotheses from which
+it follows. Sections~\ref{sec:abelian} and~\ref{sec:weil} attack abelian
+varieties. Section~\ref{sec:weil} contains the main new theorem of the
+paper, Theorem~\ref{thm:schoensub}, which turns Schoen's cycles into a
+single explicit subvariety of the right shape for a deformation argument,
+and isolates the question on which the argument turns.
+Section~\ref{sec:beyondweil} treats the classes on abelian varieties that
+divisors and Weil classes do not generate, and Section~\ref{sec:nonabelian}
+the varieties that are not of abelian type. Section~\ref{sec:spread} tries
+to spread Schoen's construction beyond the Prym varieties. It proves that
+every abelian variety of Weil type for $\QQ(\sqrt{-3})$ is, up to isogeny, a
+factor of the Prym variety of an \'etale triple cover, so that its Weil
+classes are algebraic exactly when those of the complementary factor are
+(Theorem~\ref{thm:transfer}); it shows by a count why this cannot by itself
+reach the general member once the dimension is at least eight; and it
+explains why the construction, carried to other varieties, leads back to
+(F2) and (F3$'$). Section~\ref{sec:end} collects what is proved and what is
+not.
+
+Table~\ref{tab:routes} summarises where each route stops.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.4cm}>{\raggedright\arraybackslash}p{4.6cm}>{\raggedright\arraybackslash}p{4.6cm}@{}}
+\toprule
+Route & What is proved & Where it stops\\
+\midrule
+Divisors and hard Lefschetz & degrees $2$ and $2n-2$; $\dim X\le3$ & degree $2p$ with $2\le p\le n-2$\\
+Hyperplane sections & reduction to middle degree, given the Lefschetz standard conjecture & the Lefschetz standard conjecture\\
+Weil classes, deformation & the algebraic locus is dense and all or meagre; one semiregular cycle closes it & no semiregular cycle is known; Schoen's subvariety is undecided\\
+Weil classes, degree bounds & equivalent to a uniform degree bound on a dense set & no such bound is known\\
+Weil classes, Prym factors & for $\QQ(\sqrt{-3})$, algebraic on $A$ if and only if on a complement $A'$ & no general complement is known; a count says none exists for $\dim A\ge8$\\
+Classes beyond Weil & algebraic at CM points of Mumford families & one Kuga--Satake class\\
+Not of abelian type & every variety reached from abelian varieties; many hyper-K\"ahler varieties & the square of a K3 surface with real multiplication\\
+\bottomrule
+\end{tabular}
+\caption{The routes and their stopping points.}\label{tab:routes}
+\end{table}
+
+\subsection*{Conventions}
+Varieties are smooth, complex, projective and connected unless said
+otherwise. For such an $X$ we write $\Hdg^{p}(X)\subseteq H^{2p}(X,\QQ)$ for
+the Hodge classes and $\Alg^{p}(X)\subseteq\Hdg^{p}(X)$ for the algebraic
+ones, and $\HC(X,p)$ for the statement $\Alg^{p}(X)=\Hdg^{p}(X)$. We write
+$\HC(X)$ when this holds for every $p$.
+
+\section{Reductions that hold for every variety}\label{sec:reductions}
+
+\subsection{Degree two}
+
+\begin{theorem}[Lefschetz {\cite{Lef24}}, Kodaira--Spencer {\cite{KS53}}]\label{thm:lef11}
+$\HC(X,1)$ holds for every $X$.
+\end{theorem}
+
+\begin{proof}
+The exponential sequence $0\to\ZZ\to\cO_{X}\to\cO_{X}^{\times}\to0$ gives an
+exact sequence
+\[
+  H^{1}(X,\cO_{X}^{\times})\xrightarrow{\;c_{1}\;}H^{2}(X,\ZZ)\longrightarrow
+  H^{2}(X,\cO_{X}).
+\]
+The second map is the composite of $H^{2}(X,\ZZ)\to H^{2}(X,\CC)$ with the
+projection onto $H^{0,2}(X)$ given by the Hodge decomposition. An integral
+class of type $(1,1)$ has zero projection to $H^{0,2}$, so it is the first
+Chern class of a holomorphic line bundle. By the GAGA theorem of Serre that
+line bundle is algebraic, and its first Chern class is the class of a divisor.
+A rational Hodge class has an integral multiple, which is therefore the class
+of a divisor.
+\end{proof}
+
+\subsection{Hard Lefschetz}
+
+Let $h\in H^{2}(X,\QQ)$ be the class of a hyperplane section, and $L$ the
+operator of cup product with $h$.
+
+\begin{proposition}\label{prop:hardlef}
+For $p<n/2$, $\HC(X,p)$ implies $\HC(X,n-p)$.
+\end{proposition}
+
+\begin{proof}
+By the hard Lefschetz theorem $L^{n-2p}\colon H^{2p}(X,\QQ)\to
+H^{2n-2p}(X,\QQ)$ is an isomorphism. It maps $H^{p,p}$ to $H^{n-p,n-p}$, so
+it maps $\Hdg^{p}(X)$ onto $\Hdg^{n-p}(X)$: if $\beta$ is a Hodge class of
+degree $2n-2p$ and $\beta=L^{n-2p}\alpha$, then $L^{n-2p}$ maps the $(r,s)$
+components of $\alpha$ to the $(r+n-2p,s+n-2p)$ components of $\beta$, so
+$\alpha$ has type $(p,p)$. Cup product with $h$ sends the class of a
+subvariety $Z$ to the class of $Z\cap H$ for a general hyperplane $H$, so
+$L^{n-2p}$ maps $\Alg^{p}(X)$ into $\Alg^{n-p}(X)$. Hence
+$\Hdg^{n-p}(X)=L^{n-2p}\Hdg^{p}(X)=L^{n-2p}\Alg^{p}(X)\subseteq\Alg^{n-p}(X)$.
+\end{proof}
+
+\begin{corollary}\label{cor:smalldim}
+$\HC(X,p)$ holds for $p\in\{0,1,n-1,n\}$. In particular $\HC(X)$ holds when
+$\dim X\le3$.
+\end{corollary}
+
+\begin{proof}
+For $p=0$ and $p=n$ the Hodge classes are multiples of the fundamental class
+and of the class of a point. Theorem~\ref{thm:lef11} gives $p=1$, and
+Proposition~\ref{prop:hardlef} with $p=1$ gives $p=n-1$. When $n\le3$ every
+$p$ is one of these.
+\end{proof}
+
+\subsection{Descent}
+
+\begin{proposition}\label{prop:descent}
+Let $f\colon Y\to X$ be a surjective morphism of smooth projective
+varieties, and $r=\dim Y-\dim X$. Then $\HC(Y,p+r)$ implies $\HC(X,p)$. In
+particular $\HC(Y)$ implies $\HC(X)$.
+\end{proposition}
+
+\begin{proof}
+Let $h_{Y}$ be the class of a hyperplane section of $Y$. The push-forward
+$f_{*}(h_{Y}^{r})\in H^{0}(X,\QQ)$ is the degree $d$ of a general fibre
+of $f$ against $h_{Y}^{r}$, which is a positive integer. For
+$\alpha\in\Hdg^{p}(X)$ the class $f^{*}\alpha\cup h_{Y}^{r}$ is a Hodge class
+of degree $2(p+r)$ on $Y$, hence algebraic, and by the projection formula
+$f_{*}(f^{*}\alpha\cup h_{Y}^{r})=\alpha\cup f_{*}(h_{Y}^{r})=d\,\alpha$.
+Push-forward of cycles is compatible with the cycle class, so $d\alpha$, and
+hence $\alpha$, is algebraic.
+\end{proof}
+
+Taking $Y=X\times\PP^{1}$ shows that the conjecture for $X\times\PP^{1}$ gives
+it for $X$. This is the reason, explained in \cite{BhH8}, that the
+conjecture for the varieties that are not abelian already contains the
+conjecture for abelian varieties.
+
+\subsection{The reduction to middle degree}
+
+The remaining degrees are $2\le p\le n-2$, and by
+Proposition~\ref{prop:hardlef} it is enough to treat $2\le p<n/2$ and, when
+$n$ is even, $p=n/2$. The natural way to move from degree $2p$ on $X$ to the
+middle degree of a smaller variety goes through hyperplane sections, and it
+needs one more statement. Recall that the \emph{Lefschetz standard
+conjecture} $B(X)$ asks that the inverse of $L^{n-2p}$, defined on
+$H^{2n-2p}(X,\QQ)$, be induced by an algebraic cycle on $X\times X$ for every
+$p$.
+
+\begin{proposition}\label{prop:middle}
+Let $2p<n$ and let $i\colon Y\hookrightarrow X$ be a smooth complete
+intersection of $n-2p$ hyperplane sections. If $B(X)$ and $\HC(Y,p)$ hold,
+then $\HC(X,p)$ holds.
+\end{proposition}
+
+\begin{proof}
+Let $\alpha\in\Hdg^{p}(X)$. Then $i^{*}\alpha\in\Hdg^{p}(Y)$ is algebraic, say
+$i^{*}\alpha=\cl(Z)$, and $i_{*}i^{*}\alpha=\alpha\cup[Y]=L^{n-2p}\alpha$, so
+$L^{n-2p}\alpha=\cl(i_{*}Z)$ is algebraic. The inverse of $L^{n-2p}$ is
+induced by an algebraic correspondence, which maps algebraic classes to
+algebraic classes, so $\alpha$ is algebraic.
+\end{proof}
+
+The Lefschetz standard conjecture is itself open. It is known for curves and
+surfaces, for abelian varieties by Lieberman \cite{Lie68,Kle68}, and for
+hyper-K\"ahler varieties of $K3^{[n]}$ type by Charles and Markman
+\cite{CM13}. It follows from the Hodge conjecture, so
+Proposition~\ref{prop:middle} is a reduction and not a proof. Without it we
+do not know how to get from degree $2p$ on $X$ to any smaller variety, and
+this is the first place where the general argument stops.
+
+\subsection{What any proof must use}
+
+Two counterexamples constrain the shape of a proof. The integral version of
+the conjecture fails: Atiyah and Hirzebruch found torsion classes that are
+not algebraic \cite{AH62}, and Koll\'ar found non-torsion integral Hodge
+classes with no algebraic representative although a multiple has one
+\cite{Kol92}. So a proof has to use rational coefficients in an essential
+way. The version for compact K\"ahler manifolds fails too: Voisin found
+complex tori with Hodge classes that are not combinations of Chern classes of
+coherent sheaves \cite{Voi02b}. So a proof has to use projectivity, and an
+argument that would work on every compact K\"ahler manifold cannot be right.
+Both facts are used below: Voisin's tori are what rule out one form of the
+deformation argument in Section~\ref{sec:weil}.
+
+\section{The shape of what remains}\label{sec:shape}
+
+The following two statements were isolated in \cite[Section~14]{BhH8}.
+
+\begin{definition}\label{def:f2f3}
+\begin{enumerate}[label=(\roman*)]
+\item (F2) For every abelian variety $A$, the Hodge classes of $A$ that lie
+outside the subring generated by divisor classes and the Weil classes of
+quotients of $A$ are algebraic.
+\item (F3$'$) For every $X$, every Hodge class on $X$ is algebraic modulo
+the images of Hodge classes of abelian varieties under algebraic
+correspondences.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[{\cite[Theorem 14.1(iv), Propositions on (F2) and (F3$'$)]{BhH8}}]\label{thm:shape}
+\begin{enumerate}[label=(\alph*)]
+\item The Hodge conjecture is equivalent to the conjunction of
+\textup{(F2)} and \textup{(F3$'$)}.
+\item \textup{(F2)} is equivalent to the Hodge conjecture for abelian
+varieties.
+\item Over the implications proved in \cite{BhH8} and in the literature,
+the minimal sets of statements that imply the conjecture are
+$\{\mathrm{F3}\}$, $\{L,M\}$, $\{L,\mathrm{F3}'\}$, $\{V,\mathrm{F3}'\}$ and
+$\{\mathrm{F2},\mathrm{F3}'\}$, where \textup{(F3)} is the conjecture for
+varieties that are not abelian, $L$ is the Lefschetz standard conjecture for
+every variety, $M$ says that every Hodge class is motivated in the sense of
+Andr\'e \cite{And96}, and $V$ is the variational Hodge conjecture for
+algebraic classes.
+\end{enumerate}
+\end{theorem}
+
+Part~(a) has a simple meaning. Given (F2), every Hodge class on an abelian
+variety is algebraic, and an algebraic correspondence carries algebraic
+classes to algebraic classes; so (F3$'$) then says that every Hodge class on
+every variety is algebraic. The attempt therefore splits into two halves:
+the conjecture for abelian varieties, which is (F2) and is the subject of
+Sections~\ref{sec:abelian} to~\ref{sec:beyondweil}, and the conjecture modulo
+abelian varieties, which is (F3$'$) and is the subject of
+Section~\ref{sec:nonabelian}. We note that (F3) alone is the whole
+conjecture, by Proposition~\ref{prop:descent} applied to $A\times\PP^{1}\to A$,
+so the split is a real division of the problem and not a reformulation of
+it.
+
+\section{Abelian varieties}\label{sec:abelian}
+
+Let $A$ be an abelian variety of dimension $g$ and $V=H^{1}(A,\QQ)$. Then
+$H^{*}(A,\QQ)=\bigwedge^{*}V^{\vee}$, and the Hodge structure on $V$ is given by
+a homomorphism $h\colon\U(1)\to\operatorname{GL}(V_{\RR})$. The \emph{Hodge
+group} $\Hg(A)$ is the smallest algebraic subgroup of $\operatorname{GL}(V)$
+defined over $\QQ$ whose real points contain the image of $h$.
+
+\begin{proposition}[{\cite[Section~4]{BhH8}, \cite{Del82}}]\label{prop:invariants}
+The Hodge classes of $A$ in every degree are exactly the elements of
+$\bigwedge^{*}V^{\vee}$ fixed by $\Hg(A)$.
+\end{proposition}
+
+The \emph{Lefschetz group} of $A$ is the centraliser of $\End^{0}(A)$ in the
+symplectic group of a polarization. Its invariants are generated by divisor
+classes, and the Hodge group is contained in it. When the two are equal,
+every Hodge class is a polynomial in divisor classes, and is algebraic. The
+Hodge classes that are not generated by divisors exist exactly when the Hodge
+group is strictly smaller than the Lefschetz group, and they come in two
+kinds.
+
+The first kind are Weil's classes \cite{Wei77}. Let $K$ be an imaginary
+quadratic field acting on $A$ of dimension $2n$ so that both embeddings of
+$K$ occur with multiplicity $n$ on $H^{1,0}(A)$. Then
+$W=\bigwedge^{2n}_{K}V^{\vee}$ is a $\QQ$-plane of Hodge classes in
+$H^{2n}(A,\QQ)$, the \emph{Weil plane}, and for a general such $A$ it is not
+generated by divisors. These are the subject of Section~\ref{sec:weil}.
+
+The second kind appear on abelian varieties whose Hodge group is smaller than
+the Lefschetz group for a reason other than a $K$-action. The simplest are
+Mumford's fourfolds \cite{Mum69}: abelian fourfolds with
+$\End(A)=\ZZ$ whose Hodge group is a form of $\mathrm{SL}_{2}^{3}$ acting on
+$V$ through the tensor product of the three standard representations. They
+have no exceptional Hodge classes on $A$ itself, but $A\times A$ has two.
+These are the subject of Section~\ref{sec:beyondweil}.
+
+The known cases of the conjecture for abelian varieties are those where the
+Hodge ring is generated by divisors (for instance when $\dim A\le3$, or when
+$A$ is a power of an elliptic curve without complex multiplication), the
+fourfolds and some sixfolds of Weil type listed in Section~\ref{sec:weil},
+and the products and powers covered by \cite{MZ99}, \cite{RM08} and
+\cite{Fl25}.
+
+\section{Weil classes}\label{sec:weil}
+
+\subsection{The reduction to one class}
+
+Fix an imaginary quadratic field $K$, an integer $n\ge2$ and a nondegenerate
+$K$-hermitian form of signature $(n,n)$, with discriminant $\delta$. The
+abelian varieties of Weil type with these data form a family $\Sh$ over a
+connected base whose universal cover is the bounded symmetric domain of
+$\SU(n,n)$, of dimension $n^{2}$. A very general member has Hodge group
+$\SU(V,H)$, and for such a member every Hodge class is a polynomial in the
+polarization class $\eta$ except in degree $2n$, where
+\[
+  \Hdg^{n}(A)=\QQ\,\eta^{n}\oplus W
+\]
+\cite{BhH8}, \cite[Theorem~4]{Wei77}. Multiplication by a suitable
+element of $K$ moves one nonzero Weil class onto a second one that spans the
+Weil plane with it, so on such a member the whole conjecture is the
+algebraicity of a single Weil class.
+
+\subsection{The algebraic locus}
+
+Let $\Sigma\subseteq\Sh$ be the set of members on which the Weil class is
+algebraic. The following is proved in \cite{BhH8} and in the companion note
+\cite{BhW}; we list it to fix what the deformation route already has.
+
+\begin{theorem}[{\cite{BhH8,BhW}}]\label{thm:locus}
+\begin{enumerate}[label=(\alph*)]
+\item $\Sigma$ is a countable union of closed algebraic subsets of $\Sh$,
+it is dense, and it is either all of $\Sh$ or meagre.
+\item $\Sigma=\Sh$ if and only if the Weil class has algebraic
+representatives of bounded degree on a Zariski-dense set of members.
+\item If at one member there is a local complete intersection, or a perfect
+complex, whose class (respectively Chern character) in degree $2n$ is a
+nonzero Weil class plus a multiple of $\eta^{n}$, with higher terms in the
+span of the powers of $\eta$, and whose semiregularity map is injective,
+then $\Sigma=\Sh$.
+\item No object whose Chern character in degree $2n$ is a pure Weil class is
+semiregular.
+\item At a member with Hodge group $\SU(V,H)$, no cycle or complex built from
+divisors and homomorphisms by the usual operations represents a Weil class,
+and neither does any tautological cycle of a curve with an automorphism of
+order three.
+\end{enumerate}
+\end{theorem}
+
+Part~(d) is where the K\"ahler counterexample enters: a semiregular object
+would deform with the class, and a pure Weil class stays of Hodge type on a
+family of complex tori that contains Voisin's tori, which carry no
+subvarieties and no coherent sheaves with the required Chern character. Part
+(c) does not meet this obstruction, because $\eta^{n}$ stops being of Hodge
+type as soon as the torus leaves the polarized family. So the deformation
+route asks for a semiregular object at some member whose class is a nonzero
+Weil class plus a multiple of $\eta^{n}$. Part~(e) says that such an object
+cannot be built from the obvious ingredients at a member with full Hodge
+group. At special members it can be, but transporting it to the general
+member by Hecke correspondences makes its degree grow without bound, and by
+part~(b) bounded degree is exactly what is needed.
+
+\subsection{The known cases}
+
+The Weil class is known to be algebraic on every member in the following
+families: Weil fourfolds for $K=\QQ(\sqrt{-3})$ of every discriminant
+\cite{Sch88,Sch98}; a family of Weil sixfolds for $\QQ(\sqrt{-3})$
+\cite{Sch98} and one for $\QQ(\sqrt{-1})$ \cite{Koi04}, both obtained from
+Prym varieties of cyclic covers of curves of genus four; Weil fourfolds of
+discriminant one for every $K$, and their powers \cite{Fl25}. Markman's
+preprints extend this to every Weil fourfold and every split Weil sixfold
+\cite{Mar25a}. For $2n\ge8$ no family is known in which the Weil class is
+algebraic on every member.
+
+\subsection{Schoen's cycles as one subvariety}
+
+The only cycles known to represent Weil classes at members with full Hodge
+group in dimension $2n\ge8$ are Schoen's. We recall his construction and
+then extract from it a single subvariety of the shape that
+Theorem~\ref{thm:locus}(c) asks for.
+
+Let $X$ be a curve of genus $g=n+1\ge3$, let $L\in\Pic^{0}(X)$ have exact
+order three, and let $\pi\colon C\to X$ be the \'etale cyclic triple cover
+defined by $L$, with covering automorphism $\sigma$. The curve $C$ has genus
+$3g-2$. In the Jacobian $J=J(C)$ let $N=1+\sigma+\sigma^{2}$ and
+$P=3-N\in\End(J)$, and let $B=P(J)$, the \emph{Prym variety} of the cover.
+Then $N^{2}=3N$, so $P$ is multiplication by $3$ on $B$, and $\sigma$ acts on
+$B$ with minimal polynomial $x^{2}+x+1$, which makes $B$ an abelian variety
+of dimension $2n$ with an action of $K=\QQ(\zeta)$, $\zeta=e^{2\pi i/3}$. Its
+hermitian form is split \cite{Loo97}, and both embeddings of $K$ occur with
+multiplicity $n$ on $H^{1,0}(B)$ \cite[Lemma~1.6a]{Sch88}, so $B$ is of Weil
+type. For very general $(X,L)$ its Hodge group is $\SU(V,H)$, by Looijenga's
+computation of the monodromy \cite{Loo97} and Andr\'e's theorem
+\cite{And92}.
+
+Put $h=2g-2=2n$, fix $c_{0}\in C$, and let
+\[
+  \Psi\colon C^{h}\to B,\qquad (c_{1},\dots,c_{h})\mapsto
+  P\Bigl(\,\sum_{i}(c_{i}-c_{0})\Bigr).
+\]
+Let $\Lambda\subseteq C^{h}$ be the set of $h$-tuples with
+$\pi(c_{1})+\dots+\pi(c_{h})\in|K_{X}|$. Since $|K_{X}|\cong\PP^{n}$ and the
+map $C^{h}\to X^{(h)}$ is finite, $\Lambda$ has pure dimension $n$.
+
+Schoen's construction \cite[Section~2, case $r=0$]{Sch88} runs as follows. Let
+$G'\subseteq\operatorname{Aut}(C^{h})$ be generated by the permutations of the
+factors and by the maps $\sigma^{v_{1}}\times\dots\times\sigma^{v_{h}}$ with
+$\sum v_{i}\equiv0\pmod3$, and let $W_{0}=C^{h}/G'$ with quotient map $\rho$.
+The map $W_{0}\to X^{(h)}$ is an \'etale cover of degree three, and over
+$|K_{X}|$, which is simply connected, it splits into three components $Q_{0}$,
+$Q_{1}$, $Q_{2}$, permuted by $\delta=\sigma\times1\times\dots\times1$. For
+each nontrivial character $\chi$ of $\ZZ/3$ the cycle
+$z_{\chi}=\sum_{t}\chi(-t)\,\delta^{t}_{*}Q_{0}$ has nonzero class
+\cite[proof of Theorem~2.0]{Sch88}. Patel and Zhang reach the same three
+components by base change of the Abel--Jacobi map along an isogeny onto
+$J(X)$ \cite[Theorem~1.1]{PZ25}. Let $\Lambda_{0}=\rho^{-1}(Q_{0})\subseteq
+\Lambda$.
+
+\begin{theorem}\label{thm:schoensub}
+In this situation:
+\begin{enumerate}[label=(\alph*)]
+\item the class $\Psi_{*}[\Lambda_{0}]\in H^{2n}(B,\QQ)$ pairs nontrivially
+with the Weil plane of $B$;
+\item there is an irreducible component $\Lambda'$ of $\Lambda_{0}$ that
+maps generically finitely onto an $n$-dimensional subvariety $Y=\Psi(\Lambda')$
+of $B$ whose class pairs nontrivially with the Weil plane;
+\item if $\Hg(B)=\SU(V,H)$, which holds for very general $(X,L)$, then
+\[
+  \cl(Y)=c\,\eta^{n}+w,\qquad c\in\QQ_{>0},\quad 0\ne w\in W.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We work with complex coefficients and write $\bar\chi$ for the conjugate
+character. Write $H^{1}(B,\CC)=V_{\chi}\oplus V_{\bar\chi}$ for the
+eigenspaces of $\sigma^{*}$, each of dimension $h$. The Weil plane, tensored
+with $\CC$, is $\bigwedge^{h}V_{\chi}\oplus\bigwedge^{h}V_{\bar\chi}$.
+
+\emph{Step 1: the pull-back of the Weil plane.} Write $\Psi=P'\circ\Xi$, where
+$\Xi\colon C^{h}\to J$ is $(c_{i})\mapsto\sum(c_{i}-c_{0})$ and $P'\colon J\to
+B$ is $P$ with its target restricted. If $\iota\colon B\to J$ is the
+inclusion, then $P'\iota$ is multiplication by $3$ on $B$, so $P'^{*}$ is
+injective on $H^{1}$, and it carries $V_{\chi}$ into the $\chi$-eigenspace of
+$H^{1}(C,\CC)$, which $\Xi^{*}$ identifies with a summand of
+$H^{1}(C^{h},\CC)$ on each factor. For a basis $y_{1},\dots,y_{h}$ of
+$V_{\chi}$ let $\tilde y_{j}\in H^{1}(C,\CC)_{\chi}$ be the corresponding
+classes on $C$. Then
+\[
+  u_{\chi}:=\Psi^{*}(y_{1}\wedge\dots\wedge y_{h})
+  =\prod_{j=1}^{h}\Bigl(\sum_{i=1}^{h}p_{i}^{*}\tilde y_{j}\Bigr),
+\]
+where $p_{i}$ is the $i$-th projection. A product $\tilde y_{j}\cup\tilde
+y_{k}$ lies in the $\chi^{2}$-eigenspace of $H^{2}(C,\CC)$. Since $\sigma$
+acts trivially on $H^{2}(C,\CC)$ and $\chi^{2}\ne1$, that eigenspace is zero,
+so the product vanishes. Expanding the product, only the terms with one
+factor $p_{i}^{*}\tilde y_{j}$ for each $i$ survive, and
+$u_{\chi}=\sum_{s}\pm\prod_{i}p_{i}^{*}\tilde y_{s(i)}$, the sum over
+permutations $s$. By the K\"unneth formula $u_{\chi}\ne0$.
+
+From here on automorphisms act on cohomology by pull-back. The class
+$u_{\chi}$ is invariant under $G'$: the permutations fix it because $\Psi$ is
+symmetric, and each $\sigma^{v_{1}}\times\dots\times\sigma^{v_{h}}$ multiplies
+it by $\chi(\sum v_{i})=1$. The map $\delta$ normalizes $G'$, and $\delta^{*}$
+multiplies $u_{\chi}$ by $\chi(1)$. Let $U_{\chi}$ be the part of
+$H^{h}(C^{h},\CC)^{G'}$ on which $\delta^{*}$ acts by $\chi(1)$. It is
+one-dimensional \cite[Lemma~1.2]{Sch88}. (Directly: a K\"unneth product of
+eigenclasses is fixed by every $\sigma^{v_{1}}\times\dots\times\sigma^{v_{h}}$
+with $\sum v_{i}\equiv0$ only if all its factors lie in one eigenspace of
+$\sigma^{*}$, and $\delta^{*}$ then acts by $\chi(1)$ only if that eigenspace
+is $H^{1}(C,\CC)_{\chi}$, which has dimension $2g-2=h$; the symmetric part is
+its top exterior power.) So $u_{\chi}$ spans $U_{\chi}$. In the same way
+$u_{\bar\chi}=\Psi^{*}(\bar y_{1}\wedge\dots\wedge\bar y_{h})$ spans
+$U_{\bar\chi}$.
+
+\emph{Step 2: $\Psi$ is generically finite.} At a point
+$(c_{1},\dots,c_{h})$ the differential of $\Psi$ is dual to the map that
+sends a holomorphic $1$-form $\omega$ on $B$, viewed as a form on $C$ in the
+nontrivial eigenspaces, to $(\omega(c_{1}),\dots,\omega(c_{h}))$. These forms
+make up a space of dimension $2n=h$, and $h$ general points impose independent
+conditions on it, so the differential is an isomorphism at a general point.
+Hence $\Psi$ is surjective and generically finite, of some degree $e>0$, and
+\[
+  \int_{C^{h}}u_{\chi}\cup u_{\bar\chi}
+  =e\int_{B}(y_{1}\wedge\dots\wedge y_{h})\wedge(\bar y_{1}\wedge\dots\wedge\bar y_{h})\ne0.
+\]
+
+\emph{Step 3: the pairing.} The class $\lambda_{0}=[\Lambda_{0}]=\rho^{*}[Q_{0}]$
+is $G'$-invariant; $\rho$ is unramified at the general point of
+$\Lambda_{0}$, since $G'$ acts freely on tuples whose images in $X$ are
+distinct. Since $\delta^{*}=(\delta^{-1})_{*}$, the component of
+$\lambda_{0}$ on which $\delta^{*}$ acts by $\chi(1)$ is
+\[
+  \tfrac13\sum_{t}\chi(t)\,\delta^{t}_{*}\lambda_{0}
+  =\tfrac13\,\rho^{*}[z_{\bar\chi}],
+\]
+which is nonzero by Schoen's theorem applied to $\bar\chi$, because
+$\rho^{*}$ is injective in rational cohomology. It lies in $U_{\chi}$, so it
+equals $a\,u_{\chi}$ with $a\ne0$. Because $\delta$ preserves the
+intersection pairing, a class on which $\delta^{*}$ acts by $\psi(1)$ pairs
+to zero with $u_{\bar\chi}$ unless $\psi=\chi$. Hence
+\[
+  \int_{C^{h}}\lambda_{0}\cup u_{\bar\chi}=a\int_{C^{h}}u_{\chi}\cup u_{\bar\chi}\ne0,
+\]
+and by the projection formula
+$\int_{B}\Psi_{*}\lambda_{0}\cup(\bar y_{1}\wedge\dots\wedge\bar y_{h})\ne0$.
+This is~(a).
+
+\emph{Step 4: one component.} The class $\Psi_{*}\lambda_{0}$ is
+$\sum_{k}e_{k}\,\cl(\Psi(\Lambda_{k}))$, the sum over the irreducible
+components $\Lambda_{k}$ of $\Lambda_{0}$ on which $\Psi$ is generically
+finite, with $e_{k}$ the degree of $\Lambda_{k}\to\Psi(\Lambda_{k})$; the
+other components contribute nothing. By~(a) one term pairs nontrivially with
+the Weil plane. This is~(b).
+
+\emph{Step 5: the shape of the class.} If $\Hg(B)=\SU(V,H)$ then
+$\cl(Y)\in\Hdg^{n}(B)=\QQ\eta^{n}\oplus W$, so $\cl(Y)=c\eta^{n}+w$. The
+centre $\U(1)\subseteq\U(V,H)$, acting by scalars of $K\otimes\RR=\CC$ of
+absolute value one, fixes $\eta$ and the orientation class, and acts on the
+two lines of $W\otimes\CC$ by $\lambda^{\pm2n}$. So $\int\eta^{n}\cup w'=0$
+for every $w'\in W$. By~(b), $w\ne0$. Finally
+$\int\cl(Y)\cup\eta^{n}$ is the degree of $Y$ with respect to the ample class
+$\eta$, which is positive, and it equals $c\int\eta^{2n}$, so $c>0$.
+\end{proof}
+
+\begin{corollary}\label{cor:schoensemireg}
+Let $n\ge4$. Suppose that for one very general $(X,L)$ of genus $n+1$ the
+subvariety $Y$ of Theorem~\ref{thm:schoensub}, or its structure sheaf as a
+perfect complex on $B$, is semiregular. Then the Weil classes are algebraic on
+every member of the split Weil family of $\QQ(\sqrt{-3})$ in dimension $2n$.
+\end{corollary}
+
+\begin{proof}
+If $Y$ is a local complete intersection, its class is
+$c\eta^{n}+w$ with $w\ne0$, which is the shape required by
+Theorem~\ref{thm:locus}(c). For the structure sheaf, $\ch(\cO_{Y})$ has
+$\cl(Y)$ in degree $2n$ and Hodge classes in higher degrees, which at a
+member with Hodge group $\SU(V,H)$ are multiples of powers of $\eta$ by the
+description of the Hodge ring. In either case Theorem~\ref{thm:locus}(c)
+gives $\Sigma=\Sh$.
+\end{proof}
+
+\subsection{Where the Weil route stops}
+
+Everything now rests on one question.
+
+\begin{question}\label{q:schoen}
+For $n\ge4$ and very general $(X,L)$, is the subvariety $Y\subseteq B$ of
+Theorem~\ref{thm:schoensub} semiregular? Equivalently, at first order:
+does $Y$ deform along every one of the $n^{2}$ directions of the Weil family
+at $B$, and not only along the $3n$ directions that come from deforming
+$(X,L)$?
+\end{question}
+
+We have not been able to decide it, and the closest analogue points the wrong
+way. The Abel--Jacobi curve $C\subseteq J(C)$ is built from the same map as
+$Y$. Its class $\theta^{g-1}/(g-1)!$ is algebraic on every principally
+polarized abelian variety, so it stays of Hodge type everywhere. Yet by the
+criterion of Matsusaka and Ran \cite{Mat59,Ran81} a curve with this class
+exists only on Jacobians and on products of Jacobians, which form a proper
+subvariety of the moduli space once $g\ge4$. By Bloch's theorem
+\cite{Blo72} the Abel--Jacobi curve is therefore not semiregular. Schoen's
+subvariety is the analogue one step up, built from the fibre of the
+Abel--Jacobi map over the canonical class, and nothing in its construction
+moves it off the locus of Prym varieties. This is an analogy and not a proof.
+If the answer to Question~\ref{q:schoen} is no, the deformation route needs
+a different object, and Theorem~\ref{thm:locus}(e) says it cannot come from
+divisors, homomorphisms or the tautological cycles of curves.
+
+The theorem also sits consistently against the barrier of \cite{BhW}.
+Since $3-(1+\sigma+\sigma^{2})=(1-\sigma)(2+\sigma)$, the map $\Psi$ is
+$(c_{i})\mapsto(1-\sigma)\sum_{i}(2+\sigma)(c_{i}-c_{0})$, which has the form
+of the maps in \cite[Proposition~11]{BhW}; and $(1-\sigma)(J)=B$, because
+$(2+\sigma)(2+\sigma^{2})=3$ on $(1-\sigma)(J)$, so that $2+\sigma$ is an
+isogeny of it. That proposition says that $\Psi_{*}$
+carries every class in the subring of $H^{*}(C^{h},\QQ)$ generated by the
+diagonals, the graphs of $\sigma$ and $\sigma^{2}$ and the point classes to a
+class invariant under the unitary group, and such a class pairs to zero with
+the Weil plane. By Theorem~\ref{thm:schoensub}(a), then, $[\Lambda_{0}]$ does
+not lie in that subring. This is what the barrier predicts: a Weil class at
+a Prym variety with full Hodge group can come only from a cycle outside the
+tautological ring, and Schoen's splitting of the canonical system into three
+components produces one.
+
+For fields other than $\QQ(\sqrt{-3})$ and $\QQ(\sqrt{-1})$, and for
+nonsplit forms when $2n\ge6$, no cycle is known at any member with full
+Hodge group, so the route has nothing to deform.
+
+\section{Classes beyond the Weil classes}\label{sec:beyondweil}
+
+By Theorem~\ref{thm:shape}(b), the conjecture for abelian varieties also
+needs the classes that divisors and Weil classes do not generate. Their
+first instance is Mumford's.
+
+Let $A$ be a Mumford fourfold, so that $\End(A)=\ZZ$ and $\Hg(A)$ is a
+$\QQ$-form of $\mathrm{SL}_{2}^{3}$ acting on $V_{\CC}=S_{1}\otimes S_{2}\otimes
+S_{3}$. These fourfolds form families over Shimura curves
+\cite{Mum69}. The space $\bigwedge^{2}V_{\CC}$ contains
+$\mathrm{Sym}^{2}S_{1}\otimes\mathrm{Sym}^{2}S_{2}\otimes\mathbf{1}$ and its two
+companions, and on $A\times A$ the invariants of $\Hg(A)$ include, besides the
+classes generated by divisors, the two classes that come from the identity of
+each of these three pieces modulo the polarization. They are Hodge classes
+that are neither Lefschetz nor Weil classes. For them \cite{BhH8} proves:
+they are algebraic at every CM point of the family; they are algebraic on
+every member once one Kuga--Satake class, on a K3 surface of Picard number
+thirteen attached to the fourfold, is algebraic; and they are algebraic on
+every member exactly when the Lefschetz standard conjecture holds for one
+ninefold. It also shows that no construction from line bundles by cones,
+tensor products, pull-backs, push-forwards and Fourier--Mukai functors
+reaches them, because all of these preserve invariance under the Lefschetz
+group.
+
+Here the attempt stops at one class. The Kuga--Satake correspondence is
+known to be algebraic for a few families of K3 surfaces (see
+Section~\ref{sec:nonabelian}), and the K3 surfaces attached to Mumford's
+fourfolds are not among them.
+
+\section{Varieties that are not of abelian type}\label{sec:nonabelian}
+
+The statement (F3$'$) holds trivially on every variety whose cohomology is
+reached from abelian varieties by algebraic correspondences, and
+Proposition~\ref{prop:descent} spreads it along surjective morphisms. The
+literature adds a good deal.
+
+\begin{itemize}
+\item \emph{Dimension at most three, and codegrees $0$ and $2$} hold by
+Corollary~\ref{cor:smalldim}.
+\item \emph{K3 surfaces of Picard number $19$ or $20$} carry a Shioda--Inose
+structure, which relates their transcendental lattice to that of an abelian
+surface \cite{Mor84}.
+\item \emph{Products of surfaces.} The conjecture holds for every product of
+surfaces with $q=2$ and $p_{g}=1$, and for every self-product of a K3 surface
+whose field of Hodge endomorphisms of the transcendental lattice is a CM field
+\cite{RM08}. It holds for every power of a K3 surface associated with a
+variety of generalized Kummer type \cite{Fl25}, and for the squares of the
+K3 surfaces in an explicit family covered by squares of curves of genus
+seven \cite{ILP21}.
+\item \emph{Hyper-K\"ahler varieties.} Rational Hodge isometries between
+varieties of $K3^{[n]}$ type are algebraic \cite{Mar22}, and the standard
+conjectures hold for them \cite{CM13}. The Chow motive of a generalized Kummer
+variety lies in the tensor category generated by the abelian surface, so the
+conjecture holds for all products of generalized Kummer varieties
+\cite{Xu15,FTV19}. The same holds for O'Grady's six-dimensional varieties
+\cite{Fl23}, and O'Grady's ten-dimensional varieties have motives built from
+those of K3 surfaces \cite{FFZ21}. The motive of a smooth moduli space of
+stable sheaves on a K3 or abelian surface $S$ is a summand of a sum of twisted
+motives of powers of $S$ \cite{Bul18}.
+\item \emph{Fourfolds.} The conjecture holds for uniruled fourfolds
+\cite{CM78} and for cubic fourfolds \cite{Zuc77}, and cubic fourfolds whose
+lattice of algebraic $2$-cycles has rank greater than $19$ have abelian
+motive \cite{ABLP20}. Every smooth Delsarte hypersurface, and every cyclic
+cover branched along one, satisfies (F3$'$) \cite{BhH8}.
+\end{itemize}
+
+The first variety on which (F3$'$) is open is the square $S\times S$ of a K3
+surface $S$ whose transcendental lattice has real multiplication by a totally
+real field $E\ne\QQ$ \cite{BhH8}. The endomorphisms in $E$ give Hodge classes
+on $S\times S$ in $H^{2}(S)\otimes H^{2}(S)$ that are not generated by divisors.
+If the Kuga--Satake correspondence between $S$ and its Kuga--Satake abelian
+variety were algebraic, these classes would move to Hodge classes on the
+square of an abelian variety, and (F3$'$) for $S\times S$ would become a case
+of (F2). It is not known to be algebraic for such $S$. The analysis of
+\cite{BhH8} gives the same structure here as for Weil classes: the algebraic
+locus of the real multiplication in a family of such K3 surfaces is dense,
+contains every CM point, and is either the whole family or meagre. Deciding
+between the two is open.
+
+Beyond the K3 surfaces lies the general case of (F3$'$): a variety of
+dimension at least four whose motive is not known to come from abelian
+varieties, with Hodge classes in a degree that Corollary~\ref{cor:smalldim}
+does not reach. The methods that have produced cycles in the known cases are
+few: divisors, through Theorem~\ref{thm:lef11}; rational curves, as in
+\cite{CM78}; normal functions over Lefschetz pencils, as for cubic fourfolds
+\cite{Zuc77}; the inductive structure of Fermat and Delsarte varieties; and
+correspondences with curves, abelian varieties and moduli of sheaves, as in
+the results just listed. We do not see how to apply any of them to a
+variety with none of this structure, and that is where the attempt at (F3$'$)
+stops.
+
+\section{Spreading Schoen's construction}\label{sec:spread}
+
+Schoen's cycles reach a family of dimension $3n$ inside one of dimension
+$n^{2}$, and Question~\ref{q:schoen} asks whether they can be deformed out of
+it. This section tries the two other ways of spreading them: carrying them to
+other abelian varieties by correspondences, and running the construction on
+other varieties. The first gives a theorem. It makes the Weil class of any
+abelian variety of Weil type for $\QQ(\sqrt{-3})$ algebraic exactly when the
+Weil class of a second, complementary variety is, but a count of dimensions
+shows that it cannot by itself reach the general member. The second reaches
+neither (F2) nor (F3$'$), for reasons we make precise.
+
+Throughout the section $K=\QQ(\sqrt{-3})$ and $\zeta$ is a primitive cube
+root of unity. Varieties of Weil type are for $K$, with any discriminant,
+and we assume that $\cO_{K}$ acts, which can always be arranged by passing
+to a $K$-isogenous variety. For such a variety $A$ of dimension $2m$ write
+$W(A)\subseteq H^{2m}(A,\QQ)$ for its Weil plane. Over $\CC$ the space
+$H^{1}(A,\CC)$ is the sum of the eigenspaces $V_{\chi}(A)$ and
+$V_{\bar\chi}(A)$ of $\zeta^{*}$, each of dimension $2m$, and
+$W(A)\otimes\CC=\bigwedge^{2m}V_{\chi}(A)\oplus\bigwedge^{2m}V_{\bar\chi}(A)$.
+We call $A$ \emph{Weil-algebraic} if every class in $W(A)$ is algebraic. One
+nonzero algebraic class in $W(A)$ is enough, because a suitable element of
+$\cO_{K}$ acting as an endomorphism moves it to a second class that spans
+$W(A)$ with it \cite[proof of Theorem~6]{BhW}.
+
+\subsection{Products and complements}
+
+\begin{lemma}\label{lem:twothree}
+Let $B$, $A_{1}$ and $A_{2}$ be of Weil type, of dimensions
+$2(m_{1}+m_{2})$, $2m_{1}$ and $2m_{2}$, and let $f\colon B\to A_{1}\times
+A_{2}$ be an isogeny that commutes with $\cO_{K}$.
+\begin{enumerate}[label=(\alph*)]
+\item The isomorphism $f^{*}$ carries a plane in
+$W(A_{1})\otimes W(A_{2})\subseteq H^{2m_{1}}(A_{1})\otimes H^{2m_{2}}(A_{2})$
+onto $W(B)$. Over $\CC$ this plane is spanned by $\omega_{1}\otimes\omega_{2}$
+and $\bar\omega_{1}\otimes\bar\omega_{2}$, where $\omega_{i}$ spans
+$\bigwedge^{2m_{i}}V_{\chi}(A_{i})$ and $\bar\omega_{i}$ is its complex
+conjugate.
+\item If two of $B$, $A_{1}$ and $A_{2}$ are Weil-algebraic, so is the third.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The map $f^{*}$ is an isomorphism on rational cohomology that commutes with
+$\cO_{K}$ and carries algebraic classes to algebraic classes, and so does its
+inverse $(\deg f)^{-1}f_{*}$. So we may take $B=A_{1}\times A_{2}$ with the
+diagonal action. Then $V_{\chi}(B)=V_{\chi}(A_{1})\oplus V_{\chi}(A_{2})$, and
+the top exterior power of a direct sum is the tensor product of the top
+exterior powers. This is~(a).
+
+If $A_{1}$ and $A_{2}$ are Weil-algebraic, every class in
+$W(A_{1})\otimes W(A_{2})$ is a sum of products
+$\mathrm{pr}_{1}^{*}\alpha_{1}\cup\mathrm{pr}_{2}^{*}\alpha_{2}$ of algebraic
+classes, so $B$ is Weil-algebraic by~(a). Suppose now that $B$ and $A_{2}$
+are Weil-algebraic. On $W(A_{2})$ we have $\int\omega_{2}\cup\omega_{2}=0$,
+because $\bigwedge^{4m_{2}}V_{\chi}(A_{2})=0$, while
+$p:=\int\omega_{2}\cup\bar\omega_{2}\ne0$, because
+$\bigwedge^{2m_{2}}V_{\chi}(A_{2})\otimes\bigwedge^{2m_{2}}V_{\bar\chi}(A_{2})$
+is the top exterior power of $H^{1}(A_{2},\CC)$. The number $p$ is real,
+since $\omega_{2}$ and $\bar\omega_{2}$ have even degree and so commute. Take nonzero rational
+classes $x\in W(B)$ and $\gamma\in W(A_{2})$. Being real, they have the form
+$x=s\,\omega_{1}\otimes\omega_{2}+\bar s\,\bar\omega_{1}\otimes\bar\omega_{2}$
+and $\gamma=t\,\omega_{2}+\bar t\,\bar\omega_{2}$ with $s,t\ne0$. The class
+\[
+  \mathrm{pr}_{1*}\bigl(x\cup\mathrm{pr}_{2}^{*}\gamma\bigr)
+  =p\,\bigl(s\bar t\;\omega_{1}+\bar s t\;\bar\omega_{1}\bigr)
+\]
+is rational, algebraic and nonzero, and it lies in $W(A_{1})$. So $A_{1}$ is
+Weil-algebraic.
+\end{proof}
+
+\begin{theorem}\label{thm:transfer}
+Let $A$ be an abelian variety of Weil type for $K$, of dimension $2m\ge2$,
+on which $\cO_{K}$ acts. Then there are a smooth curve $C\subseteq A$ stable
+under $\zeta$, on which $\zeta$ acts freely, so that $\pi\colon C\to X=C/\zeta$
+is an \'etale cyclic triple cover of a curve of some genus $g\ge m+1$; a
+variety $A'$ of Weil type of dimension $2(g-1-m)$; and an isogeny commuting
+with $\cO_{K}$ between the Prym variety $B$ of $\pi$ and $A\times A'$. For
+every such curve, $A$ is Weil-algebraic if and only if $A'$ is.
+\end{theorem}
+
+\begin{proof}
+\emph{The curve.} The automorphism $\zeta$ of $A$ has finitely many fixed
+points, the kernel of the isogeny $1-\zeta$. Let $L$ be ample on $A$. The
+bundle $N=L\otimes\zeta^{*}L\otimes\zeta^{2*}L$ satisfies $\zeta^{*}N\cong N$,
+so, the group being cyclic, it carries a $\zeta$-linearization, and the
+linearized bundle $N^{3}$ descends to an ample line bundle $\bar M$ on the
+normal projective quotient $q\colon A\to A/\zeta$, whose singular points are
+among the images of the fixed points. For $k$ large, $2m-1$ general members of $|\bar M^{k}|$ meet in a
+smooth irreducible curve $X$ that avoids those finitely many points, by
+Bertini's theorem. Then $C=q^{-1}(X)$ is \'etale over $X$, hence smooth, and
+it is the complete intersection of the $2m-1$ ample divisors $q^{*}D_{i}$,
+hence connected. So $\pi\colon C\to X$ is an \'etale cyclic triple cover, and
+$\zeta$ acts on $C$ as its covering automorphism $\sigma$. Schoen observes
+the existence of such curves in \cite[Section~3]{Sch88}.
+
+\emph{The surjection.} By the Lefschetz hyperplane theorem, restriction
+$H^{1}(A,\QQ)\to H^{1}(C,\QQ)$ is injective. So the homomorphism
+$\alpha\colon J(C)\to A$ that adds up the points of a divisor of degree zero
+is surjective, and it commutes with $\zeta$. In $\cO_{K}$ we have
+$1+\zeta+\zeta^{2}=0$, so $\alpha\circ(1+\sigma+\sigma^{2})=0$ and
+$\alpha\circ P=3\alpha$ for $P=3-(1+\sigma+\sigma^{2})$. Hence $\alpha$ maps
+the Prym variety $B=P(J(C))$ onto $A$, and in particular $g-1\ge m$.
+
+\emph{The complement.} Let $A'$ be the connected component of the kernel of
+$\alpha|_{B}$, and $A''$ its complement in $B$ for the polarization induced
+from $J(C)$. Since $\sigma$ preserves that polarization, both are stable under
+$\sigma$, so $\cO_{K}$ acts on them. The maps $A''\to A$ and
+$A'\times A''\to B$ are isogenies commuting with $\cO_{K}$, and composing one
+with a quasi-inverse of the other relates $B$ and $A\times A'$.
+
+\emph{Weil type.} By \cite[Lemma~1.6a]{Sch88} the two eigenspaces of $\sigma$
+on $H^{1,0}(B)$ both have dimension $g-1$, and on $H^{1,0}(A)$ both have
+dimension $m$. So on $H^{1,0}(A')$ both have dimension $g-1-m$, and $A'$ is
+of Weil type.
+
+\emph{The equivalence.} The cover is \'etale, so Schoen's Theorem~2.0 applies
+to it with $r=0$, and by \cite[Corollary~3.1]{Sch88} the variety $B$ is
+Weil-algebraic. Lemma~\ref{lem:twothree}(b) gives the equivalence.
+\end{proof}
+
+When $g-1=m$ the complement is zero and $A$ is itself $K$-isogenous to a
+Prym variety; that happens on the Prym locus, of dimension $3m$, and nowhere
+else. For larger $g$ the theorem trades the Weil class of $A$ for that of
+$A'$, and since curves of higher degree give complements of any size, one
+can hope to choose the curve so that $A'$ is a variety on which the Weil
+class is already known.
+
+\begin{corollary}\label{cor:transfer}
+$A$ is Weil-algebraic as soon as, for one curve as in
+Theorem~\ref{thm:transfer}, the complement $A'$ is $K$-isogenous to a product
+of Weil-algebraic varieties. Among these are Prym varieties of \'etale cyclic
+triple covers; abelian surfaces of Weil type; Weil fourfolds for $K$
+\cite{Sch88,Sch98}; and the varieties $E^{k}\times\bar E^{k}$, where $E$ is an
+elliptic curve with complex multiplication by $\cO_{K}$ and $\bar E$ is $E$
+with $\cO_{K}$ acting through complex conjugation.
+\end{corollary}
+
+\begin{proof}
+Products of Weil-algebraic varieties are Weil-algebraic by
+Lemma~\ref{lem:twothree}(b), and Theorem~\ref{thm:transfer} finishes the
+argument. On an abelian surface the Weil plane lies in $H^{2}$ and consists of
+Hodge classes, which are algebraic by Theorem~\ref{thm:lef11}. On
+$E^{k}\times\bar E^{k}$, with coordinates $z_{1},\dots,z_{2k}$ on the factors,
+$V_{\chi}$ is spanned by $dz_{1},\dots,dz_{k}$ and
+$d\bar z_{k+1},\dots,d\bar z_{2k}$, so up to sign
+\[
+  \omega_{\chi}=\bigwedge_{i=1}^{k}\bigl(dz_{i}\wedge d\bar z_{k+i}\bigr).
+\]
+Each factor is a class of type $(1,1)$ on $E\times\bar E$, whose N\'eron--Severi
+group has rank $4=h^{1,1}$ because $E$ has complex multiplication, so it is a
+complex combination of divisor classes. Hence $\omega_{\chi}$ and its
+conjugate are polynomials in divisor classes.
+\end{proof}
+
+\begin{remark}\label{rem:count}
+For a general $A$ with $m\ge4$ one cannot expect a complement of these
+kinds. Pryms of \'etale triple covers of curves of genus $m+k+1$ form a
+family of dimension $3(m+k)$ inside the Weil family of dimension $(m+k)^{2}$.
+The varieties $K$-isogenous to $A\times A'$, with $A$ in the family of
+dimension $m^{2}$ and $A'$ in a family of dimension $f$, form a subvariety of
+dimension $m^{2}+f$. For $A$ to be general, the two must meet in dimension at
+least $m^{2}$, which needs
+\[
+  3(m+k)+f\ \ge\ (m+k)^{2}
+\]
+unless they meet in more than the expected dimension. Products of the
+varieties in Corollary~\ref{cor:transfer} of total dimension $2k$ have at most
+$3k$ moduli, and $3m+6k<(m+k)^{2}$ for every $k\ge0$ once $m\ge4$. For
+$m=3$ only $k=0$ passes, which is the Prym locus itself, and for $m=2$ the
+values $k\le2$ pass. So, unless the Prym locus meets these product loci in
+excess dimension, the corollary reaches only a meagre subset of the family
+once $m\ge4$, as Schoen anticipated \cite[Section~3]{Sch88}. Such excess
+intersections are what the Zilber--Pink philosophy says should not happen.
+This is a count and not a proof.
+\end{remark}
+
+\subsection{Other varieties, and \texorpdfstring{(F2) and (F3$'$)}{(F2) and (F3')}}
+
+\emph{(F2).} Schoen's classes are Weil classes. By \cite[Lemma~1.2 and
+Remark~1.4]{Sch88}, for every curve with a cyclic group of automorphisms the
+space of classes his Theorem~2.0 makes algebraic is the pull-back of the Weil
+plane of a generalized Prym variety with cyclotomic multiplication. For
+cyclotomic fields of degree at least four this bears on the third missing
+input of \cite{BhH8}, the propagation for CM fields of higher degree. It
+does not bear on (F2). Schoen's own count in \cite[Section~3]{Sch88} shows
+that these generalized Pryms can fill a whole Weil family in at most four
+small cases. To reach a class of (F2), such as the exceptional classes on $A\times A$
+for a Mumford fourfold $A$, the construction would need an algebraic
+correspondence from a Prym-type variety $B$ to $A\times A$ that carries a Weil
+class of $B$ to the exceptional class. That correspondence is a Hodge class on
+$B\times A\times A$, so asking for it is again an instance of the conjecture
+for abelian varieties. Nor can the construction be run on $A$ itself: a
+Mumford fourfold has $\End(A)=\ZZ$, so it has no automorphism of order
+three.
+
+\emph{(F3$'$).} Schoen defines the same space of classes for any smooth
+projective $C$ of odd dimension $k$ with a cyclic group of automorphisms,
+under a few hypotheses, the main one being that the part $V$ of
+$H^{k}(C,\QQ)$ on which the group acts by primitive characters has only two
+Hodge types. His example is a quintic threefold
+invariant under $\ZZ/5$ and missing the fixed points, where the space lies in
+$H^{120}(C^{40},\QQ)$, has type $(60,60)$, and was not known to be algebraic
+\cite[Section~1]{Sch88}. In that example $H^{3,0}$ is invariant, so $V$ has
+types $(2,1)$ and $(1,2)$. It is then of level one, and so it is a Tate
+twist of $H^{1}$ of an abelian variety $J_{V}$, and the classes are images of
+the Weil plane of $J_{V}$ under a Hodge isomorphism. They would be algebraic
+if $J_{V}$ were Weil-algebraic and the isomorphism were induced by an
+algebraic correspondence. The second requirement is the generalized Hodge
+conjecture for the level-one part of $H^{3}(C)$, an instance of (F3$'$) that
+we do not know to be proved for these quintics. The cycles of \cite[Section~2]{Sch88} come from
+the Abel--Jacobi map of a curve, which supplies that correspondence for free.
+For a variety of higher dimension nothing supplies it, so the construction
+stops at curves. When the two Hodge types are not adjacent, $V$ is not of
+level one, and the construction has no abelian variety to work on.
+
+So spreading Schoen's construction by correspondences reduces the Weil class
+of $A$ to that of a complement without making it easier, and spreading it to
+other varieties leads back to (F2) and (F3$'$) themselves. Neither closes
+anything that Question~\ref{q:schoen} leaves open.
+
+\section{What is proved and what is not}\label{sec:end}
+
+Proved here, with complete proofs or by citation of refereed work:
+\begin{enumerate}[label=(\arabic*)]
+\item every Hodge class of degree $2$ or $2n-2$, and every Hodge class on a
+variety of dimension at most three, is algebraic;
+\item the conjecture descends along surjective morphisms, and reduces to
+middle degree on complete intersections given the Lefschetz standard
+conjecture;
+\item on every Prym variety $B$ of an \'etale cyclic triple cover of a
+curve of genus $n+1$, Schoen's construction gives an irreducible
+$n$-dimensional subvariety $Y$ whose class pairs nontrivially with the Weil
+plane, and at a very general such $B$ its class is $c\eta^{n}+w$ with $c>0$
+and $w$ a nonzero Weil class (Theorem~\ref{thm:schoensub});
+\item if that subvariety is semiregular for one very general cover of genus
+$n+1$, the Weil classes are algebraic on every member of the split Weil
+family of $\QQ(\sqrt{-3})$ in dimension $2n$ (Corollary~\ref{cor:schoensemireg});
+\item every abelian variety $A$ of Weil type for $\QQ(\sqrt{-3})$ is, up to
+isogeny, a factor $A\times A'$ of the Prym variety of an \'etale cyclic
+triple cover, with $A'$ of Weil type, and $A$ is Weil-algebraic if and only
+if $A'$ is (Theorem~\ref{thm:transfer}); in particular $A$ is Weil-algebraic
+whenever $A'$ is a product of the varieties listed in
+Corollary~\ref{cor:transfer}.
+\end{enumerate}
+
+Recalled from \cite{BhH8} and used as the frame: the conjecture is equivalent
+to (F2) and (F3$'$) together; (F2) is the conjecture for abelian varieties;
+and the minimal sets of hypotheses are those of Theorem~\ref{thm:shape}(c).
+
+Not proved here, and open:
+\begin{enumerate}[label=(\roman*)]
+\item the Lefschetz standard conjecture, in general;
+\item the Weil classes on a general abelian variety of Weil type of
+dimension at least eight, and of dimension six outside the known families;
+in particular Question~\ref{q:schoen}, and the existence, for a general $A$
+of dimension at least eight, of a complement as in
+Theorem~\ref{thm:transfer} on which the Weil classes are known, which the
+count of Remark~\ref{rem:count} makes unlikely;
+\item the exceptional classes on the square of a Mumford fourfold, which
+follow from one Kuga--Satake class;
+\item the conjecture for the square of a K3 surface with real
+multiplication, the first open case of (F3$'$), and (F3$'$) in general.
+\end{enumerate}
+
+So the attempt in full ends where it was always likely to end. The
+conjecture is equivalent to two statements, and each of them has an explicit
+first open case. The most concrete thing this paper adds is that the Weil
+case for $\QQ(\sqrt{-3})$ in every dimension now hangs on a single, explicitly
+described subvariety of a Prym variety and the question whether it deforms.
+
+\subsection*{Machine checks}
+No proof in this paper depends on a computer. The finite parts of the
+arguments have nevertheless been repeated by machine, and the files are in
+the author's repository \cite{BhHC}.
+
+In Lean~4, checked by its kernel with nothing beyond the core library, we
+verified five things. The first is the deductions of
+Propositions~\ref{prop:hardlef}, \ref{prop:descent} and~\ref{prop:middle} and
+of Corollary~\ref{cor:smalldim}, with every geometric input stated as a
+hypothesis, so that the dependence of Proposition~\ref{prop:middle} on the
+Lefschetz standard conjecture is visible in the statement. The second is the
+counts of genera and dimensions in Section~\ref{sec:weil}, for every genus at
+once. The third is the arithmetic of the characters of $\ZZ/3$ in $\ZZ[\zeta]$
+used in Step~3 of Theorem~\ref{thm:schoensub}. The fourth is the weight count
+of Step~5 and the deduction of $c>0$ and $w\ne0$ from it. The identity
+$3-(1+\sigma+\sigma^{2})=(1-\sigma)(2+\sigma)$ used after
+Question~\ref{q:schoen} is checked there too. The fifth, for
+Section~\ref{sec:spread}, is the dimensions in Theorem~\ref{thm:transfer}, including the
+equality of the two eigenspaces on $A'$, the relation $\alpha\circ P=3\alpha$,
+and the arithmetic of Remark~\ref{rem:count} for every $m$ and $k$ at once.
+It checks only that arithmetic; the remark itself remains a count and not a
+proof.
+
+In Julia, and in a Python version of the same checks, all in exact
+arithmetic, we computed the following. On a general abelian variety of Weil
+type of dimension $2n\le8$, the Hodge classes span one line in each even
+degree except the middle one, where they span three. For a Weil class $w$
+the products $\eta\cup w$ and $\eta^{n}\cup w$ vanish. The space $U_{\chi}$
+of Step~1 is one-dimensional for $g=3$ and $g=4$; for $g=3$ this was checked
+by summing over the whole group. For $h\le6$ the class $u_{\chi}$ has $h!$
+terms, is symmetric, and pairs nontrivially with $u_{\bar\chi}$. For
+Lemma~\ref{lem:twothree} with $2m_{1},2m_{2}\in\{2,4\}$ we computed the
+push-forward of $x\cup\mathrm{pr}_{2}^{*}\gamma$ in the exterior algebra and
+found the formula of the proof, and for Corollary~\ref{cor:transfer} with
+$k\le4$ we checked that $\omega_{\chi}$ is, up to sign, the product of the
+classes $dz_{i}\wedge d\bar z_{k+i}$.
+
+None of this touches the geometry the paper relies on: the theorems of
+Schoen, Bloch, Looijenga and Andr\'e, and those of \cite{BhH8}. None of it
+bears on Question~\ref{q:schoen}.
+
+\subsection*{A note on preparation}
+Drafts of parts of this paper were prepared with the help of an AI language
+model, used under the author's direction. The author has checked every
+statement and proof and is responsible for the content.
+
+\begin{thebibliography}{ABLP20}
+
+\bibitem[ABLP20]{ABLP20}
+H.~Awada, M.~Bolognesi, R.~Laterveer and C.~Pedrini, \emph{K3 surfaces and
+cubic fourfolds with abelian motive}, preprint, arXiv:2012.05969.
+
+\bibitem[AH62]{AH62}
+M.~F.~Atiyah and F.~Hirzebruch, \emph{Analytic cycles on complex manifolds},
+Topology \textbf{1} (1962), 25--45.
+
+\bibitem[And92]{And92}
+Y.~Andr\'e, \emph{Mumford--Tate groups of mixed Hodge structures and the
+theorem of the fixed part}, Compositio Math.\ \textbf{82} (1992), 1--24.
+
+\bibitem[And96]{And96}
+Y.~Andr\'e, \emph{Pour une th\'eorie inconditionnelle des motifs}, Inst.\
+Hautes \'Etudes Sci.\ Publ.\ Math.\ \textbf{83} (1996), 5--49.
+
+\bibitem[BhH8]{BhH8}
+D.~Bhattacharjee, \emph{Algebraic Loci of Weil Classes on Abelian
+Varieties}, preprint, version 5.1.0, Zenodo, 2026,
+doi:10.5281/zenodo.23227940.
+
+\bibitem[BhHC]{BhHC}
+D.~Bhattacharjee, \emph{Hodge-Conjecture-Full}, repository of the Lean and
+Julia checks for this paper, 2026,
+\url{https://github.com/creelie/Hodge-Conjecture-Full}, directory
+\texttt{verification}.
+
+\bibitem[BhW]{BhW}
+D.~Bhattacharjee, \emph{Closing the algebraic locus of Weil classes: an
+attempt and the exact point where it stops}, preprint, 2026.
+
+\bibitem[Blo72]{Blo72}
+S.~Bloch, \emph{Semi-regularity and de Rham cohomology}, Invent.\ Math.\
+\textbf{17} (1972), 51--66.
+
+\bibitem[B\"ul18]{Bul18}
+T.-H.~B\"ulles, \emph{Motives of moduli spaces on K3 surfaces and of special
+cubic fourfolds}, preprint, arXiv:1806.08284.
+
+\bibitem[CM13]{CM13}
+F.~Charles and E.~Markman, \emph{The standard conjectures for holomorphic
+symplectic varieties deformation equivalent to Hilbert schemes of K3
+surfaces}, preprint, arXiv:1009.0413.
+
+\bibitem[CM78]{CM78}
+A.~Conte and J.~P.~Murre, \emph{The Hodge conjecture for fourfolds admitting
+a covering by rational curves}, Math.\ Ann.\ \textbf{238} (1978), 79--88.
+
+\bibitem[Del82]{Del82}
+P.~Deligne, \emph{Hodge cycles on abelian varieties} (notes by J.~S.~Milne),
+in: Hodge Cycles, Motives, and Shimura Varieties, Lecture Notes in Math.\
+\textbf{900}, Springer, Berlin, 1982, 9--100.
+
+\bibitem[FFZ21]{FFZ21}
+S.~Floccari, L.~Fu and Z.~Zhang, \emph{On the motive of O'Grady's
+ten-dimensional hyper-K\"ahler varieties}, Commun.\ Contemp.\ Math.\
+\textbf{23} (2021), 2050034.
+
+\bibitem[Fl23]{Fl23}
+S.~Floccari, \emph{On the motive of O'Grady's six-dimensional hyper-K\"ahler
+varieties}, \'Epijournal G\'eom.\ Alg\'ebrique \textbf{7} (2023), Article~4.
+
+\bibitem[Fl25]{Fl25}
+S.~Floccari, \emph{K3 surfaces associated with varieties of generalized
+Kummer type}, preprint, arXiv:2501.02315.
+
+\bibitem[FTV19]{FTV19}
+L.~Fu, Z.~Tian and C.~Vial, \emph{Motivic hyper-K\"ahler resolution
+conjecture I: generalized Kummer varieties}, preprint, arXiv:1608.04968.
+
+\bibitem[ILP21]{ILP21}
+C.~Ingalls, A.~Logan and O.~Patashnick, \emph{Explicit coverings of families
+of elliptic surfaces by squares of curves}, preprint, arXiv:2009.07807.
+
+\bibitem[Kle68]{Kle68}
+S.~L.~Kleiman, \emph{Algebraic cycles and the Weil conjectures}, in: Dix
+Expos\'es sur la Cohomologie des Sch\'emas, North-Holland, Amsterdam, 1968,
+359--386.
+
+\bibitem[Koi04]{Koi04}
+K.~Koike, \emph{Algebraicity of some Weil Hodge classes}, Canad.\ Math.\
+Bull.\ \textbf{47} (2004), 566--572.
+
+\bibitem[Kol92]{Kol92}
+J.~Koll\'ar, in: E.~Ballico, F.~Catanese and C.~Ciliberto (eds.),
+\emph{Trento examples}, in: Classification of Irregular Varieties, Lecture
+Notes in Math.\ \textbf{1515}, Springer, Berlin, 1992, 134--135.
+
+\bibitem[KS53]{KS53}
+K.~Kodaira and D.~C.~Spencer, \emph{Divisor class groups on algebraic
+varieties}, Proc.\ Nat.\ Acad.\ Sci.\ U.S.A.\ \textbf{39} (1953), 872--877.
+
+\bibitem[Lef24]{Lef24}
+S.~Lefschetz, \emph{L'analysis situs et la g\'eom\'etrie alg\'ebrique},
+Gauthier-Villars, Paris, 1924.
+
+\bibitem[Lie68]{Lie68}
+D.~I.~Lieberman, \emph{Numerical and homological equivalence of algebraic
+cycles on Hodge manifolds}, Amer.\ J.\ Math.\ \textbf{90} (1968), 366--374.
+
+\bibitem[Loo97]{Loo97}
+E.~Looijenga, \emph{Prym representations of mapping class groups}, Geom.\
+Dedicata \textbf{64} (1997), 69--83.
+
+\bibitem[Mar22]{Mar22}
+E.~Markman, \emph{Rational Hodge isometries of hyper-K\"ahler varieties of
+$K3^{[n]}$-type are algebraic}, preprint, arXiv:2204.00516.
+
+\bibitem[Mar25a]{Mar25a}
+E.~Markman, \emph{Cycles on abelian $2n$-folds of Weil type from secant
+sheaves on abelian $n$-folds}, preprint, arXiv:2502.03415.
+
+\bibitem[Mat59]{Mat59}
+T.~Matsusaka, \emph{On a characterization of a Jacobian variety}, Mem.\
+Coll.\ Sci.\ Univ.\ Kyoto Ser.\ A Math.\ \textbf{32} (1959), 1--19.
+
+\bibitem[Mor84]{Mor84}
+D.~R.~Morrison, \emph{On K3 surfaces with large Picard number}, Invent.\
+Math.\ \textbf{75} (1984), 105--121.
+
+\bibitem[Mum69]{Mum69}
+D.~Mumford, \emph{A note of Shimura's paper ``Discontinuous groups and
+abelian varieties''}, Math.\ Ann.\ \textbf{181} (1969), 345--351.
+
+\bibitem[MZ99]{MZ99}
+B.~Moonen and Yu.~G.~Zarhin, \emph{Hodge classes on abelian varieties of low
+dimension}, Math.\ Ann.\ \textbf{315} (1999), 711--733.
+
+\bibitem[PZ25]{PZ25}
+D.~Patel and Y.~Zhang, \emph{Algebraicity of Hodge classes on some
+generalized Prym varieties}, preprint, arXiv:2506.13729.
+
+\bibitem[Ran81]{Ran81}
+Z.~Ran, \emph{On subvarieties of abelian varieties}, Invent.\ Math.\
+\textbf{62} (1981), 459--479.
+
+\bibitem[RM08]{RM08}
+J.~J.~Ram\'on Mar\'i, \emph{On the Hodge conjecture for products of certain
+surfaces}, Collect.\ Math.\ \textbf{59} (2008), 1--26.
+
+\bibitem[Sch88]{Sch88}
+C.~Schoen, \emph{Hodge classes on self-products of a variety with an
+automorphism}, Compositio Math.\ \textbf{65} (1988), 3--32.
+
+\bibitem[Sch98]{Sch98}
+C.~Schoen, \emph{Addendum to: Hodge classes on self-products of a variety
+with an automorphism}, Compositio Math.\ \textbf{114} (1998), 329--336.
+
+\bibitem[Voi02b]{Voi02b}
+C.~Voisin, \emph{A counterexample to the Hodge conjecture extended to
+K\"ahler varieties}, Int.\ Math.\ Res.\ Not.\ \textbf{2002}, no.~20,
+1057--1075.
+
+\bibitem[Wei77]{Wei77}
+A.~Weil, \emph{Abelian varieties and the Hodge ring}, in: \OE uvres
+Scientifiques, Collected Papers, Vol.~III, Springer, New York, 1979,
+421--429.
+
+\bibitem[Xu15]{Xu15}
+Z.~Xu, \emph{Algebraic cycles on a generalized Kummer variety}, preprint,
+arXiv:1506.04297.
+
+\bibitem[Zuc77]{Zuc77}
+S.~Zucker, \emph{The Hodge conjecture for cubic fourfolds}, Compositio
+Math.\ \textbf{34} (1977), 199--209.
+
+\end{thebibliography}
+
+\end{document}

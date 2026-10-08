@@ -19,10 +19,24 @@ cycles on Prym varieties of étale triple covers, for Q(√−3) and a split
 form. They are the three lifts of the canonical system |K| ≅ Pⁿ of the base
 curve to the triple cover of its symmetric power. The Prym locus has
 dimension 3n inside a family of dimension n², so it fills the family only
-for n ≤ 3. For n ≥ 4 the question is whether one of Schoen's cycles is
-semiregular. The Abel–Jacobi curve in a Jacobian, built from the same map,
-is not semiregular once g ≥ 4 (Matsusaka–Ran and Bloch), which points
-against it. This is undecided.
+for n ≤ 3. Theorem 5.2 of `paper/full_attempt.tex` pushes the cycles to the
+Prym variety and finds there one irreducible n-dimensional subvariety Y
+whose class, at a very general Prym, is a positive multiple of ηⁿ plus a
+nonzero Weil class. For n ≥ 4 the question is whether Y is semiregular. The
+Abel–Jacobi curve in a Jacobian, built from the same map, is not
+semiregular once g ≥ 4 (Matsusaka–Ran and Bloch), which points against it.
+This is undecided.
+
+Section 8 of the same paper spreads the cycles another way. Every abelian
+variety A of Weil type for Q(√−3) contains a curve, stable under the cube
+root of unity, whose quotient is an étale triple cover, and the Prym variety
+of that cover is isogenous to A × A′ with A′ again of Weil type. So the Weil
+class of A is algebraic exactly when that of A′ is (Theorem 8.2). This only
+helps when A′ is a variety on which the class is already known, and a count
+of dimensions (Remark 8.4, a heuristic) says that for a general A of
+dimension 8 or more no such A′ should exist. Carried to other varieties, the
+construction leads back to (F2) and (F3′): the correspondences it would need
+are themselves Hodge classes of the kind those statements are about.
 
 ## The other two statements of H8's route
 

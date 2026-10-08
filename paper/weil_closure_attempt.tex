@@ -280,7 +280,7 @@ of semiregularity \cite{Mar25b}.
 
 Both routes need an input that we do not have.
 
-\subsection*{The first route needs a point of $\Sigma$ with full Hodge group.}
+\subsection*{The first route needs a point of \texorpdfstring{$\Sigma$}{Sigma} with full Hodge group.}
 Outside the families where the conjecture is already known and Schoen's
 Prym locus for $\QQ(\sqrt{-3})$, every point at which $\omega$ is known to
 be algebraic is a CM point or lies on a proper special subvariety. These
@@ -709,7 +709,38 @@ member with full Hodge group. So the Hodge conjecture for abelian varieties
 of Weil type remains open in dimension eight and above, and in dimension
 six outside the known families. The Hodge conjecture itself remains open.
 
+\subsection*{Machine checks}
+No proof in this note depends on a computer. The finite steps of
+Theorem~\ref{thm:barrier} and of the discussion after
+Proposition~\ref{prop:curves} have nevertheless been repeated by machine,
+and the files are in the author's repository \cite{BhHC}.
+
+In Lean~4, checked by its kernel with nothing beyond the core library, we
+verified three things. For every squarefree $d\le200$ the element
+$\tau=2+\sqrt{-d}$ satisfies $\tau^{12}\ne\bar\tau^{12}$. Since every root of
+unity in an imaginary quadratic field has twelfth power $1$, this shows that
+$\tau/\bar\tau$ is not a root of unity, as Step~5 requires. (For $d=4$ and
+$d=12$, which are not squarefree, this choice of $\tau$ fails.) The weights
+of Steps~2 and~5 were checked as well, and so were the genus, eigenspace and
+parameter counts of the two families of curves.
+
+In Julia, and in a Python version of the same checks, both in exact
+arithmetic, we computed two things. For $2n\le6$ and $m\le2$ the
+endomorphisms of $H^{1}(A^{m})$ commuting with $\SU(V,H)$ span $2m^{2}$
+dimensions, as Step~1 says. For $2n\le6$ and $m\le3$ the invariants in
+degree two on $A^{m}$ form $m^{2}$ classes of type $(1,1)$, with none of type
+$(2,0)$ or $(0,2)$, as Step~3 says. For $2n=2$ both computations come out
+differently, as they should, since the hypothesis $2n\ge3$ is then false.
+
+None of this touches the geometry of the note, and none of it bears on the
+open questions of Section~\ref{sec:stops}.
+
 \begin{thebibliography}{99}
+
+\bibitem{BhHC} D.~Bhattacharjee, \emph{Hodge-Conjecture-Full}, repository of
+the Lean and Julia checks, 2026,
+\url{https://github.com/creelie/Hodge-Conjecture-Full}, directory
+\texttt{verification}.
 
 \bibitem{And92} Y.~Andr\'e, \emph{Mumford--Tate groups of mixed Hodge
 structures and the theorem of the fixed part}, Compositio Math.\
