@@ -19,10 +19,13 @@ cycles on Prym varieties of étale triple covers, for Q(√−3) and a split
 form. They are the three lifts of the canonical system |K| ≅ Pⁿ of the base
 curve to the triple cover of its symmetric power. The Prym locus has
 dimension 3n inside a family of dimension n², so it fills the family only
-for n ≤ 3. For n ≥ 4 the question is whether one of Schoen's cycles is
-semiregular. The Abel–Jacobi curve in a Jacobian, built from the same map,
-is not semiregular once g ≥ 4 (Matsusaka–Ran and Bloch), which points
-against it. This is undecided.
+for n ≤ 3. Theorem 5.2 of `paper/full_attempt.tex` pushes the cycles to the
+Prym variety and finds there one irreducible n-dimensional subvariety Y
+whose class, at a very general Prym, is a positive multiple of ηⁿ plus a
+nonzero Weil class. For n ≥ 4 the question is whether Y is semiregular. The
+Abel–Jacobi curve in a Jacobian, built from the same map, is not
+semiregular once g ≥ 4 (Matsusaka–Ran and Bloch), which points against it.
+This is undecided.
 
 ## The other two statements of H8's route
 

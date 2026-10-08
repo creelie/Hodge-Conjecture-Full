@@ -35,7 +35,10 @@ What remains open, and is stated as open in the text (see also
 - the Weil class on general Weil-type abelian varieties of dimension 8 and
   more, and in dimension 6 outside the known families;
 - whether one of Schoen's cycles on Prym varieties is semiregular, which
-  would settle every dimension for Q(√−3) with split form;
+  would settle every dimension for Q(√−3) with split form
+  (`paper/full_attempt.tex` shows these cycles give one explicit subvariety
+  whose class is a positive multiple of the polarization power plus a
+  nonzero Weil class, so the question is about that one subvariety);
 - Hodge classes on abelian varieties beyond divisor and Weil classes, and the
   conjecture for varieties that are not of abelian type.
 
@@ -46,6 +49,9 @@ What remains open, and is stated as open in the text (see also
     book/proposal.md        a draft Springer book proposal
     paper/weil_closure_attempt.tex
                             the research note
+    paper/full_attempt.tex  an attempt at the conjecture in full: every
+                            route, pushed as far as it goes, and the first
+                            open statement on each
     H8/                     the author's earlier work, version 5.1.0
                             (doi:10.5281/zenodo.23227940), linked as a git
                             submodule; it holds the computations
@@ -60,6 +66,7 @@ Clone with `git clone --recurse-submodules` to get `H8/` as well.
 
     cd book && latexmk -pdf main.tex
     cd paper && latexmk -pdf weil_closure_attempt.tex
+    cd paper && latexmk -pdf full_attempt.tex
 
-Both also compile on Overleaf. For submission to Springer, switch the book
+All three also compile on Overleaf. For submission to Springer, switch the book
 to the `svmono` class, as the comment at the top of `book/main.tex` explains.
